@@ -14,11 +14,21 @@ const routes: Routes = [
   {
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
-  }
+  },
+  {
+    path: 'vaccine',
+    loadChildren: './vaccine/vaccine.module#VaccinePageModule'
+  },
+  {
+    path: 'vaccine/:id/detail',
+    loadChildren: './vaccine/detail/detail.module#DetailPageModule'
+  },
+  { path: 'vaccine/:id/brand', loadChildren: './brand/brand.module#BrandPageModule' },
+  { path: 'vaccine/:id/dose', loadChildren: './dose/dose.module#DosePageModule' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

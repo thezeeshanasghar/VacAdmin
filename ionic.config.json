@@ -1,6 +1,8 @@
 {
   "name": "VacAdmin",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "id": "09c2f6c2"
 }
