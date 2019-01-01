@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Vaccine
+      Vaccines
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,16 +12,21 @@
 <ion-content padding>
 
   <ion-list>
+    
     <ion-list-header>
       Active Vaccines
     </ion-list-header>
     <ion-item-sliding *ngFor="let v of vaccines">
 
       <ion-item routerLink="/vaccine/{{v.ID}}/detail">
+        
         <ion-label>
           {{v.Name}}
-        </ion-label>
-        <ion-note slot="end">{{v.MinAge | number2Week}}</ion-note>
+        </ion-label>  
+        <ion-note slot="end">
+          {{v.MinAge | number2Week}}
+        </ion-note>
+      
       </ion-item>
       <ion-item-options side="end">
 

@@ -1,12 +1,40 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
-    <ion-title>dose</ion-title>
+    <ion-title>Vaccine Dosses</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+
+    <ion-list>
+        
+        <ion-item-sliding *ngFor="let d of dosses">
+    
+          <ion-item>
+            <ion-label>
+              {{d.Name}}
+            </ion-label>
+            <ion-note slot="end">
+              Min Age: {{d.MinAge | number2Week}}
+              Max Age: {{d.MaxAge | number2Week}}
+              Max Gap: {{d.MaxGap | number2Week}}
+              Dose Order: {{d.DoseOrder}}
+            </ion-note>
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option (click)="edit(item)">
+              <ion-icon name="create" size="large"></ion-icon>
+            </ion-item-option>
+            <ion-item-option (click)="delete(item)">
+              <ion-icon name="trash" size="large"></ion-icon>
+            </ion-item-option>
+    
+          </ion-item-options>
+        </ion-item-sliding>
+    
+      </ion-list>
 
 </ion-content>
