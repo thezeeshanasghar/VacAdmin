@@ -12,10 +12,6 @@ const routes: Routes = [
     loadChildren: './home/home.module#HomePageModule'
   },
   {
-    path: 'list',
-    loadChildren: './list/list.module#ListPageModule'
-  },
-  {
     path: 'vaccine',
     loadChildren: './vaccine/vaccine.module#VaccinePageModule'
   },

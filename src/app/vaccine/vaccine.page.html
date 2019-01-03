@@ -19,7 +19,7 @@
     <ion-item-sliding *ngFor="let v of vaccines">
 
       <ion-item routerLink="/vaccine/{{v.ID}}/detail">
-        
+        <ion-icon name="color-filter" slot="start"></ion-icon>
         <ion-label>
           {{v.Name}}
         </ion-label>  

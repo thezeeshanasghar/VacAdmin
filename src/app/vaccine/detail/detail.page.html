@@ -1,11 +1,13 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
     <ion-title>Vaccine Detail</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-
   <ion-card>
     <ion-card-header>
       <ion-card-title>{{vaccine.Name}}</ion-card-title>
@@ -13,13 +15,10 @@
 
     <ion-card-content>
       <!-- <ion-card-subtitle>Details:</ion-card-subtitle> -->
-      <ul>
-        <li>Minimum Age Limit: {{vaccine.MinAge | number2Week}}</li>
-        <li *ngIf="vaccine.MaxAge">Maximum Age Limit: {{vaccine.MaxAge | number2Week}}</li>
-      </ul>
+      <p>Minimum Age Limit: {{vaccine.MinAge | number2Week}}</p>
+      <p *ngIf="vaccine.MaxAge">Maximum Age Limit: {{vaccine.MaxAge | number2Week}}</p>
       <ion-button routerLink="/vaccine/{{vaccine.ID}}/dose">Doses</ion-button>
       <ion-button routerLink="/vaccine/{{vaccine.ID}}/brand">Brands</ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>
- 

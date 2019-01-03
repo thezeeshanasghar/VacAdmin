@@ -9,32 +9,22 @@
 
 <ion-content padding>
 
-    <ion-list>
-        
-        <ion-item-sliding *ngFor="let d of dosses">
-    
-          <ion-item>
-            <ion-label>
-              {{d.Name}}
-            </ion-label>
-            <ion-note slot="end">
-              Min Age: {{d.MinAge | number2Week}}
-              Max Age: {{d.MaxAge | number2Week}}
-              Max Gap: {{d.MaxGap | number2Week}}
-              Dose Order: {{d.DoseOrder}}
-            </ion-note>
-          </ion-item>
-          <ion-item-options side="end">
-            <ion-item-option (click)="edit(item)">
-              <ion-icon name="create" size="large"></ion-icon>
-            </ion-item-option>
-            <ion-item-option (click)="delete(item)">
-              <ion-icon name="trash" size="large"></ion-icon>
-            </ion-item-option>
-    
-          </ion-item-options>
-        </ion-item-sliding>
-    
-      </ion-list>
+  <ion-card *ngFor="let d of dosses">
+    <ion-item>
+      <ion-label>{{d.Name}}</ion-label>
+      <!-- <ion-icon name="create" slot="end"></ion-icon> -->
+      <ion-button fill="none" slot="end">
+        <ion-icon name="create" color="primary"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-card-content>
+      <!-- <ion-card-subtitle>Details:</ion-card-subtitle> -->
+      <p>Minimum Age Limit: {{d.MinAge | number2Week}}</p>
+      <p *ngIf="d.MaxAge">Maximum Age Limit: {{d.MaxAge | number2Week}}</p>
+      <p *ngIf="d.MaxGap">Max Gap: {{d.MaxGap | number2Week}}</p>
+      <p>Dose Order: {{d.DoseOrder}}</p>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>
