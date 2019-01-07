@@ -11,8 +11,9 @@
 
 <ion-content padding>
 
+  <ion-button color="primary" routerLink="Add">Add New</ion-button>
   <ion-list>
-    
+
     <ion-list-header>
       Active Vaccines
     </ion-list-header>
@@ -22,11 +23,11 @@
         <ion-icon name="color-filter" slot="start"></ion-icon>
         <ion-label>
           {{v.Name}}
-        </ion-label>  
+        </ion-label>
         <ion-note slot="end">
           {{v.MinAge | number2Week}}
         </ion-note>
-      
+
       </ion-item>
       <ion-item-options side="end">
 

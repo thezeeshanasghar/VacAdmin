@@ -39,6 +39,11 @@ const routes: Routes = [
     path: 'message',
     loadChildren: './message/message.module#MessagePageModule'
   },
+  {
+    path: 'vaccine/Add',
+    loadChildren: './vaccine/add/add.module#AddPageModule'
+  },
+
 ];
 
 @NgModule({
