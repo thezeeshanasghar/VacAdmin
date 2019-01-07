@@ -9,6 +9,12 @@ const httpOptions = {
 const apiVaccineURL = 'https://api.vaccs.io/api/vaccine'
 const apiDoseURL = 'https://api.vaccs.io/api/dose'
 const apiBrandURL = 'https://api.vaccs.io/api/brand'
+const apiApprovedDoctorURL = 'http://vac-api.afz-sol.com/api/doctor/approved'
+const apiUnApprovedDoctorURL = 'http://vac-api.afz-sol.com/api/doctor/unapproved'
+const apidoctordetailURL = 'http://vac-api.afz-sol.com/api/doctor/'
+const apimsgURL = 'http://vac-api.afz-sol.com/api/message/?mobileNumber=&fromDate=&toDate='
+const apimsgbyid = 'http://vac-api.afz-sol.com/api/message/?mobileNumber=&fromDate=&toDate='
+
 
 @Injectable({
   providedIn: 'root'
@@ -73,6 +79,43 @@ export class RestApiService {
 
   getBrandById(brandId: String) : Observable<any> {
     const url = `${apiBrandURL}/${brandId}`;
+    return this.http.get(url, httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError)
+    );
+  }
+
+  getApprovedDoctorList() : Observable<any> {
+    return this.http.get(apiApprovedDoctorURL, httpOptions).pipe(
+      map(this.extractData), 
+      catchError(this.handleError)
+    );
+  }
+
+  getUnApprovedDoctorList() : Observable<any> {
+    return this.http.get(apiUnApprovedDoctorURL, httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError)
+    );
+  }
+
+  getDoctorById(id: String) : Observable<any> {
+    const url = `${apidoctordetailURL}/${id}`;
+    return this.http.get(url, httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError)
+    );
+  }
+  
+  getMsg() : Observable<any> {
+    return this.http.get(apimsgURL, httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError)
+    );
+  }
+
+  getMessageById(id: String) : Observable<any> {
+    const url = `${apimsgbyid}/${id}`;
     return this.http.get(url, httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError)

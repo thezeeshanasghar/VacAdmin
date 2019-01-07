@@ -19,8 +19,30 @@ const routes: Routes = [
     path: 'vaccine/:id/detail',
     loadChildren: './vaccine/detail/detail.module#DetailPageModule'
   },
-  { path: 'vaccine/:id/brand', loadChildren: './brand/brand.module#BrandPageModule' },
-  { path: 'vaccine/:id/dose', loadChildren: './dose/dose.module#DosePageModule' }
+  {
+    path: 'vaccine/:id/brand',
+    loadChildren: './brand/brand.module#BrandPageModule'
+  },
+  {
+    path: 'vaccine/:id/dose',
+    loadChildren: './dose/dose.module#DosePageModule'
+  },
+  {
+    path: 'doctor',
+    loadChildren: './doctor/doctor.module#DoctorPageModule'
+  },
+  {
+    path: 'doctor/:id/detail',
+    loadChildren: './doctor/detail/detail.module#DetailPageModule'
+  },
+  {
+    path: 'message',
+    loadChildren: './message/message.module#MessagePageModule'
+  },
+  {
+    path: 'message/:id/detail',
+    loadChildren: './message/detail/detail.module#DetailPageModule'
+  }
 ];
 
 @NgModule({

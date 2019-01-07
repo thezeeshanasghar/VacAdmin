@@ -19,6 +19,16 @@ export class AppComponent {
       title: 'Vaccine',
       url: '/vaccine',
       icon: 'color-filter'
+    },
+    {
+      title: 'Doctor',
+      url: '/doctor',
+      icon: 'color-filter'
+    },
+    {
+      title: 'Message',
+      url: '/message',
+      icon: 'color-filter'
     }
   ];
 
