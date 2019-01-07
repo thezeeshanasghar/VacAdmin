@@ -23,12 +23,12 @@ export class AppComponent {
     {
       title: 'Doctor',
       url: '/doctor',
-      icon: 'color-filter'
+      icon: 'medkit'
     },
     {
       title: 'Message',
       url: '/message',
-      icon: 'color-filter'
+      icon: 'mail'
     }
   ];
 
