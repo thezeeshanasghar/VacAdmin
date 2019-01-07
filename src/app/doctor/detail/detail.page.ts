@@ -11,6 +11,7 @@ import { RestApiService } from 'src/app/rest-api.service';
 export class DetailPage implements OnInit {
 
   doctor: any = {};
+  response:any;
   constructor(
     public api: RestApiService,
     public loadingController: LoadingController,
@@ -38,6 +39,17 @@ export class DetailPage implements OnInit {
         loading.dismiss();
       }
     );
+  }
+
+  async update(){
+    await this.api.updateDoctorPermission(this.route.snapshot.paramMap.get('id'), this.doctor)
+    .subscribe(res => {
+      console.log("Done")
+        // let id = res['id'];
+        // this.router.navigate(['/detail/'+id]);
+      }, (err) => {
+        console.log(err);
+      });
   }
 
 }

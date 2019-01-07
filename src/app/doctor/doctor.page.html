@@ -38,7 +38,9 @@
         </ion-card>
       </div>
     </div>
+
     <div *ngSwitchCase="'UnApproved'">
+      <p></p>
       <div *ngFor="let doctor of UnApprovedDoctorList">
         <ion-card>
           <ion-card-header>
@@ -47,8 +49,9 @@
 
           <ion-card-content>
             <p>Mobile Number: {{doctor.MobileNumber}}</p>
-            <p> Validupto: {{doctor.ValidUpto}}</p>
-            <ion-button routerLink="/doctor/{{doctor.ID}}/detail">Detail</ion-button>
+            <p>Email: {{doctor.Email}}</p>
+            <p>PMDC: {{doctor.PMDC}}</p>
+            <ion-button routerLink="/doctor/{{doctor.ID}}/detail">Approve</ion-button>
           </ion-card-content>
         </ion-card>
       </div>

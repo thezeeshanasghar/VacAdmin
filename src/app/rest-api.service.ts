@@ -3,17 +3,15 @@ import { Observable, of, throwError} from 'rxjs'
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http'
 import { catchError, tap, map } from 'rxjs/operators'
 
+
 const httpOptions = {
   headers : new HttpHeaders({'Content-Type':'application/json'})
 };
 const apiVaccineURL = 'https://api.vaccs.io/api/vaccine'
 const apiDoseURL = 'https://api.vaccs.io/api/dose'
 const apiBrandURL = 'https://api.vaccs.io/api/brand'
-const apiApprovedDoctorURL = 'http://vac-api.afz-sol.com/api/doctor/approved'
-const apiUnApprovedDoctorURL = 'http://vac-api.afz-sol.com/api/doctor/unapproved'
-const apidoctordetailURL = 'http://vac-api.afz-sol.com/api/doctor/'
-const apimsgURL = 'http://vac-api.afz-sol.com/api/message/?mobileNumber=&fromDate=&toDate='
-const apimsgbyid = 'http://vac-api.afz-sol.com/api/message/?mobileNumber=&fromDate=&toDate='
+const apiDoctorURL = 'https://api.vaccs.io/api/doctor'
+const apimsgURL = 'http://vac-api.afz-sol.com/api/message'
 
 
 @Injectable({
@@ -21,7 +19,10 @@ const apimsgbyid = 'http://vac-api.afz-sol.com/api/message/?mobileNumber=&fromDa
 })
 export class RestApiService {
 
-  constructor(private http: HttpClient) { }
+  myHeaders: Headers = new Headers;
+  constructor(
+    private http: HttpClient,
+    ) { }
 
   private handleError(error: HttpErrorResponse) {
     if(error.error instanceof ErrorEvent) {
@@ -86,21 +87,21 @@ export class RestApiService {
   }
 
   getApprovedDoctorList() : Observable<any> {
-    return this.http.get(apiApprovedDoctorURL, httpOptions).pipe(
+    return this.http.get(apiDoctorURL + "/approved", httpOptions).pipe(
       map(this.extractData), 
       catchError(this.handleError)
     );
   }
 
   getUnApprovedDoctorList() : Observable<any> {
-    return this.http.get(apiUnApprovedDoctorURL, httpOptions).pipe(
+    return this.http.get(apiDoctorURL+"/unapproved", httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError)
     );
   }
 
   getDoctorById(id: String) : Observable<any> {
-    const url = `${apidoctordetailURL}/${id}`;
+    const url = `${apiDoctorURL}/${id}`;
     return this.http.get(url, httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError)
@@ -108,17 +109,17 @@ export class RestApiService {
   }
   
   getMsg() : Observable<any> {
-    return this.http.get(apimsgURL, httpOptions).pipe(
+    return this.http.get(apimsgURL +'/?mobileNumber=&fromDate=&toDate=', httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError)
     );
   }
 
-  getMessageById(id: String) : Observable<any> {
-    const url = `${apimsgbyid}/${id}`;
-    return this.http.get(url, httpOptions).pipe(
-      map(this.extractData),
-      catchError(this.handleError)
-    );
+  updateDoctorPermission(id: string, data): Observable<any> {
+    const url = `${apiDoctorURL}/${id}/update-permission`;
+    return this.http.put(url, data, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 }

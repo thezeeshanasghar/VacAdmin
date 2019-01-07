@@ -51,7 +51,7 @@ export class DoctorPage implements OnInit {
     await this.api.getUnApprovedDoctorList().subscribe(
       res => {
         console.log(res);
-        this.ApprovedDoctorList = res.ResponseData;
+        this.UnApprovedDoctorList = res.ResponseData;
         loading.dismiss();
       }, 
       err => {
