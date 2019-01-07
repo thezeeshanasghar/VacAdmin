@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -20,28 +20,29 @@
       <p>Now that your app has been created, you'll want to start building out features and components. Check out some
         of the resources below for next steps.</p>
     </ion-card-content>
+    <ion-grid>
+        <ion-row>
+          <ion-col size-md="6" size-xs="12">
+            <ion-card class="card-pink" routerLink="/vaccine">
+              <ion-card-header>
+                <ion-card-title style="color: white">18</ion-card-title>
+                <ion-card-title style="color: white">Active Vaccines</ion-card-title>
+              </ion-card-header>
+            </ion-card>
+          </ion-col>
+          
+          <ion-col size-md="6" size-xs="12">
+            <ion-card class="card-pink-2">
+              <ion-card-header>
+                <ion-card-title style="color: white">14</ion-card-title>
+                <ion-card-title style="color: white">Active Doctors</ion-card-title>
+              </ion-card-header>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
   </ion-card>
-  <ion-grid>
-    <ion-row>
-      <ion-col size-md="6" size-xs="12">
-        <ion-card class="card-pink" routerLink="/vaccine">
-          <ion-card-header>
-            <ion-card-title style="color: white">18</ion-card-title>
-            <ion-card-title style="color: white">Active Vaccines</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
-      
-      <ion-col size-md="6" size-xs="12">
-        <ion-card class="card-pink-2">
-          <ion-card-header>
-            <ion-card-title style="color: white">14</ion-card-title>
-            <ion-card-title style="color: white">Active Doctors</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  
   <ion-list lines="none">
     <ion-list-header>
       <ion-label>Resources</ion-label>

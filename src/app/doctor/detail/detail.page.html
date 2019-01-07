@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-datetime [(ngModel)]="doctor.ValidUpto"></ion-datetime>
+  <ion-datetime [(placeholder)]="doctor.ValidUpto" display-format="DD/MM/YYYY"  min="2010" max="2019-08-23" [(ngModel)]="doctor.ValidUpto"></ion-datetime>
   <ion-list no-lines>
     <ion-item>
       <ion-label fixed>FirstName:
