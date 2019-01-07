@@ -39,10 +39,6 @@ const routes: Routes = [
     path: 'message',
     loadChildren: './message/message.module#MessagePageModule'
   },
-  {
-    path: 'message/:id/detail',
-    loadChildren: './message/detail/detail.module#DetailPageModule'
-  }
 ];
 
 @NgModule({
