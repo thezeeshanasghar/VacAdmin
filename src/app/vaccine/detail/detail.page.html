@@ -8,10 +8,33 @@
 </ion-header>
 
 <ion-content padding>
+
   <ion-card>
-    <ion-card-header>
-      <ion-card-title>{{vaccine.Name}}</ion-card-title>
-    </ion-card-header>
+      
+
+    <ion-grid>
+      <ion-row>
+
+        <ion-col size="2">
+            <ion-card-header>
+                <ion-card-title>{{vaccine.Name}}</ion-card-title>
+              </ion-card-header>
+        </ion-col>
+
+        <ion-col size="8">
+          <ion-item>
+              <ion-icon color="primary" name="create" slot="end"></ion-icon>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="2">
+          <ion-item>
+              <ion-icon color="primary" name="trash" ></ion-icon> 
+          </ion-item>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
 
     <ion-card-content>
       <!-- <ion-card-subtitle>Details:</ion-card-subtitle> -->
