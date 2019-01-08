@@ -1,3 +1,16 @@
-<p>
-  unapproved works!
-</p>
+<div style="display: block">
+  <ion-card *ngFor="let doc of doctors">
+   <ion-card-header>
+     <ion-card-title>{{doc.DisplayName}}</ion-card-title>
+   </ion-card-header>
+ 
+   <ion-card-content>
+     <p>Number: {{doc.MobileNumber}}</p>
+     <p>Validity: {{doc.ValidUpto}}</p>
+     <p>
+       <ion-button routerLink="/doctor/{{doc.ID}}/detail">Detail</ion-button>
+     </p>
+   </ion-card-content>
+ </ion-card>
+ </div>
+ 

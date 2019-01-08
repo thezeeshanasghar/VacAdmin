@@ -93,7 +93,7 @@ export class RestApiService {
     );
   }
 
-  getUnApprovedDoctorList() : Observable<any> {
+  getUnApprovedDoctors() : Observable<any> {
     return this.http.get(apiDoctorURL+"/unapproved", httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError)
