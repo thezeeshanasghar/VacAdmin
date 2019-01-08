@@ -6,11 +6,28 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { DoctorPage } from './doctor.page';
+import { ApprovedComponent } from './approved/approved.component';
+import { UnapprovedComponent } from './unapproved/unapproved.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: DoctorPage
+    component: DoctorPage,
+    children: [
+      {
+        path:"approved",
+        component: ApprovedComponent
+      }, 
+      {
+        path:"unapproved",
+        component: UnapprovedComponent
+      },
+      {
+        path: '',
+        redirectTo: 'approved',
+        pathMatch: 'full'
+      }
+    ]
   }
 ];
 
@@ -21,6 +38,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [DoctorPage]
+  declarations: [DoctorPage, ApprovedComponent, UnapprovedComponent]
 })
 export class DoctorPageModule {}

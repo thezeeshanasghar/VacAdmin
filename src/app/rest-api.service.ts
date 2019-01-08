@@ -86,7 +86,7 @@ export class RestApiService {
     );
   }
 
-  getApprovedDoctorList() : Observable<any> {
+  getApprovedDoctors() : Observable<any> {
     return this.http.get(apiDoctorURL + "/approved", httpOptions).pipe(
       map(this.extractData), 
       catchError(this.handleError)
