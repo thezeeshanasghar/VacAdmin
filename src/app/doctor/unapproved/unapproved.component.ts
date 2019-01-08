@@ -9,7 +9,7 @@ import { LoadingController } from '@ionic/angular';
 })
 export class UnapprovedComponent implements OnInit {
   
-  UnApprovedDoctorList:any
+  doctors:any
 
   constructor(
     public route: ActivatedRoute,
@@ -21,19 +21,20 @@ export class UnapprovedComponent implements OnInit {
 
 
   ngOnInit() {
+    this.getUnApprovedDoctors();
   }
   
-  async UnApproved_doctor(){
+  async getUnApprovedDoctors(){
     const loading = await this.loadingController.create({
       message: 'Loading'
     });
 
     await loading.present();
 
-    await this.api.getUnApprovedDoctorList().subscribe(
+    await this.api.getUnApprovedDoctors().subscribe(
       res => {
         console.log(res);
-        this.UnApprovedDoctorList = res.ResponseData;
+        this.doctors = res.ResponseData;
         loading.dismiss();
       }, 
       err => {
