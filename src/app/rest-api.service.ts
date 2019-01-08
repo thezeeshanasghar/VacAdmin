@@ -122,4 +122,12 @@ export class RestApiService {
         catchError(this.handleError)
       );
   }
+
+  Addchild(data): Observable<any> {
+    return this.http.post(apiVaccineURL, data, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
 }
