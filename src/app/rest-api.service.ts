@@ -123,8 +123,16 @@ export class RestApiService {
       );
   }
 
-  Addchild(data): Observable<any> {
+  Addvaccine(data): Observable<any> {
     return this.http.post(apiVaccineURL, data, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  Editvaccine(id: string, data): Observable<any> {
+    const url = `${apiVaccineURL}/${id}`;
+    return this.http.put(url, data, httpOptions)
       .pipe(
         catchError(this.handleError)
       );

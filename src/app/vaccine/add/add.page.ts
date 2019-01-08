@@ -34,7 +34,7 @@ export class AddPage implements OnInit {
   
   async AddVaccine() {
     console.log(this.userData)
-    await this.api.Addchild(this.userData)
+    await this.api.Addvaccine(this.userData)
       .subscribe(res => {
         console.log('done');
         this.router.navigate(['/vaccine/']);

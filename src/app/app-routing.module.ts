@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'vaccine/Add',
     loadChildren: './vaccine/add/add.module#AddPageModule'
   },
+  { 
+    path: 'vaccine/:id/edit',
+   loadChildren: './vaccine/edit/edit.module#EditPageModule' 
+  },
   {
     path: 'vaccine/:id/brand',
     loadChildren: './brand/brand.module#BrandPageModule'
@@ -43,6 +47,8 @@ const routes: Routes = [
     path: 'message',
     loadChildren: './message/message.module#MessagePageModule'
   },
+  
+
  
 
 
