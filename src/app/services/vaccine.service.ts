@@ -31,6 +31,14 @@ export class VaccineService extends BaseService {
       );
   }
 
+  DeleteVaccine(id: string): Observable<any> {
+    const url = `${this.API_VACCINE}/${id}`;
+    return this.http.delete(url, this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   getVaccines() : Observable<any> {
     return this.http.get(this.API_VACCINE, this.httpOptions).pipe(
       map(this.extractData), 

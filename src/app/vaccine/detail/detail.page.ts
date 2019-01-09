@@ -10,9 +10,9 @@ import { VaccineService } from 'src/app/services/vaccine.service';
 export class DetailPage implements OnInit {
 
   vaccine: any = {};
-
+  error: any ;
   constructor(
-    public api: VaccineService, 
+    public api: VaccineService,
     public loadingController: LoadingController,
     public route: ActivatedRoute,
     public router: Router,
@@ -22,33 +22,77 @@ export class DetailPage implements OnInit {
     this.getVaccine();
   }
 
-
-  async Deletevaccine() {
-    const alert = await this.alertController.create({
-      header: 'Alert',
-      subHeader: 'Subtitle',
-      message: 'This is an alert message.',
-      buttons: ['OK']
-    });
-
-    await alert.present();
-  }
-
+  // Get Vaccine data from Server
   async getVaccine() {
     const loading = await this.loadingController.create({
       message: "Loading"
     });
     await loading.present();
     await this.api.getVaccineById(this.route.snapshot.paramMap.get('id')).subscribe(
-      res=>{
+      res => {
         console.log(res);
         this.vaccine = res.ResponseData;
         loading.dismiss();
       },
-      err=>{
+      err => {
         console.log(err);
         loading.dismiss();
       }
     );
   }
+
+  // Alert Msg Show for deletion of vaccine
+  async AlertDeletevaccine() {
+    const alert = await this.alertController.create({
+      header: 'vaccs.io says',
+      message: 'Are you sure want to delete this Record?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => { }
+        },
+        {
+          text: 'Yes',
+           handler: () => {
+                this.Deletevacc();
+                this.router.navigate(['/vaccine/']);
+           }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  // Alert Msg show if vaccine is not delete because some reason
+  async ErrorMsgShowvaccineNotDel() {
+    const alert = await this.alertController.create({
+      message: this.error,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  // Call api to delete a vaccine 
+  async Deletevacc() {
+    const loading = await this.loadingController.create({
+      message: "Loading"
+    });
+    await loading.present();
+    await this.api.DeleteVaccine(this.route.snapshot.paramMap.get('id')).subscribe(
+      res => {
+        console.log(res)
+        this.error = res.Message;
+        this.ErrorMsgShowvaccineNotDel();
+        loading.dismiss();
+      },
+      err => {
+        console.log(err);
+        console.log("error")
+        loading.dismiss();
+      }
+    );
+  }
+
 }

@@ -10,10 +10,15 @@ export class VaccinePage implements OnInit {
 
   vaccines: any;
 
-  constructor(public api: VaccineService, public loadingController: LoadingController) { }
+  constructor(
+    public api: VaccineService,
+    public loadingController: LoadingController
+  ) {
+    this.getVaccines();
+  }
 
   ngOnInit() {
-    this.getVaccines();
+
   }
 
   async getVaccines() {
@@ -28,7 +33,7 @@ export class VaccinePage implements OnInit {
         console.log(res);
         this.vaccines = res.ResponseData;
         loading.dismiss();
-      }, 
+      },
       err => {
         console.log(err);
         loading.dismiss();
