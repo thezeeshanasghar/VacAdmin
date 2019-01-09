@@ -24,4 +24,29 @@ export class BrandService extends BaseService {
       catchError(this.handleError)
     );
   }
+
+  addBrand(vaccineId: string, data): Observable<any> {
+    const url = `${this.API_BRAND}/${vaccineId}`;
+    return this.http.post(url, data, this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  EditBrand(id: string, data): Observable<any> {
+    const url = `${this.API_BRAND}/${id}`;
+    return this.http.put(url, data, this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  DeleteBrand(id: string): Observable<any> {
+    const url = `${this.API_BRAND}/${id}`;
+    return this.http.delete(url, this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
 }

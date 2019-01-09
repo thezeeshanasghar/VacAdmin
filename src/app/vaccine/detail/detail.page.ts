@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VaccineService } from 'src/app/services/vaccine.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-detail',
@@ -16,7 +17,9 @@ export class DetailPage implements OnInit {
     public loadingController: LoadingController,
     public route: ActivatedRoute,
     public router: Router,
-    public alertController: AlertController) { }
+    public alertController: AlertController,
+    private storage: Storage
+    ) { }
 
   ngOnInit() {
     this.getVaccine();
@@ -32,6 +35,7 @@ export class DetailPage implements OnInit {
       res => {
         console.log(res);
         this.vaccine = res.ResponseData;
+        this.storage.set('VaccineID', this.vaccine.ID);
         loading.dismiss();
       },
       err => {
@@ -84,7 +88,10 @@ export class DetailPage implements OnInit {
       res => {
         console.log(res)
         this.error = res.Message;
+        if(this.error != null){
         this.ErrorMsgShowvaccineNotDel();
+        loading.dismiss();}
+        this.router.navigate(['/vaccine/']);
         loading.dismiss();
       },
       err => {

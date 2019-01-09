@@ -8,6 +8,7 @@
 </ion-header>
 
 <ion-content padding>
+    <ion-button color="primary" shape="round" (click)="AlertMsgForAdd()">Add New</ion-button>
     <ion-list>
         
         <ion-item-sliding *ngFor="let b of brands">
@@ -18,10 +19,10 @@
             </ion-label>
           </ion-item>
           <ion-item-options side="end">
-            <ion-item-option (click)="edit(item)">
+            <ion-item-option (click)="AlertMsgForEdit(b.ID)">
               <ion-icon name="create" size="large"></ion-icon>
             </ion-item-option>
-            <ion-item-option (click)="delete(item)">
+            <ion-item-option (click)="AlertDeletevaccine(b.ID)">
               <ion-icon name="trash" size="large"></ion-icon>
             </ion-item-option>
     
