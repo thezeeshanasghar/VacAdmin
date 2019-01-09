@@ -9,6 +9,15 @@
 
 <ion-content padding>
 
+  <ion-card *ngIf="message.length == 0">
+    <ion-card-header>
+      <ion-card-title>No message found !</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Server returned an empty response
+    </ion-card-content>
+  </ion-card>
+
   <ion-card *ngFor="let msg of message">
     <ion-card-header>
       <ion-card-title>{{msg.User.MobileNumber}}</ion-card-title>
