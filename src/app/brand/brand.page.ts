@@ -11,9 +11,9 @@ import { VaccineService } from '../services/vaccine.service';
 export class BrandPage implements OnInit {
 
   brands: any;
-  singlebrands:any
+  singlebrands: any
   brandsname: any;
-  Name:any;
+  Name: any;
   constructor(
     public route: ActivatedRoute,
     public router: Router,
@@ -37,7 +37,7 @@ export class BrandPage implements OnInit {
         console.log(res);
         this.brands = res.ResponseData;
         loading.dismiss();
-      }, 
+      },
       err => {
         console.log(err);
         loading.dismiss();
@@ -60,12 +60,56 @@ export class BrandPage implements OnInit {
         this.brandsname = res.ResponseData.Name;
         console.log(this.brandsname);
         loading.dismiss();
-      }, 
+      },
       err => {
         console.log(err);
         loading.dismiss();
       }
     );
+  }
+
+  // AlertMsg Show for Add Brand Name
+  async AlertMsgForAdd() {
+    const alert = await this.alertController.create({
+      header: 'Add New',
+      inputs: [
+        {
+          name: 'BrandName',
+          type: 'text',
+          placeholder: 'Brand Name',
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Add',
+          handler: (data) => {
+            this.Name = data.BrandName;
+            this.AddBrand();
+            console.log('Confirm Ok');
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  // Request send to sever for Add a brand
+  async AddBrand() {
+    let userData1 = { "Name": this.Name, "VaccineID":"" }
+    console.log(userData1)
+    await this.api.addBrand(this.route.snapshot.paramMap.get('id'), userData1)
+      .subscribe(res => {
+        console.log('done');
+        this.router.navigate(['/vaccine/']);
+      }, (err) => {
+        console.log(err);
+      });
   }
 
   // AlertMsg Show for Edit Brand Name
@@ -103,7 +147,8 @@ export class BrandPage implements OnInit {
 
   // Request send to sever update a brand name
   async editBrand(id) {
-    let userData = { "ID": this.singlebrands.ID, "Name":this.Name, "VaccineID": this.singlebrands.VaccineID };
+    let userData = { "ID": this.singlebrands.ID, "Name": this.Name, "VaccineID": this.singlebrands.VaccineID };
+    console.log(userData)
     await this.api.EditBrand(id, userData)
       .subscribe(res => {
         console.log('done');
@@ -126,18 +171,18 @@ export class BrandPage implements OnInit {
         },
         {
           text: 'Yes',
-           handler: () => {
-                this.Deletevacc(id);
-                this.router.navigate(['/vaccine/']);
-           }
+          handler: () => {
+            this.Deletevacc(id);
+            this.router.navigate(['/vaccine/']);
+          }
         }
       ]
     });
     await alert.present();
   }
 
-   // Call api to delete a vaccine 
-   async Deletevacc(id) {
+  // Call api to delete a vaccine 
+  async Deletevacc(id) {
     const loading = await this.loadingController.create({
       message: "Loading"
     });
