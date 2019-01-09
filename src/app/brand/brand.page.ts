@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { BrandService } from '../services/brand.service';
 import { VaccineService } from '../services/vaccine.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-brand',
@@ -11,7 +12,8 @@ import { VaccineService } from '../services/vaccine.service';
 export class BrandPage implements OnInit {
 
   brands: any;
-  singlebrands: any
+  singlebrands: any;
+  vaccineid:any;
   brandsname: any;
   Name: any;
   constructor(
@@ -20,9 +22,14 @@ export class BrandPage implements OnInit {
     public api: BrandService,
     public vaccineAPI: VaccineService,
     public loadingController: LoadingController,
-    private alertController: AlertController) { }
+    private alertController: AlertController,
+    private storage: Storage) { }
 
   ngOnInit() {
+
+    this.storage.get('VaccineID').then((val) => {
+      this.vaccineid = val;
+    });
     this.getBrands();
   }
 
@@ -101,7 +108,7 @@ export class BrandPage implements OnInit {
 
   // Request send to sever for Add a brand
   async AddBrand() {
-    let userData1 = { "Name": this.Name, "VaccineID":"" }
+    let userData1 = { "Name": this.Name, "VaccineID": this.vaccineid }
     console.log(userData1)
     await this.api.addBrand(this.route.snapshot.paramMap.get('id'), userData1)
       .subscribe(res => {
