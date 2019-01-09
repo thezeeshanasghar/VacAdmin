@@ -3,13 +3,14 @@ import { BaseService } from './base.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable} from 'rxjs'
 import { catchError, map } from 'rxjs/operators'
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BrandService extends BaseService {
   
-  private readonly API_BRAND = 'https://api.vaccs.io/api/brand'
+  private readonly API_BRAND = `${environment.BASE_URL}brand`
 
   constructor(
     protected http: HttpClient

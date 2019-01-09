@@ -3,13 +3,14 @@ import { BaseService } from './base.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable} from 'rxjs'
 import { catchError, map } from 'rxjs/operators'
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DoctorService extends BaseService { 
 
-  private readonly API_DOCTOR = 'https://api.vaccs.io/api/doctor'
+  private readonly API_DOCTOR = `${environment.BASE_URL}doctor`
 
   constructor(
     protected http: HttpClient
