@@ -43,4 +43,23 @@
 
   </ion-list>
 
+  <ion-card *ngFor="let vaccine of vaccines">
+
+    <ion-item>
+      <ion-icon name="color-filter" slot="start" style="margin-right:16px"></ion-icon>
+      <ion-label>{{vaccine.Name}}</ion-label>
+      <ion-item slot="end">
+        <ion-icon routerLink="/vaccine/{{vaccine.ID}}/edit" color="primary" name="create"></ion-icon>
+        <ion-icon (click)="Deletevaccine()" color="primary" name="trash"></ion-icon>
+      </ion-item>
+    </ion-item>
+
+    <ion-card-content>
+      <p>Minimum Age Limit: {{vaccine.MinAge | number2Week}}</p>
+      <p *ngIf="vaccine.MaxAge">Maximum Age Limit: {{vaccine.MaxAge | number2Week}}</p>
+      <ion-button routerLink="/vaccine/{{vaccine.ID}}/dose">Doses</ion-button>
+      <ion-button routerLink="/vaccine/{{vaccine.ID}}/brand">Brands</ion-button>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
