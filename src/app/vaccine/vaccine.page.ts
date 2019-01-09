@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RestApiService } from '../rest-api.service';
 import { LoadingController } from '@ionic/angular';
+import { VaccineService } from '../services/vaccine.service';
 
 @Component({
   selector: 'app-vaccine',
@@ -10,7 +10,7 @@ export class VaccinePage implements OnInit {
 
   vaccines: any;
 
-  constructor(public api: RestApiService, public loadingController: LoadingController) { }
+  constructor(public api: VaccineService, public loadingController: LoadingController) { }
 
   ngOnInit() {
     this.getVaccines();

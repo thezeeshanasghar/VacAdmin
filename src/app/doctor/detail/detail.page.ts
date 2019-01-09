@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
-import { RestApiService } from 'src/app/rest-api.service';
+import { DoctorService } from 'src/app/services/doctor.service';
 
 @Component({
   selector: 'app-detail',
@@ -13,7 +13,7 @@ export class DetailPage implements OnInit {
   doctor: any = {};
   response:any;
   constructor(
-    public api: RestApiService,
+    public api: DoctorService,
     public loadingController: LoadingController,
     public route: ActivatedRoute,
     public router: Router,

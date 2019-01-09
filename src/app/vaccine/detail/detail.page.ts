@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RestApiService } from 'src/app/rest-api.service';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
+import { VaccineService } from 'src/app/services/vaccine.service';
 
 @Component({
   selector: 'app-detail',
@@ -12,7 +12,7 @@ export class DetailPage implements OnInit {
   vaccine: any = {};
 
   constructor(
-    public api: RestApiService, 
+    public api: VaccineService, 
     public loadingController: LoadingController,
     public route: ActivatedRoute,
     public router: Router,

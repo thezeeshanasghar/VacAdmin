@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RestApiService } from 'src/app/rest-api.service';
 import { LoadingController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { VaccineService } from 'src/app/services/vaccine.service';
 
 @Component({
   selector: 'app-edit',
@@ -14,7 +14,7 @@ export class EditPage implements OnInit {
   vaccine: any = {};
   FormValidation: FormGroup;
   constructor(
-    public api: RestApiService, 
+    public api: VaccineService, 
     public loadingController: LoadingController,
     public route: ActivatedRoute,
     public router: Router,
@@ -52,9 +52,9 @@ export class EditPage implements OnInit {
     );
   }
 
-  async EditVaccine() {
+  async editVaccine() {
     console.log(this.vaccine)
-    await this.api.Editvaccine(this.route.snapshot.paramMap.get('id'), this.vaccine)
+    await this.api.editVaccine(this.route.snapshot.paramMap.get('id'), this.vaccine)
       .subscribe(res => {
         console.log('done');
         this.router.navigate(['/vaccine/']);

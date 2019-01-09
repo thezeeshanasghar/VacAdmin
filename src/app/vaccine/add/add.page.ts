@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
-import { RestApiService } from 'src/app/rest-api.service';
-
+import { VaccineService } from 'src/app/services/vaccine.service';
 @Component({
   selector: 'app-add',
   templateUrl: './add.page.html',
@@ -14,7 +13,7 @@ export class AddPage implements OnInit {
   userData = { Name: "", MinAge: "", MaxAge: "" };
   FormValidation: FormGroup;
   constructor(
-    public api: RestApiService,
+    public api: VaccineService,
     public loadingController: LoadingController,
     private route: ActivatedRoute,
     public router: Router,
@@ -32,9 +31,9 @@ export class AddPage implements OnInit {
     console.log(this.FormValidation)
   }
   
-  async AddVaccine() {
+  async addVaccine() {
     console.log(this.userData)
-    await this.api.Addvaccine(this.userData)
+    await this.api.addVaccine(this.userData)
       .subscribe(res => {
         console.log('done');
         this.router.navigate(['/vaccine/']);

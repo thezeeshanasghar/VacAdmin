@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { RestApiService } from '../rest-api.service';
 import { LoadingController } from '@ionic/angular';
+import { BrandService } from '../services/brand.service';
+import { VaccineService } from '../services/vaccine.service';
 
 @Component({
   selector: 'app-brand',
@@ -13,7 +14,8 @@ export class BrandPage implements OnInit {
 
   constructor(
     public route: ActivatedRoute,
-    public api: RestApiService,
+    public api: BrandService,
+    public vaccineAPI: VaccineService,
     public loadingController: LoadingController) { }
 
   ngOnInit() {
@@ -27,7 +29,7 @@ export class BrandPage implements OnInit {
 
     await loading.present();
 
-    await this.api.getBrands(this.route.snapshot.paramMap.get('id')).subscribe(
+    await this.vaccineAPI.getBrandsByVaccineId(this.route.snapshot.paramMap.get('id')).subscribe(
       res => {
         console.log(res);
         this.brands = res.ResponseData;

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { RestApiService } from '../rest-api.service';
 import { LoadingController } from '@ionic/angular';
+import { MessageService } from '../services/message.service';
 
 @Component({
   selector: 'app-message',
@@ -13,7 +13,7 @@ export class MessagePage implements OnInit {
   message: any = {};
   constructor(
     public route: ActivatedRoute,
-    public api: RestApiService,
+    public api: MessageService,
     public loadingController: LoadingController
   ) { }
 

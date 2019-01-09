@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { RestApiService } from 'src/app/rest-api.service';
 import { LoadingController } from '@ionic/angular';
+import { DoctorService } from 'src/app/services/doctor.service';
 
 @Component({
   selector: 'app-unapproved',
@@ -13,7 +13,7 @@ export class UnapprovedComponent implements OnInit {
 
   constructor(
     public route: ActivatedRoute,
-    public api: RestApiService,
+    public api: DoctorService,
     public loadingController: LoadingController
   ) { 
  

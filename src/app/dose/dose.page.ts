@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RestApiService } from '../rest-api.service';
 import { LoadingController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
+import { DoseService } from '../services/dose.service';
+import { VaccineService } from '../services/vaccine.service';
 
 @Component({
   selector: 'app-dose',
@@ -13,7 +14,8 @@ export class DosePage implements OnInit {
 
   constructor(
     public route: ActivatedRoute,
-    public api: RestApiService,
+    public api: DoseService,
+    public vaccineAPI: VaccineService,
     public loadingController: LoadingController) { }
 
   ngOnInit() {
@@ -27,7 +29,7 @@ export class DosePage implements OnInit {
 
     await loading.present();
 
-    await this.api.getDoses(this.route.snapshot.paramMap.get('id')).subscribe(
+    await this.vaccineAPI.getDosesByVaccineId(this.route.snapshot.paramMap.get('id')).subscribe(
       res => {
         console.log(res);
         this.dosses = res.ResponseData;
