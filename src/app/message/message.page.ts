@@ -5,12 +5,12 @@ import { MessageService } from '../services/message.service';
 
 @Component({
   selector: 'app-message',
-  templateUrl: './message.page.html',
-  styleUrls: ['./message.page.scss'],
+  templateUrl: './message.page.html'
 })
 export class MessagePage implements OnInit {
 
-  message: any = {};
+  message: any;
+
   constructor(
     public route: ActivatedRoute,
     public api: MessageService,
@@ -24,7 +24,7 @@ export class MessagePage implements OnInit {
 
     await loading.present();
 
-    await this.api.getMsg().subscribe(
+    await this.api.getMessages().subscribe(
       res => {
         console.log(res);
         this.message = res.ResponseData;

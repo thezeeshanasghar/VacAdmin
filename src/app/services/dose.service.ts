@@ -15,7 +15,6 @@ export class DoseService extends BaseService {
   constructor(
     protected http: HttpClient
   ) { super(http); }
-
   
   getDoseById(doseId: String) : Observable<any> {
     const url = `${this.API_DOSE}/${doseId}`;

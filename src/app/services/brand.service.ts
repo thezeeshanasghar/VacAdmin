@@ -16,7 +16,6 @@ export class BrandService extends BaseService {
     protected http: HttpClient
   ) { super(http); }
 
-  
   getBrandById(brandId: String) : Observable<any> {
     const url = `${this.API_BRAND}/${brandId}`;
     return this.http.get(url, this.httpOptions).pipe(

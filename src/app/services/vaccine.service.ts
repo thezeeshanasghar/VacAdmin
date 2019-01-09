@@ -15,8 +15,6 @@ export class VaccineService extends BaseService {
     protected http: HttpClient
   ) { super(http); }
 
-  
-
   addVaccine(data): Observable<any> {
     return this.http.post(this.API_VACCINE, data, this.httpOptions)
       .pipe(
@@ -54,7 +52,6 @@ export class VaccineService extends BaseService {
       catchError(this.handleError)
     );
   }
-
   
   getDosesByVaccineId(vaccineId: String) : Observable<any> {
     const url = `${this.API_VACCINE}/${vaccineId}/dosses`;

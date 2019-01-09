@@ -16,7 +16,6 @@ export class DoctorService extends BaseService {
     protected http: HttpClient
   ) { super(http); }
 
-
   getDoctorById(id: String) : Observable<any> {
     const url = `${this.API_DOCTOR}/${id}`;
     return this.http.get(url, this.httpOptions).pipe(
