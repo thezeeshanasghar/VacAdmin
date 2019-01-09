@@ -113,4 +113,45 @@ export class BrandPage implements OnInit {
       });
   }
 
+  // Alert Msg Show for deletion of Brand
+  async AlertDeletevaccine(id) {
+    const alert = await this.alertController.create({
+      header: 'vaccs.io says',
+      message: 'Are you sure want to delete this Record?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => { }
+        },
+        {
+          text: 'Yes',
+           handler: () => {
+                this.Deletevacc(id);
+                this.router.navigate(['/vaccine/']);
+           }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+   // Call api to delete a vaccine 
+   async Deletevacc(id) {
+    const loading = await this.loadingController.create({
+      message: "Loading"
+    });
+    await loading.present();
+    await this.api.DeleteBrand(id).subscribe(
+      res => {
+        console.log(res)
+        loading.dismiss();
+      },
+      err => {
+        console.log(err);
+        console.log("error")
+        loading.dismiss();
+      }
+    );
+  }
 }

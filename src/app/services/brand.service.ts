@@ -32,4 +32,12 @@ export class BrandService extends BaseService {
       );
   }
 
+  DeleteBrand(id: string): Observable<any> {
+    const url = `${this.API_BRAND}/${id}`;
+    return this.http.delete(url, this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
 }

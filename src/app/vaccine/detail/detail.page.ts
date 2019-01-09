@@ -84,7 +84,10 @@ export class DetailPage implements OnInit {
       res => {
         console.log(res)
         this.error = res.Message;
+        if(this.error != null){
         this.ErrorMsgShowvaccineNotDel();
+        loading.dismiss();}
+        this.router.navigate(['/vaccine/']);
         loading.dismiss();
       },
       err => {
