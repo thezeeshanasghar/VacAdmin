@@ -11,7 +11,7 @@ import { Storage } from '@ionic/storage';
 export class DetailPage implements OnInit {
 
   vaccine: any = {};
-  error: any ;
+  error: any;
   constructor(
     public api: VaccineService,
     public loadingController: LoadingController,
@@ -19,7 +19,7 @@ export class DetailPage implements OnInit {
     public router: Router,
     public alertController: AlertController,
     private storage: Storage
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.getVaccine();
@@ -46,22 +46,21 @@ export class DetailPage implements OnInit {
   }
 
   // Alert Msg Show for deletion of vaccine
-  async AlertDeletevaccine() {
+  async promptForDeleteVaccine() {
     const alert = await this.alertController.create({
-      header: 'vaccs.io says',
-      message: 'Are you sure want to delete this Record?',
+      header: 'Prompt',
+      message: 'Are you sure want to delete this record ?',
       buttons: [
         {
           text: 'No',
-          role: 'cancel',
-          handler: () => { }
+          role: 'cancel'
         },
         {
           text: 'Yes',
-           handler: () => {
-                this.Deletevacc();
-                this.router.navigate(['/vaccine/']);
-           }
+          handler: () => {
+            this.deleteVaccine();
+            this.router.navigate(['/vaccine']);
+          }
         }
       ]
     });
@@ -69,9 +68,10 @@ export class DetailPage implements OnInit {
   }
 
   // Alert Msg show if vaccine is not delete because some reason
-  async ErrorMsgShowvaccineNotDel() {
+  async showErrorResponseFromAPI(messageStr) {
     const alert = await this.alertController.create({
-      message: this.error,
+      header: 'Error !',
+      message: messageStr,
       buttons: ['OK']
     });
 
@@ -79,22 +79,24 @@ export class DetailPage implements OnInit {
   }
 
   // Call api to delete a vaccine 
-  async Deletevacc() {
+  async deleteVaccine() {
     const loading = await this.loadingController.create({
       message: "Loading"
     });
     await loading.present();
-    await this.api.DeleteVaccine(this.route.snapshot.paramMap.get('id')).subscribe(
+    await this.api.deleteVaccine(this.route.snapshot.paramMap.get('id')).subscribe(
       res => {
         console.log(res)
-        this.error = res.Message;
-        if(this.error != null){
-        this.ErrorMsgShowvaccineNotDel();
-        loading.dismiss();}
-        this.router.navigate(['/vaccine/']);
-        loading.dismiss();
+        if (!res.IsSuccess) {
+          this.showErrorResponseFromAPI(res.Message);
+          loading.dismiss();
+        } else {
+          this.router.navigate(['/vaccine']);
+          loading.dismiss();
+        }
       },
       err => {
+        // TODO: Faisal fix this error senario
         console.log(err);
         console.log("error")
         loading.dismiss();
