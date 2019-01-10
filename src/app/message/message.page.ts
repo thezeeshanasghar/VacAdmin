@@ -17,7 +17,7 @@ export class MessagePage implements OnInit {
     public loadingController: LoadingController
   ) { }
 
-  async getmsg(){
+  async getmsg() {
     const loading = await this.loadingController.create({
       message: 'Loading'
     });
@@ -29,13 +29,14 @@ export class MessagePage implements OnInit {
         console.log(res);
         this.message = res.ResponseData;
         loading.dismiss();
-      }, 
+      },
       err => {
         console.log(err);
         loading.dismiss();
       }
     );
-}
+  }
+  
   ngOnInit() {
     this.getmsg();
   }
