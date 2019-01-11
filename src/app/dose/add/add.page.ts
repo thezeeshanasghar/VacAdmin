@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators, FormArray } from '@angular/forms';
-import { LoadingController } from '@ionic/angular';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { LoadingController, ToastController } from '@ionic/angular';
 import { DoseService } from 'src/app/services/dose.service';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
@@ -10,23 +10,39 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AddPage implements OnInit {
 
-  classroomForm: FormGroup;
-  students: FormArray;
+  fg: FormGroup;
   constructor(
     public api: DoseService,
     public loadingController: LoadingController,
     private route: ActivatedRoute,
     public router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toastController: ToastController
   ) {
     // this.getClassroom(this.route.snapshot.paramMap.get('id'));
-    this.classroomForm = this.formBuilder.group({
-      'class_name' : [null, Validators.required],
-      'students' : this.formBuilder.array([])
-    });
-   }
+  }
 
   ngOnInit() {
+    this.fg = this.formBuilder.group({
+      'Name': [null, Validators.required],
+      'MinAge': ['0', Validators.required],
+      'MaxAge': [null],
+      'MinGap': [null],
+      'DoseOrder': [null],
+    });
   }
+
+  // async addDose() {
+  //   await this.api.addVaccine(this.fg.value)
+  //     .subscribe(res => {
+  //       if (res.IsSuccess)
+  //         this.router.navigateByUrl('/vaccine');
+  //       else
+  //         this.presentToast(res.message);
+  //     }, (err) => {
+  //       console.log(err);
+  //       this.presentToast(err);
+  //     });
+  // }
 
 }
