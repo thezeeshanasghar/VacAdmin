@@ -9,6 +9,7 @@ import { VaccineService } from '../services/vaccine.service';
 export class VaccinePage implements OnInit {
 
   vaccines: any;
+  backupdoctorData: any;
 
   constructor(
     public api: VaccineService,
@@ -38,6 +39,24 @@ export class VaccinePage implements OnInit {
         loading.dismiss();
       }
     );
+  }
+
+  onInput(ev) {
+
+    // set val to the value of the ev target
+    var val = ev.target.value;
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.vaccines = this.vaccines.filter(
+        (item) => {
+          return (item.Name.toLowerCase().indexOf(val.toLowerCase()) > -1)
+        }
+      )
+    }
+    if (val.trim() == "") {
+      this.vaccines = this.backupdoctorData;
+    }
   }
 
 }

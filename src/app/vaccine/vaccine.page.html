@@ -11,7 +11,9 @@
 
   </ion-toolbar>
 </ion-header>
-<ion-searchbar></ion-searchbar>
+<ion-searchbar  (ionInput)="onInput($event)">
+
+</ion-searchbar>
 <ion-content padding>
 
   <ion-list>
