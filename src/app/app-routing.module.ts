@@ -35,6 +35,10 @@ const routes: Routes = [
     path: 'vaccine/:id/dose',
     loadChildren: './dose/dose.module#DosePageModule'
   },
+  { 
+    path: 'vaccine/:id/dose/add', 
+    loadChildren: './dose/add/add.module#AddPageModule' 
+  },
   {
     path: 'doctor',
     loadChildren: './doctor/doctor.module#DoctorPageModule'
@@ -47,10 +51,6 @@ const routes: Routes = [
     path: 'message',
     loadChildren: './message/message.module#MessagePageModule'
   },
-  
-
- 
-
 
 ];
 

@@ -3,6 +3,7 @@ import { LoadingController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { DoseService } from '../services/dose.service';
 import { VaccineService } from '../services/vaccine.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-dose',
@@ -11,14 +12,19 @@ import { VaccineService } from '../services/vaccine.service';
 export class DosePage implements OnInit {
 
   dosses: any;
+  vaccineid:any;
 
   constructor(
     public route: ActivatedRoute,
     public api: DoseService,
     public vaccineAPI: VaccineService,
-    public loadingController: LoadingController) { }
+    public loadingController: LoadingController,
+    private storage: Storage) { }
 
   ngOnInit() {
+    this.storage.get('VaccineID').then((val) => {
+      this.vaccineid = val;
+    });
     this.getDosses();
   }
 
