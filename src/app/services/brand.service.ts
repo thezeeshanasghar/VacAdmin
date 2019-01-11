@@ -32,7 +32,7 @@ export class BrandService extends BaseService {
       );
   }
 
-  EditBrand(id: string, data): Observable<any> {
+  editBrand(id: string, data): Observable<any> {
     const url = `${this.API_BRAND}/${id}`;
     return this.http.put(url, data, this.httpOptions)
       .pipe(
@@ -40,7 +40,7 @@ export class BrandService extends BaseService {
       );
   }
 
-  DeleteBrand(id: string): Observable<any> {
+  deleteBrand(id: string): Observable<any> {
     const url = `${this.API_BRAND}/${id}`;
     return this.http.delete(url, this.httpOptions)
       .pipe(

@@ -30,4 +30,13 @@ export class DoseService extends BaseService {
         catchError(this.handleError)
       );
   }
+
+  deleteDose(id: string): Observable<any> {
+    const url = `${this.API_DOSE}/${id}`;
+    return this.http.delete(url, this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
 }

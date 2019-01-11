@@ -120,7 +120,7 @@ export class BrandPage implements OnInit {
   }
 
   // AlertMsg Show for Edit Brand Name
-  async AlertMsgForEdit(id) {
+  async alertMsgForEdit(id) {
     this.getBrandsbyId(id)
     const alert = await this.alertController.create({
       header: 'Edit Name',
@@ -156,7 +156,7 @@ export class BrandPage implements OnInit {
   async editBrand(id) {
     let userData = { "ID": this.singlebrands.ID, "Name": this.Name, "VaccineID": this.singlebrands.VaccineID };
     console.log(userData)
-    await this.api.EditBrand(id, userData)
+    await this.api.editBrand(id, userData)
       .subscribe(res => {
         console.log('done');
         this.router.navigate(['/vaccine/']);
@@ -194,7 +194,7 @@ export class BrandPage implements OnInit {
       message: "Loading"
     });
     await loading.present();
-    await this.api.DeleteBrand(id).subscribe(
+    await this.api.deleteBrand(id).subscribe(
       res => {
         console.log(res)
         loading.dismiss();
