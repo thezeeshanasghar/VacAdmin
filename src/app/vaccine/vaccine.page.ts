@@ -14,10 +14,10 @@ export class VaccinePage implements OnInit {
     public api: VaccineService,
     public loadingController: LoadingController,
   ) {
-    this.getVaccines();
   }
 
   ngOnInit() {
+    this.getVaccines();
   }
 
   async getVaccines() {

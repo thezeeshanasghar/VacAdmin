@@ -9,16 +9,16 @@
 
 <ion-content padding>
 
-  <form [formGroup]="FormValidation">
+  <form [formGroup]="fg">
 
     <ion-item>
       <ion-label color="primary" position="floating">Name</ion-label>
-      <ion-input type="text" formControlName="VaccineName" [(ngModel)]="userData.Name"></ion-input>
+      <ion-input type="text" formControlName="Name" required></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" position="floating">Min Age</ion-label>
-      <ion-select type="text" formControlName="MinAge" [(ngModel)]="userData.MinAge">
+      <ion-select formControlName="MinAge" required>
         <ion-select-option value="0">At Birth</ion-select-option>
         <ion-select-option value="7">1 Week</ion-select-option>
         <ion-select-option value="14">2 Weeks</ion-select-option>
@@ -114,7 +114,7 @@
     </ion-item>
     <ion-item>
       <ion-label color="primary" position="floating">Max Age(optional)</ion-label>
-      <ion-select [(ngModel)]="userData.MaxAge">
+      <ion-select formControlName="MaxAge">
         <ion-select-option value="0">At Birth</ion-select-option>
         <ion-select-option value="42">6 Weeks</ion-select-option>
         <ion-select-option value="49">7 Weeks</ion-select-option>
@@ -204,7 +204,7 @@
       </ion-select>
     </ion-item>
 
-    <ion-button (click)="addVaccine()" [disabled]="!FormValidation.valid">Submit</ion-button>
+    <ion-button (click)="addVaccine()" [disabled]="!fg.valid">Add</ion-button>
   </form>
 
 </ion-content>
