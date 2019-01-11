@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { DoseService } from 'src/app/services/dose.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastService } from 'src/app/services/toast.service';
 @Component({
   selector: 'app-add',
   templateUrl: './add.page.html',
@@ -13,6 +14,7 @@ export class AddPage implements OnInit {
   fg: FormGroup;
   constructor(
     public api: DoseService,
+    public toaster: ToastService,
     public loadingController: LoadingController,
     private route: ActivatedRoute,
     public router: Router,
@@ -29,20 +31,21 @@ export class AddPage implements OnInit {
       'MaxAge': [null],
       'MinGap': [null],
       'DoseOrder': [null],
+      'VaccineID': [this.route.snapshot.paramMap.get('id')]
     });
   }
 
-  // async addDose() {
-  //   await this.api.addVaccine(this.fg.value)
-  //     .subscribe(res => {
-  //       if (res.IsSuccess)
-  //         this.router.navigateByUrl('/vaccine');
-  //       else
-  //         this.presentToast(res.message);
-  //     }, (err) => {
-  //       console.log(err);
-  //       this.presentToast(err);
-  //     });
-  // }
+  async addDose() {
+    await this.api.addDose(this.fg.value)
+      .subscribe(res => {
+        if (res.IsSuccess)
+          this.router.navigateByUrl('/vaccine/' + this.route.snapshot.paramMap.get('id') + '/dose');
+        else
+          this.toaster.presentToast(res.message);
+      }, (err) => {
+        console.log(err);
+        this.toaster.presentToast(err);
+      });
+  }
 
 }

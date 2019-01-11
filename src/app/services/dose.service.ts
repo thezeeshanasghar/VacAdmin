@@ -23,4 +23,11 @@ export class DoseService extends BaseService {
       catchError(this.handleError)
     );
   }
+
+  addDose(data): Observable<any> {
+    return this.http.post(this.API_DOSE, data, this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
 }

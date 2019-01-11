@@ -8,15 +8,15 @@
 </ion-header>
 <ion-content padding>
 
-  <form>
+  <form [formGroup]="fg">
     <ion-item>
       <ion-label color="primary" floating>Name</ion-label>
-      <ion-input required></ion-input>
+      <ion-input type="text" formControlName="Name" required></ion-input>
 
     </ion-item>
     <ion-item>
       <ion-label color="primary" floating>Min Age</ion-label>
-      <ion-select required>
+      <ion-select formControlName="MinAge" required>
         <ion-select-option value="0">At Birth</ion-select-option>
         <ion-select-option value="7">1 Week</ion-select-option>
         <ion-select-option value="14">2 Weeks</ion-select-option>
@@ -113,7 +113,7 @@
     </ion-item>
     <ion-item>
       <ion-label color="primary" floating>Max Age(optional)</ion-label>
-      <ion-select>
+      <ion-select formControlName="MaxAge">
         <ion-select-option value="0">At Birth</ion-select-option>
         <ion-select-option value="42">6 Weeks</ion-select-option>
         <ion-select-option value="49">7 Weeks</ion-select-option>
@@ -204,7 +204,7 @@
     </ion-item>
     <ion-item>
       <ion-label color="primary" floating>Min Gap from Prev Dose</ion-label>
-      <ion-select>
+      <ion-select formControlName="MinGap">
         <ion-select-option value="0">At Birth</ion-select-option>
         <ion-select-option value="7">1 Week</ion-select-option>
         <ion-select-option value="14">2 Weeks</ion-select-option>
@@ -301,10 +301,10 @@
     </ion-item>
     <ion-item>
       <ion-label color="primary" floating>Dose Order</ion-label>
-      <ion-input></ion-input>
+      <ion-input type="text" formControlName="DoseOrder"></ion-input>
     </ion-item>
 
-    <button ion-button round class="button button-block button-custom2" ion-button [disabled]="!f.valid" (click)='sendPostRequest()'>Add</button>
+    <button ion-button round class="button button-block button-custom2" ion-button [disabled]="!fg.valid" (click)='addDose()'>Add</button>
     <button ion-button round class="button button-block button-custom2" ion-button (click)='movevaccinepage()'>Cancel</button>
   </form>
   <p *ngIf="errormsg">Error in data post</p>
