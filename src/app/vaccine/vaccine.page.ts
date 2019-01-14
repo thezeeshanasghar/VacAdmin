@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { VaccineService } from '../services/vaccine.service';
+import { Storage } from '@ionic/storage';
+import { Network } from '@ionic-native/network/ngx';
 
 @Component({
   selector: 'app-vaccine',
@@ -14,11 +16,36 @@ export class VaccinePage implements OnInit {
   constructor(
     public api: VaccineService,
     public loadingController: LoadingController,
+    private storage: Storage,
+    private network: Network
   ) {
+    
   }
 
   ngOnInit() {
-    this.getVaccines();
+
+    this.checkNetworkStatus();
+
+
+    //this.getVaccines();
+    this.storage.get('vaccinedata').then((val) => {
+      this.vaccines = val;
+    });
+  }
+
+  checkNetworkStatus(){
+    console.log("yes")
+    // watch network for a disconnection
+    this.network.onDisconnect().subscribe(data => {
+      console.log("network was disconnected");
+      console.log(data);
+    });
+    // watch network for a connection
+    this.network.onConnect().subscribe(data => {
+      console.log("network was disconnected");
+      console.log(data);
+    });
+
   }
 
   async getVaccines() {
@@ -32,6 +59,7 @@ export class VaccinePage implements OnInit {
       res => {
         console.log(res);
         this.vaccines = res.ResponseData;
+        this.storage.set('vaccinedata', this.vaccines);
         loading.dismiss();
       },
       err => {
