@@ -76,7 +76,7 @@ export class BrandPage implements OnInit {
   }
 
   // AlertMsg Show for Add Brand Name
-  async AlertMsgForAdd() {
+  async alertMsgForAdd() {
     const alert = await this.alertController.create({
       header: 'Add New',
       inputs: [
@@ -166,7 +166,7 @@ export class BrandPage implements OnInit {
   }
 
   // Alert Msg Show for deletion of Brand
-  async AlertDeletevaccine(id) {
+  async alertDeletevaccine(id) {
     const alert = await this.alertController.create({
       header: 'vaccs.io says',
       message: 'Are you sure want to delete this Record?',

@@ -23,9 +23,9 @@ const routes: Routes = [
     path: 'vaccine/Add',
     loadChildren: './vaccine/add/add.module#AddPageModule'
   },
-  { 
+  {
     path: 'vaccine/:id/edit',
-   loadChildren: './vaccine/edit/edit.module#EditPageModule' 
+    loadChildren: './vaccine/edit/edit.module#EditPageModule'
   },
   {
     path: 'vaccine/:id/brand',
@@ -35,9 +35,13 @@ const routes: Routes = [
     path: 'vaccine/:id/dose',
     loadChildren: './dose/dose.module#DosePageModule'
   },
-  { 
-    path: 'vaccine/:id/dose/add', 
-    loadChildren: './dose/add/add.module#AddPageModule' 
+  {
+    path: 'vaccine/:id/dose/add',
+    loadChildren: './dose/add/add.module#AddPageModule'
+  },
+  {
+    path: 'vaccine/:id/dose/:id',
+    loadChildren: './dose/edit/edit.module#EditPageModule'
   },
   {
     path: 'doctor',
@@ -51,6 +55,9 @@ const routes: Routes = [
     path: 'message',
     loadChildren: './message/message.module#MessagePageModule'
   },
+
+
+
 
 ];
 

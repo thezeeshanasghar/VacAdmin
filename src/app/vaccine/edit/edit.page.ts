@@ -23,18 +23,20 @@ export class EditPage implements OnInit {
 
   ngOnInit() {
     this.FormValidation = this.formBuilder.group({
-      'VaccineName': [null, Validators.required],
-      'MinAge': [null, Validators.required]
+      'VaccineName': ['', Validators.required],
+      'MinAge': [null, Validators.required],
+      'MaxAge': ['']
     });
-    this.getVaccine();
-    console.log('done')
+    this.getSingleVaccine();
+   
+
   }
 
   logForm() {
     console.log(this.FormValidation)
   }
 
-  async getVaccine() {
+  async getSingleVaccine() {
     const loading = await this.loadingController.create({
       message: "Loading"
     });
@@ -44,6 +46,9 @@ export class EditPage implements OnInit {
         console.log(res);
         this.vaccine = res.ResponseData;
         loading.dismiss();
+        this.FormValidation.controls['VaccineName'].setValue(this.vaccine.Name);
+        this.FormValidation.controls['MinAge'].setValue(this.vaccine.MinAge+'');
+        this.FormValidation.controls['MaxAge'].setValue(this.vaccine.MaxAge+'');
       },
       err=>{
         console.log(err);

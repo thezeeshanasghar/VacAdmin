@@ -304,8 +304,8 @@
       <ion-input type="text" formControlName="DoseOrder"></ion-input>
     </ion-item>
 
-    <button ion-button round class="button button-block button-custom2" ion-button [disabled]="!fg.valid" (click)='addDose()'>Add</button>
-    <button ion-button round class="button button-block button-custom2" ion-button (click)='movevaccinepage()'>Cancel</button>
+    <ion-button  [disabled]="!fg.valid" (click)='addDose()'>Add</ion-button>
+    <ion-button routerLink="/vaccine/{{vaccineid}}/dose">Cancel</ion-button>
   </form>
   <p *ngIf="errormsg">Error in data post</p>
 </ion-content>
