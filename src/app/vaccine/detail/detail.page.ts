@@ -3,6 +3,8 @@ import { LoadingController, AlertController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VaccineService } from 'src/app/services/vaccine.service';
 import { Storage } from '@ionic/storage';
+import { AlertService } from 'src/app/shared/alert.service';
+import { ToastService } from 'src/app/shared/toast.service';
 
 @Component({
   selector: 'app-detail',
@@ -18,7 +20,9 @@ export class DetailPage implements OnInit {
     public route: ActivatedRoute,
     public router: Router,
     public alertController: AlertController,
-    private storage: Storage
+    private storage: Storage,
+    private alertService: AlertService,
+    private toastService: ToastService
   ) { }
 
   ngOnInit() {
@@ -47,24 +51,17 @@ export class DetailPage implements OnInit {
 
   // Alert Msg Show for deletion of vaccine
   async promptForDeleteVaccine() {
-    const alert = await this.alertController.create({
-      header: 'Prompt',
-      message: 'Are you sure want to delete this record ?',
-      buttons: [
-        {
-          text: 'No',
-          role: 'cancel'
-        },
-        {
-          text: 'Yes',
-          handler: () => {
-            this.deleteVaccine();
-            this.router.navigate(['/vaccine']);
-          }
+    this.alertService.confirmAlert('Are you sure you want to delete this ?', null)
+      .then((yes) => {
+        if (yes) {
+          this.toastService.create('Logged out of the application');
         }
-      ]
-    });
-    await alert.present();
+      });
+  }
+
+  onOK() {
+    this.deleteVaccine();
+    this.router.navigate(['/vaccine']);
   }
 
   // Alert Msg show if vaccine is not delete because some reason

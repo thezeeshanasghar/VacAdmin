@@ -24,13 +24,13 @@ export class VaccinePage implements OnInit {
 
   ngOnInit() {
 
-    this.checkNetworkStatus();
+    // this.checkNetworkStatus();
 
 
-    //this.getVaccines();
-    this.storage.get('vaccinedata').then((val) => {
-      this.vaccines = val;
-    });
+    this.getVaccines();
+    // this.storage.get('vaccinedata').then((val) => {
+    //   this.vaccines = val;
+    // });
   }
 
   checkNetworkStatus(){
