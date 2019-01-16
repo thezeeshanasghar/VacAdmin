@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, AlertController } from '@ionic/angular';
 import { VaccineService } from '../services/vaccine.service';
 import { Storage } from '@ionic/storage';
 import { Network } from '@ionic-native/network/ngx';
@@ -17,9 +17,10 @@ export class VaccinePage implements OnInit {
     public api: VaccineService,
     public loadingController: LoadingController,
     private storage: Storage,
-    private network: Network
+    private network: Network,
+    public alertController: AlertController
   ) {
-    
+
   }
 
   ngOnInit() {
@@ -33,19 +34,42 @@ export class VaccinePage implements OnInit {
     // });
   }
 
-  checkNetworkStatus(){
-    console.log("yes")
+  checkNetworkStatus() {
     // watch network for a disconnection
-    this.network.onDisconnect().subscribe(data => {
-      console.log("network was disconnected");
-      console.log(data);
-    });
-    // watch network for a connection
-    this.network.onConnect().subscribe(data => {
-      console.log("network was disconnected");
-      console.log(data);
+    let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
+      console.log('network was disconnected :-(');
+      this.presentAlert();
     });
 
+    // stop disconnect watch
+    // disconnectSubscription.unsubscribe();
+
+
+    // watch network for a connection
+    let connectSubscription = this.network.onConnect().subscribe(() => {
+      console.log('network connected!');
+      this.presentAlert();
+      // We just got a connection but we need to wait briefly
+      // before we determine the connection type. Might need to wait.
+      // prior to doing any api requests as well.
+      setTimeout(() => {
+        if (this.network.type === 'wifi') {
+          console.log('we got a wifi connection, woohoo!');
+        }
+      }, 3000);
+    });
+
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Alert',
+      subHeader: 'Subtitle',
+      message: 'This is an alert message.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
   async getVaccines() {
