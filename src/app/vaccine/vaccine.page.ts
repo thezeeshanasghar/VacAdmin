@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController, AlertController } from '@ionic/angular';
+import { LoadingController, } from '@ionic/angular';
 import { VaccineService } from '../services/vaccine.service';
 import { Storage } from '@ionic/storage';
 import { Network } from '@ionic-native/network/ngx';
+import { AlertService } from '../shared/alert.service';
+import { ToastService } from '../shared/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vaccine',
@@ -15,10 +18,12 @@ export class VaccinePage implements OnInit {
 
   constructor(
     public api: VaccineService,
+    public router: Router,
     public loadingController: LoadingController,
     private storage: Storage,
     private network: Network,
-    public alertController: AlertController
+    private alertService: AlertService,
+    private toastService: ToastService,
   ) {
 
   }
@@ -38,7 +43,6 @@ export class VaccinePage implements OnInit {
     // watch network for a disconnection
     let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
       console.log('network was disconnected :-(');
-      this.presentAlert();
     });
 
     // stop disconnect watch
@@ -48,7 +52,6 @@ export class VaccinePage implements OnInit {
     // watch network for a connection
     let connectSubscription = this.network.onConnect().subscribe(() => {
       console.log('network connected!');
-      this.presentAlert();
       // We just got a connection but we need to wait briefly
       // before we determine the connection type. Might need to wait.
       // prior to doing any api requests as well.
@@ -61,17 +64,6 @@ export class VaccinePage implements OnInit {
 
   }
 
-  async presentAlert() {
-    const alert = await this.alertController.create({
-      header: 'Alert',
-      subHeader: 'Subtitle',
-      message: 'This is an alert message.',
-      buttons: ['OK']
-    });
-
-    await alert.present();
-  }
-
   async getVaccines() {
     const loading = await this.loadingController.create({
       message: 'Loading'
@@ -81,13 +73,47 @@ export class VaccinePage implements OnInit {
 
     await this.api.getVaccines().subscribe(
       res => {
-        console.log(res);
         this.vaccines = res.ResponseData;
         this.storage.set('vaccinedata', this.vaccines);
         loading.dismiss();
       },
       err => {
         console.log(err);
+        loading.dismiss();
+      }
+    );
+  }
+
+  // Alert Msg Show for deletion of vaccine
+  async promptForDeleteVaccine(id) {
+    this.alertService.confirmAlert('Are you sure you want to delete this ?', null)
+      .then((yes) => {
+        if (yes) {
+          this.deleteVaccine(id)
+        }
+      });
+  }
+
+  // Call api to delete a vaccine 
+  async deleteVaccine(id) {
+    const loading = await this.loadingController.create({
+      message: "Deleting"
+    });
+    await loading.present();
+    await this.api.deleteVaccine(id).subscribe(
+      res => {
+        if (!res.IsSuccess) {
+          this.alertService.simpleAlert(res.Message);
+          loading.dismiss();
+        } else {
+          this.router.navigate(['/vaccine']);
+          loading.dismiss();
+        }
+      },
+      err => {
+
+        console.log(err);
+        console.log("error")
         loading.dismiss();
       }
     );
