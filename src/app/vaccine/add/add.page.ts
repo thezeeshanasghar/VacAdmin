@@ -3,7 +3,8 @@ import { LoadingController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
 import { VaccineService } from 'src/app/services/vaccine.service';
-import { ToastService } from 'src/app/services/toast.service';
+import { ToastService } from 'src/app/shared/toast.service';
+
 @Component({
   selector: 'app-add',
   templateUrl: './add.page.html',
@@ -17,7 +18,7 @@ export class AddPage implements OnInit {
 
   constructor(
     public api: VaccineService,
-    public toaster: ToastService,
+    public toast: ToastService,
     public loadingController: LoadingController,
     private route: ActivatedRoute,
     public router: Router,
@@ -38,10 +39,10 @@ export class AddPage implements OnInit {
         if (res.IsSuccess)
           this.router.navigateByUrl('/vaccine');
         else
-          this.toaster.presentToast(res.message);
+          this.toast.create(res.message);
       }, (err) => {
         console.log(err);
-        this.toaster.presentToast(err);
+        this.toast.create(err);
       });
   }
 

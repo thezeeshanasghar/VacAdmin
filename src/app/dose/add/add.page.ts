@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { DoseService } from 'src/app/services/dose.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastService } from 'src/app/services/toast.service';
+import { ToastService } from 'src/app/shared/toast.service';
+
 @Component({
   selector: 'app-add',
   templateUrl: './add.page.html',
@@ -14,11 +15,11 @@ export class AddPage implements OnInit {
   fg: FormGroup;
   constructor(
     public api: DoseService,
-    public toaster: ToastService,
     public loadingController: LoadingController,
     private route: ActivatedRoute,
     public router: Router,
     private formBuilder: FormBuilder,
+    private toast: ToastService,
     private toastController: ToastController
   ) {
     // this.getClassroom(this.route.snapshot.paramMap.get('id'));
@@ -40,11 +41,11 @@ export class AddPage implements OnInit {
       .subscribe(res => {
         if (res.IsSuccess)
           this.router.navigateByUrl('/vaccine/' + this.route.snapshot.paramMap.get('id') + '/dose');
-        else
-          this.toaster.presentToast(res.message);
+        
+          this.toast.create(res.message);
       }, (err) => {
         console.log(err);
-        this.toaster.presentToast(err);
+        this.toast.create(err);
       });
   }
 

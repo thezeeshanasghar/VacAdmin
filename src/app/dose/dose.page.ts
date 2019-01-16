@@ -4,7 +4,7 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { DoseService } from '../services/dose.service';
 import { VaccineService } from '../services/vaccine.service';
 import { Storage } from '@ionic/storage';
-import { ToastService } from '../services/toast.service';
+import { ToastService } from '../shared/toast.service';
 
 @Component({
   selector: 'app-dose',
@@ -88,7 +88,7 @@ export class DosePage implements OnInit {
         }
       },
       err => {
-        this.toast.presentToast(err);
+        this.toast.create(err);
         loading.dismiss();
       }
     );
