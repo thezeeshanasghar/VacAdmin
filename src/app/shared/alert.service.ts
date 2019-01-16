@@ -9,20 +9,6 @@ export class AlertService {
   constructor(private alertCtrl: AlertController) {
   }
 
-  // async confirmAlert(message: string, header?: string): Promise<boolean> {
-  //   return new Promise((resolve, reject) => {
-  //     const alert = this.alertCtrl.create({
-  //       header: header || 'Confirm',
-  //       message: message,
-  //       buttons: [
-  //         { text: 'Yes', handler: () => { alert.di } },
-  //         { text: 'No', role: 'cancel', handler: () => failHandler }
-  //       ]
-  //     });
-  //     alert.present();
-  //   });
-  // }
-
   confirmAlert(message: string, header?: string): Promise<boolean> {
     return new Promise(async (resolve, reject) => {
       const confirm = await this.alertCtrl.create({
@@ -46,6 +32,7 @@ export class AlertService {
       return confirm.present();
     });
   }
+
   async simpleAlert(message: string, header?: string) {
     const alert = await this.alertCtrl.create({
       header: header || 'Alert',

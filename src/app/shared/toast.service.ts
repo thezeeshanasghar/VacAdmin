@@ -10,7 +10,7 @@ export class ToastService {
 
   constructor(public toastCtrl: ToastController) { }
 
-  async create(message, ok = false, duration = 3000) {
+  async create(message: string, ok = false, duration = 3000) {
     if (this.toast) {
       this.toast.dismiss();
     }
