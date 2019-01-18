@@ -2,7 +2,7 @@
   <ion-toolbar color="primary">
 
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="home"></ion-back-button>
+      <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>Vaccine Brands</ion-title>
     <ion-item slot="end" color="primary">
@@ -14,7 +14,7 @@
 
 <ion-content padding>
   
-  <ion-list>
+   <ion-list>
 
     <ion-item-sliding *ngFor="let b of brands">
 
@@ -24,7 +24,7 @@
         </ion-label>
       </ion-item>
       <ion-item-options side="end">
-        <ion-item-option (click)="alertMsgForEdit(b.ID)">
+        <ion-item-option (click)="getBrandsbyId(b.ID)">
           <ion-icon name="create" size="large"></ion-icon>
         </ion-item-option>
         <ion-item-option (click)="alertDeletevaccine(b.ID)">
@@ -35,4 +35,21 @@
     </ion-item-sliding>
 
   </ion-list>
+
+  <!-- <ion-card *ngFor="let b of brands">
+    
+    <ion-item>
+      <ion-icon name="color-filter" slot="start" style="margin-right:16px"></ion-icon>
+      <ion-label>{{b.Name}}</ion-label>
+      <ion-item slot="end">
+        <ion-icon routerLink="/vaccine/{{vaccine.ID}}/edit" color="primary" name="create"></ion-icon>
+        <ion-icon (click)="promptForDeleteVaccine(vaccine.ID)" color="primary" name="trash"></ion-icon>
+      </ion-item>
+    </ion-item>
+
+    <ion-card-content>
+      
+    </ion-card-content>
+  </ion-card> -->
+
 </ion-content>

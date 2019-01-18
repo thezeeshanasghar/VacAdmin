@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
 
-  // BASE_URL: "https://api.vaccs.io/api/"
+  //BASE_URL: "https://api.vaccs.io/api/"
   BASE_URL: "http://vac-api.afz-sol.com/api/"
 };
 

@@ -9,7 +9,7 @@
 
 <ion-content padding>
 
-  <form [formGroup]="FormValidation">
+  <form [formGroup]="fg">
 
     <ion-item>
       <ion-label color="primary" position="floating">Name</ion-label>
@@ -204,6 +204,6 @@
       </ion-select>
     </ion-item>
 
-    <ion-button (click)="editVaccine()" [disabled]="!FormValidation.valid">Submit</ion-button>
+    <ion-button (click)="editVaccine()" [disabled]="!fg.valid">Submit</ion-button>
   </form>
 </ion-content>

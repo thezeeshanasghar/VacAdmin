@@ -4,6 +4,7 @@ import { LoadingController, AlertController } from '@ionic/angular';
 import { BrandService } from '../services/brand.service';
 import { VaccineService } from '../services/vaccine.service';
 import { Storage } from '@ionic/storage';
+import { AlertService } from '../shared/alert.service';
 
 @Component({
   selector: 'app-brand',
@@ -13,23 +14,18 @@ export class BrandPage implements OnInit {
 
   brands: any;
   singlebrands: any;
-  vaccineid:any;
-  brandsname: any;
   Name: any;
   constructor(
     public route: ActivatedRoute,
     public router: Router,
     public api: BrandService,
     public vaccineAPI: VaccineService,
+    private alertService: AlertService,
     public loadingController: LoadingController,
     private alertController: AlertController,
     private storage: Storage) { }
 
   ngOnInit() {
-
-    this.storage.get('VaccineID').then((val) => {
-      this.vaccineid = val;
-    });
     this.getBrands();
   }
 
@@ -62,11 +58,9 @@ export class BrandPage implements OnInit {
 
     await this.api.getBrandById(id).subscribe(
       res => {
-        console.log(res);
         this.singlebrands = res.ResponseData;
-        this.brandsname = res.ResponseData.Name;
-        console.log(this.brandsname);
         loading.dismiss();
+        this.alertMsgForEdit(this.singlebrands.Name,id)
       },
       err => {
         console.log(err);
@@ -108,7 +102,7 @@ export class BrandPage implements OnInit {
 
   // Request send to sever for Add a brand
   async AddBrand() {
-    let userData1 = { "Name": this.Name, "VaccineID": this.vaccineid }
+    let userData1 = { "Name": this.Name, "VaccineID": this.route.snapshot.paramMap.get('id') }
     console.log(userData1)
     await this.api.addBrand(this.route.snapshot.paramMap.get('id'), userData1)
       .subscribe(res => {
@@ -120,15 +114,14 @@ export class BrandPage implements OnInit {
   }
 
   // AlertMsg Show for Edit Brand Name
-  async alertMsgForEdit(id) {
-    this.getBrandsbyId(id)
+  async alertMsgForEdit(brandname,id) {
+    //this.getBrandsbyId(id)
     const alert = await this.alertController.create({
       header: 'Edit Name',
       inputs: [
         {
           name: 'BrandName',
-          // type: 'text',
-          value: this.brandsname,
+          value: brandname,
         },
       ],
       buttons: [
@@ -166,26 +159,14 @@ export class BrandPage implements OnInit {
   }
 
   // Alert Msg Show for deletion of Brand
-  async alertDeletevaccine(id) {
-    const alert = await this.alertController.create({
-      header: 'vaccs.io says',
-      message: 'Are you sure want to delete this Record?',
-      buttons: [
-        {
-          text: 'No',
-          role: 'cancel',
-          handler: () => { }
-        },
-        {
-          text: 'Yes',
-          handler: () => {
-            this.Deletevacc(id);
-            this.router.navigate(['/vaccine/']);
-          }
+  alertDeletevaccine(id) {
+    this.alertService.confirmAlert('Are you sure you want to delete this ?', null)
+      .then((yes) => {
+        if (yes) {
+          this.Deletevacc(id);
         }
-      ]
-    });
-    await alert.present();
+      });
+
   }
 
   // Call api to delete a vaccine 

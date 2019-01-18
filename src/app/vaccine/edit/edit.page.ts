@@ -12,7 +12,7 @@ import { VaccineService } from 'src/app/services/vaccine.service';
 export class EditPage implements OnInit {
 
   vaccine: any = {};
-  FormValidation: FormGroup;
+  fg: FormGroup;
   constructor(
     public api: VaccineService, 
     public loadingController: LoadingController,
@@ -22,10 +22,11 @@ export class EditPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.FormValidation = this.formBuilder.group({
+    this.fg = this.formBuilder.group({
+      'ID':[null],
       'VaccineName': ['', Validators.required],
       'MinAge': [null, Validators.required],
-      'MaxAge': ['']
+      'MaxAge': [null]
     });
     this.getSingleVaccine();
    
@@ -33,7 +34,7 @@ export class EditPage implements OnInit {
   }
 
   logForm() {
-    console.log(this.FormValidation)
+    console.log(this.fg)
   }
 
   async getSingleVaccine() {
@@ -46,9 +47,10 @@ export class EditPage implements OnInit {
         console.log(res);
         this.vaccine = res.ResponseData;
         loading.dismiss();
-        this.FormValidation.controls['VaccineName'].setValue(this.vaccine.Name);
-        this.FormValidation.controls['MinAge'].setValue(this.vaccine.MinAge+'');
-        this.FormValidation.controls['MaxAge'].setValue(this.vaccine.MaxAge+'');
+        this.fg.controls['VaccineName'].setValue(this.vaccine.Name);
+        this.fg.controls['MinAge'].setValue(this.vaccine.MinAge+'');
+        this.fg.controls['MaxAge'].setValue(this.vaccine.MaxAge+'');
+        this.fg.controls['ID'].setValue(this.vaccine.ID+'');
       },
       err=>{
         console.log(err);
@@ -58,8 +60,10 @@ export class EditPage implements OnInit {
   }
 
   async editVaccine() {
-    console.log(this.vaccine)
-    await this.api.editVaccine(this.route.snapshot.paramMap.get('id'), this.vaccine)
+    let id = this.route.snapshot.paramMap.get('id')
+    console.log(id);
+    console.log(this.fg);
+    await this.api.editVaccine(this.route.snapshot.paramMap.get('id'), this.fg.value)
       .subscribe(res => {
         console.log('done');
         this.router.navigate(['/vaccine/']);
