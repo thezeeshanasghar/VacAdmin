@@ -60,7 +60,7 @@ export class BrandPage implements OnInit {
       res => {
         this.singlebrands = res.ResponseData;
         loading.dismiss();
-        this.alertMsgForEdit(this.singlebrands.Name,id)
+        this.alertMsgForEdit(this.singlebrands.Name, id)
       },
       err => {
         console.log(err);
@@ -114,7 +114,7 @@ export class BrandPage implements OnInit {
   }
 
   // AlertMsg Show for Edit Brand Name
-  async alertMsgForEdit(brandname,id) {
+  async alertMsgForEdit(brandname, id) {
     //this.getBrandsbyId(id)
     const alert = await this.alertController.create({
       header: 'Edit Name',

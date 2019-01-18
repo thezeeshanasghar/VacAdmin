@@ -31,7 +31,7 @@ export class DoseService extends BaseService {
       );
   }
 
-  editBrand(id: string, data): Observable<any> {
+  editDose(id: string, data): Observable<any> {
     const url = `${this.API_DOSE}/${id}`;
     return this.http.put(url, data, this.httpOptions)
       .pipe(

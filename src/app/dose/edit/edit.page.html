@@ -305,8 +305,7 @@
       <ion-input type="text" formControlName="DoseOrder"></ion-input>
     </ion-item>
 
-    <ion-button  [disabled]="!fg.valid" (click)='addDose()'>Add</ion-button>
-    <ion-button routerLink="/vaccine/{{vaccineid}}/dose">Cancel</ion-button>
+    <ion-button  [disabled]="!fg.valid" (click)='editDose()'>Add</ion-button>
   </form>
   
 </ion-content>

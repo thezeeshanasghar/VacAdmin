@@ -13,6 +13,7 @@ import { ToastService } from 'src/app/shared/toast.service';
 export class AddPage implements OnInit {
 
   fg: FormGroup;
+  vaccineid:any;
   constructor(
     public api: DoseService,
     public loadingController: LoadingController,
@@ -20,12 +21,12 @@ export class AddPage implements OnInit {
     public router: Router,
     private formBuilder: FormBuilder,
     private toast: ToastService,
-    private toastController: ToastController
   ) {
-    // this.getClassroom(this.route.snapshot.paramMap.get('id'));
   }
 
   ngOnInit() {
+
+    this.vaccineid = this.route.snapshot.paramMap.get('id');
     this.fg = this.formBuilder.group({
       'Name': [null, Validators.required],
       'MinAge': ['0', Validators.required],

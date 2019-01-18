@@ -6,7 +6,7 @@
     </ion-buttons>
     <ion-title>Vaccine Dosses</ion-title>
     <ion-item slot="end" color="primary">
-      <ion-icon routerLink="/vaccine/{{vaccineid}}/dose/add" name="add" slot="end" color="light"></ion-icon>
+      <ion-icon routerLink="/vaccine/{{vaccineID}}/dose/add" name="add" slot="end" color="light"></ion-icon>
     </ion-item>
 
   </ion-toolbar>
@@ -19,8 +19,8 @@
       <ion-label>{{d.Name}}</ion-label>
 
       <ion-item slot="end">
-        <ion-icon color="primary" name="create" routerLink="/vaccine/{{vaccineid}}/dose/{{d.ID}}"></ion-icon>
-        <ion-icon (click)="alertDeletedose(d.ID)" color="primary" name="trash"></ion-icon>
+        <ion-icon color="primary" name="create" routerLink="/vaccine/{{vaccineID}}/dose/{{d.ID}}"></ion-icon>
+        <ion-icon (click)="alertDeleteDose(d.ID)" color="primary" name="trash"></ion-icon>
       </ion-item>
     </ion-item>
 

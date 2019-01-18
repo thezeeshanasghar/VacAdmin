@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController, AlertController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { DoseService } from '../services/dose.service';
 import { VaccineService } from '../services/vaccine.service';
-import { Storage } from '@ionic/storage';
 import { ToastService } from '../shared/toast.service';
+import { AlertService } from '../shared/alert.service';
 
 @Component({
   selector: 'app-dose',
@@ -13,6 +13,7 @@ import { ToastService } from '../shared/toast.service';
 export class DosePage implements OnInit {
 
   dosses: any;
+  vaccineID: any;
 
   constructor(
     public route: ActivatedRoute,
@@ -20,14 +21,16 @@ export class DosePage implements OnInit {
     public vaccineAPI: VaccineService,
     public loadingController: LoadingController,
     public router: Router,
-    public alertController: AlertController,
-    public toast: ToastService
+    public toast: ToastService,
+    private alertService: AlertService,
   ) { }
 
   ngOnInit() {
     this.getDosses();
+    this.vaccineID = this.route.snapshot.paramMap.get('id');
   }
 
+  // Get all dosses base on vaccineID from server
   async getDosses() {
     const loading = await this.loadingController.create({
       message: 'Loading'
@@ -49,32 +52,21 @@ export class DosePage implements OnInit {
   }
 
   // Alert Msg Show for deletion of Dose
-  async alertDeletedose(id) {
-    const alert = await this.alertController.create({
-      header: 'vaccs.io says',
-      message: 'Are you sure want to delete this Record?',
-      buttons: [
-        {
-          text: 'No',
-          role: 'cancel',
-          handler: () => { }
-        },
-        {
-          text: 'Yes',
-          handler: () => {
-            this.deleteDose(id);
-            this.router.navigateByUrl('/vaccine/' + this.route.snapshot.paramMap.get('id') + '/dose');
-          }
+
+  alertDeleteDose(id) {
+    this.alertService.confirmAlert('Are you sure you want to delete this ?', null)
+      .then((yes) => {
+        if (yes) {
+          this.deleteDose(id);
         }
-      ]
-    });
-    await alert.present();
+      });
+
   }
 
   // Call api to delete a vaccine 
   async deleteDose(id) {
     const loading = await this.loadingController.create({
-      message: "Loading"
+      message: "Deleting"
     });
     await loading.present();
     await this.api.deleteDose(id).subscribe(
