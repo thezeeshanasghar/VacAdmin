@@ -9,16 +9,44 @@
 
 <ion-content padding>
 
-  <ion-card *ngIf="message && message.length == 0">
+
+
+  <ion-card>
+
+    <ion-item (click)="accordion()">
+      <ion-icon slot="start" name="ios-arrow-forward" color="primary" *ngIf="section==false"></ion-icon>
+      <ion-icon slot="start" name="ios-arrow-down" color="primary" *ngIf="section==true"></ion-icon>
+      <ion-label> Messages</ion-label>
+    </ion-item>
+
+    <ion-card-content *ngIf="section == true">
+
+      <form [formGroup]="fg">
+        <ion-item>
+          <ion-label position="floating" color="primary">Enter Number</ion-label>
+          <ion-input formControlName="MobileNumber"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating" color="primary">Enter Msg</ion-label>
+          <ion-textarea formControlName="SMS"></ion-textarea>
+        </ion-item>
+        <ion-button [disabled]="!fg.valid" (click)="sendMsg()">Send Msg</ion-button>
+      </form>
+
+    </ion-card-content>
+  </ion-card>
+
+
+   <ion-card *ngIf="message && message.length == 0">
     <ion-card-header>
       <ion-card-title>No message found !</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       Server returned an empty response
     </ion-card-content>
-  </ion-card>
+  </ion-card> 
 
-  <ion-card *ngFor="let msg of message">
+   <ion-card *ngFor="let msg of message">
     <ion-card-header>
       <ion-card-title>{{msg.User.MobileNumber}}</ion-card-title>
     </ion-card-header>
@@ -33,5 +61,5 @@
       <p>{{msg.Created}}</p>
       <!-- <ion-button routerLink="/message/{{msg.UserID}}/detail">Detail</ion-button> -->
     </ion-card-content>
-  </ion-card>
+  </ion-card> 
 </ion-content>

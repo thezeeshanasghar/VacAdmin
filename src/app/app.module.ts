@@ -14,10 +14,9 @@ import { SharedModule } from './shared/shared.module';
 
 import { IonicStorageModule } from '@ionic/storage';
 import { Network } from '@ionic-native/network/ngx';
-import { MessageComponent } from './component/message/message.component'
 
 @NgModule({
-  declarations: [AppComponent, MessageComponent],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
