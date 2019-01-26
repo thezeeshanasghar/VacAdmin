@@ -24,7 +24,7 @@ export class EditPage implements OnInit {
   ngOnInit() {
     this.fg = this.formBuilder.group({
       'ID':[null],
-      'VaccineName': ['', Validators.required],
+      'Name': ['', Validators.required],
       'MinAge': [null, Validators.required],
       'MaxAge': [null]
     });
@@ -47,7 +47,7 @@ export class EditPage implements OnInit {
         console.log(res);
         this.vaccine = res.ResponseData;
         loading.dismiss();
-        this.fg.controls['VaccineName'].setValue(this.vaccine.Name);
+        this.fg.controls['Name'].setValue(this.vaccine.Name);
         this.fg.controls['MinAge'].setValue(this.vaccine.MinAge+'');
         this.fg.controls['MaxAge'].setValue(this.vaccine.MaxAge+'');
         this.fg.controls['ID'].setValue(this.vaccine.ID+'');
