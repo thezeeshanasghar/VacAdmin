@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BrandService } from 'src/app/services/brand.service';
+import { VaccineService } from 'src/app/services/vaccine.service';
+import { AlertService } from 'src/app/shared/alert.service';
 import { LoadingController, AlertController } from '@ionic/angular';
-import { BrandService } from '../services/brand.service';
-import { VaccineService } from '../services/vaccine.service';
-import { Storage } from '@ionic/storage';
-import { AlertService } from '../shared/alert.service';
 
 @Component({
   selector: 'app-brand',
-  templateUrl: './brand.page.html'
+  templateUrl: './brand.page.html',
+  styleUrls: ['./brand.page.scss'],
 })
 export class BrandPage implements OnInit {
 
   brands: any;
   singlebrands: any;
   Name: any;
+  
   constructor(
     public route: ActivatedRoute,
     public router: Router,
@@ -22,8 +23,7 @@ export class BrandPage implements OnInit {
     public vaccineAPI: VaccineService,
     private alertService: AlertService,
     public loadingController: LoadingController,
-    private alertController: AlertController,
-    private storage: Storage) { }
+    private alertController: AlertController) { }
 
   ngOnInit() {
     this.getBrands();

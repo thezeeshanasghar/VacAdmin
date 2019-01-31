@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { DoseService } from '../services/dose.service';
-import { VaccineService } from '../services/vaccine.service';
-import { ToastService } from '../shared/toast.service';
-import { AlertService } from '../shared/alert.service';
-
+import { DoseService } from 'src/app/services/dose.service';
+import { VaccineService } from 'src/app/services/vaccine.service';
+import { ToastService } from 'src/app/shared/toast.service';
+import { AlertService } from 'src/app/shared/alert.service';
 @Component({
   selector: 'app-dose',
   templateUrl: './dose.page.html'

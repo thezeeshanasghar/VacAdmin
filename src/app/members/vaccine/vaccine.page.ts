@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController, } from '@ionic/angular';
-import { VaccineService } from '../services/vaccine.service';
-import { Storage } from '@ionic/storage';
-import { Network } from '@ionic-native/network/ngx';
-import { AlertService } from '../shared/alert.service';
-import { ToastService } from '../shared/toast.service';
+import { VaccineService } from 'src/app/services/vaccine.service';
 import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
+import { Network } from '@ionic-native/network/ngx';
+import { AlertService } from 'src/app/shared/alert.service';
+import { ToastService } from 'src/app/shared/toast.service';
 
 @Component({
   selector: 'app-vaccine',
-  templateUrl: './vaccine.page.html'
+  templateUrl: './vaccine.page.html',
+  styleUrls: ['./vaccine.page.scss'],
 })
 export class VaccinePage implements OnInit {
 

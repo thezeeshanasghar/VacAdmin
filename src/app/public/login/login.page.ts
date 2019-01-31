@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { LoginService } from '../services/login.service';
-import { ToastService } from '../shared/toast.service';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
+import { ToastService } from 'src/app/shared/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
     await this.api.checkAuth(this.fg.value)
       .subscribe(res => {
         if(res.IsSuccess){
-        this.router.navigate(['/home']);
+        this.router.navigate(['/members/']);
       }
       else{
         console.log('fail')

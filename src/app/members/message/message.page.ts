@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
-import { MessageService } from '../services/message.service';
-import { VaccineService } from '../services/vaccine.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ToastService } from '../shared/toast.service';
+import { MessageService } from 'src/app/services/message.service';
+import { VaccineService } from 'src/app/services/vaccine.service';
+import { ToastService } from 'src/app/shared/toast.service';
 
 
 @Component({

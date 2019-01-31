@@ -5,18 +5,17 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { DetailPage } from './detail.page';
+import { VaccinePage } from './vaccine.page';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: DetailPage
+    component: VaccinePage
   }
 ];
 
 @NgModule({
-  
   imports: [
     CommonModule,
     FormsModule,
@@ -24,6 +23,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule
   ],
-  declarations: [DetailPage]
+  declarations: [VaccinePage]
 })
-export class DetailPageModule {}
+export class VaccinePageModule {}
