@@ -23,6 +23,11 @@ export class MembersPage implements OnInit {
       icon: 'medkit'
     },
     {
+      title: 'Child',
+      url: '/members/child',
+      icon: 'man'
+    },
+    {
       title: 'Message',
       url: '/members/message',
       icon: 'mail'
