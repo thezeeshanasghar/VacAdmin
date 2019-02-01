@@ -12,7 +12,11 @@ const routes: Routes = [
   {
     path: '',
     component: VaccinePage
-  }
+  }, 
+  { path: 'add', loadChildren: './add/add.module#AddPageModule' },
+  { path: 'edit/:id', loadChildren: './edit/edit.module#EditPageModule'},
+  { path: ':id/doses', loadChildren: './dose/dose.module#DosePageModule'},
+  { path: ':id/brands', loadChildren: './brand/brand.module#BrandPageModule'},
 ];
 
 @NgModule({
@@ -25,4 +29,4 @@ const routes: Routes = [
   ],
   declarations: [VaccinePage]
 })
-export class VaccinePageModule {}
+export class VaccinePageModule { }
