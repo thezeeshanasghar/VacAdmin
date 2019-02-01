@@ -7,7 +7,8 @@ const routes: Routes = [
     path: '',
     component: MembersPage,
     children: [
-      { path: '', loadChildren: './dashboard/dashboard.module#DashboardPageModule' },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      // { path: '', loadChildren: './dashboard/dashboard.module#DashboardPageModule' },
       { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardPageModule' },
       { path: 'vaccine', loadChildren: './vaccine/vaccine.module#VaccinePageModule' },
       { path: 'doctor', loadChildren: './doctor/doctor.module#DoctorPageModule' },
