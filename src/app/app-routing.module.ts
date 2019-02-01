@@ -42,7 +42,7 @@ const routes: Routes = [
   // },
 
   { path: 'login', loadChildren: './public/login/login.module#LoginPageModule' },
-  { path: 'members', loadChildren: './members/members.module#MembersPageModule' },
+  { path: 'members', loadChildren: './members/members.module#MembersPageModule' }
   // { path: 'dashboard', loadChildren: './members/dashboard/dashboard.module#DashboardPageModule' },
   // { path: 'vaccine', loadChildren: './members/vaccine/vaccine.module#VaccinePageModule' },
   // { path: 'dose', loadChildren: './members/dose/dose.module#DosePageModule' },

@@ -13,10 +13,10 @@ const routes: Routes = [
     path: '',
     component: VaccinePage
   }, 
-  { path: 'add', loadChildren: './add/add.module#AddPageModule' },
-  { path: 'edit/:id', loadChildren: './edit/edit.module#EditPageModule'},
+  { path: 'add', loadChildren: 'src/app/members/vaccine/add/add.module#AddPageModule' },
+  { path: 'edit/:id', loadChildren: 'src/app/members/vaccine/edit/edit.module#EditPageModule'},
   { path: ':id/doses', loadChildren: './dose/dose.module#DosePageModule'},
-  { path: ':id/brands', loadChildren: './brand/brand.module#BrandPageModule'},
+  { path: ':id/brands', loadChildren: './brand/brand.module#BrandPageModule'}
 ];
 
 @NgModule({

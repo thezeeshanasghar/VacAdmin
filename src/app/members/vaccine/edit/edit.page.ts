@@ -66,7 +66,7 @@ export class EditPage implements OnInit {
     await this.api.editVaccine(this.route.snapshot.paramMap.get('id'), this.fg.value)
       .subscribe(res => {
         console.log('done');
-        this.router.navigate(['/vaccine/']);
+        this.router.navigate(['/members/vaccine']);
       }, (err) => {
         console.log(err);
       });

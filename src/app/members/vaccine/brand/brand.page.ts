@@ -15,6 +15,7 @@ export class BrandPage implements OnInit {
   brands: any;
   singlebrands: any;
   Name: any;
+  vaccineID: string;
   
   constructor(
     public route: ActivatedRoute,
@@ -26,6 +27,7 @@ export class BrandPage implements OnInit {
     private alertController: AlertController) { }
 
   ngOnInit() {
+    this.vaccineID = this.route.snapshot.paramMap.get('id');
     this.getBrands();
   }
 
@@ -35,9 +37,8 @@ export class BrandPage implements OnInit {
       message: 'Loading'
     });
     await loading.present();
-    await this.vaccineAPI.getBrandsByVaccineId(this.route.snapshot.paramMap.get('id')).subscribe(
+    await this.vaccineAPI.getBrandsByVaccineId(this.vaccineID).subscribe(
       res => {
-        console.log(res);
         this.brands = res.ResponseData;
         loading.dismiss();
       },
@@ -102,12 +103,11 @@ export class BrandPage implements OnInit {
 
   // Request send to sever for Add a brand
   async AddBrand() {
-    let userData1 = { "Name": this.Name, "VaccineID": this.route.snapshot.paramMap.get('id') }
+    let userData1 = { "Name": this.Name, "VaccineID": this.vaccineID }
     console.log(userData1)
-    await this.api.addBrand(this.route.snapshot.paramMap.get('id'), userData1)
+    await this.api.addBrand(this.vaccineID, userData1)
       .subscribe(res => {
-        console.log('done');
-        this.router.navigate(['/vaccine/']);
+        this.getBrands();
       }, (err) => {
         console.log(err);
       });
@@ -151,8 +151,7 @@ export class BrandPage implements OnInit {
     console.log(userData)
     await this.api.editBrand(id, userData)
       .subscribe(res => {
-        console.log('done');
-        this.router.navigate(['/vaccine/']);
+        this.getBrands();
       }, (err) => {
         console.log(err);
       });

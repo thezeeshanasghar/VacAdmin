@@ -104,7 +104,7 @@ export class VaccinePage implements OnInit {
           this.alertService.simpleAlert(res.Message);
           loading.dismiss();
         } else {
-          this.router.navigate(['/vaccine']);
+          this.router.navigate(['/members/vaccine']);
           loading.dismiss();
         }
       },

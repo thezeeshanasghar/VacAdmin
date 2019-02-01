@@ -12,7 +12,7 @@ const routes: Routes = [
       { path: 'vaccine', loadChildren: './vaccine/vaccine.module#VaccinePageModule' },
       { path: 'doctor', loadChildren: './doctor/doctor.module#DoctorPageModule' },
       { path: 'child', loadChildren: './child/child.module#ChildPageModule' },
-      { path: 'message', loadChildren: './message/message.module#MessagePageModule' },
+      { path: 'message', loadChildren: './message/message.module#MessagePageModule' }
     ]
   }
 ];
