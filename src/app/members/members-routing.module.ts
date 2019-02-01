@@ -9,6 +9,10 @@ const routes: Routes = [
     children: [
       { path: '', loadChildren: './dashboard/dashboard.module#DashboardPageModule' },
       { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardPageModule' },
+      { path: 'vaccine', loadChildren: './vaccine/vaccine.module#VaccinePageModule' },
+      { path: 'doctor', loadChildren: './doctor/doctor.module#DoctorPageModule' },
+      { path: 'child', loadChildren: './child/child.module#ChildPageModule' },
+      { path: 'message', loadChildren: './message/message.module#MessagePageModule' },
     ]
   }
 ];

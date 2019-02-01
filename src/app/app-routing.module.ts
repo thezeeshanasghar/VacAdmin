@@ -7,18 +7,7 @@ const routes: Routes = [
     redirectTo: 'login',
     pathMatch: 'full'
   },
-  // { 
-  //   path: 'login',
-  //   loadChildren: './login/login.module#LoginPageModule' },
-  // {
-  //   path: 'home',
-  //   loadChildren: './home/home.module#HomePageModule'
-  // },
-  // {
-  //   path: 'vaccine',
-  //   loadChildren: './vaccine/vaccine.module#VaccinePageModule'
-  // },
-  // {
+
   //   path: 'vaccine/:id/detail',
   //   loadChildren: './vaccine/detail/detail.module#DetailPageModule'
   // },
@@ -46,18 +35,12 @@ const routes: Routes = [
   //   path: 'vaccine/:id/dose/:id',
   //   loadChildren: './dose/edit/edit.module#EditPageModule'
   // },
-  // {
-  //   path: 'doctor',
-  //   loadChildren: './doctor/doctor.module#DoctorPageModule'
-  // },
+ 
   // {
   //   path: 'doctor/:id/detail',
   //   loadChildren: './doctor/detail/detail.module#DetailPageModule'
   // },
-  // {
-  //   path: 'message',
-  //   loadChildren: './message/message.module#MessagePageModule'
-  // },
+
   { path: 'login', loadChildren: './public/login/login.module#LoginPageModule' },
   { path: 'members', loadChildren: './members/members.module#MembersPageModule' },
   // { path: 'dashboard', loadChildren: './members/dashboard/dashboard.module#DashboardPageModule' },

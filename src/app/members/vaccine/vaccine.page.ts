@@ -20,7 +20,6 @@ export class VaccinePage implements OnInit {
     public api: VaccineService,
     public router: Router,
     public loadingController: LoadingController,
-    private storage: Storage,
     private network: Network,
     private alertService: AlertService,
     private toastService: ToastService,
@@ -74,7 +73,6 @@ export class VaccinePage implements OnInit {
     await this.api.getVaccines().subscribe(
       res => {
         this.vaccines = res.ResponseData;
-        this.storage.set('vaccinedata', this.vaccines);
         loading.dismiss();
       },
       err => {
