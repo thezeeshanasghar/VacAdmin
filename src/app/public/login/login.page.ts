@@ -16,7 +16,7 @@ export class LoginPage implements OnInit {
     public router: Router,
     private formBuilder: FormBuilder,
     private api: LoginService,
-    private toast: ToastService,
+    private toastService: ToastService,
   ) { }
 
   ngOnInit() {
@@ -35,13 +35,11 @@ export class LoginPage implements OnInit {
         this.router.navigate(['/members/']);
       }
       else{
-        console.log('fail')
-        this.toast.create(res.Message);
-        console.log('fail')
+        this.toastService.create(res.Message, 'danger');
       }
     }, (err) => {
       console.log(err);
-      this.toast.create(err);
+      this.toastService.create(err);
       });
   }
 
