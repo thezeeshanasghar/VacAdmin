@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { VaccineService } from 'src/app/services/vaccine.service';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
-import { Network } from '@ionic-native/network/ngx';
 import { AlertService } from 'src/app/shared/alert.service';
 import { ToastService } from 'src/app/shared/toast.service';
 
@@ -20,7 +19,6 @@ export class VaccinePage implements OnInit {
     public api: VaccineService,
     public router: Router,
     public loadingController: LoadingController,
-    private network: Network,
     private alertService: AlertService,
     private toastService: ToastService,
   ) {
@@ -36,31 +34,6 @@ export class VaccinePage implements OnInit {
     // this.storage.get('vaccinedata').then((val) => {
     //   this.vaccines = val;
     // });
-  }
-
-  checkNetworkStatus() {
-    // watch network for a disconnection
-    let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
-      console.log('network was disconnected :-(');
-    });
-
-    // stop disconnect watch
-    // disconnectSubscription.unsubscribe();
-
-
-    // watch network for a connection
-    let connectSubscription = this.network.onConnect().subscribe(() => {
-      console.log('network connected!');
-      // We just got a connection but we need to wait briefly
-      // before we determine the connection type. Might need to wait.
-      // prior to doing any api requests as well.
-      setTimeout(() => {
-        if (this.network.type === 'wifi') {
-          console.log('we got a wifi connection, woohoo!');
-        }
-      }, 3000);
-    });
-
   }
 
   async getVaccines() {
