@@ -23,24 +23,27 @@ export class LoginPage implements OnInit {
     this.fg = this.formBuilder.group({
       'MobileNumber': [null, Validators.required],
       'Password': [null, Validators.required],
-      'CountryCode':['92'],
-      'UserType':['SUPERADMIN']
+      'CountryCode': ['92'],
+      'UserType': ['SUPERADMIN']
     });
   }
 
-  async login(){
+  async login() {
     await this.api.checkAuth(this.fg.value)
       .subscribe(res => {
-        if(res.IsSuccess){
-        this.router.navigate(['/members/']);
-      }
-      else{
-        this.toastService.create(res.Message, 'danger');
-      }
-    }, (err) => {
-      console.log(err);
-      this.toastService.create(err);
+        if (res.IsSuccess) {
+          this.router.navigate(['/members/']);
+        }
+        else {
+          this.toastService.create(res.Message, 'danger');
+        }
+      }, (err) => {
+        console.log(err);
+        this.toastService.create(err);
       });
   }
 
+  ShowAlert() {
+    this.toastService.create("feature under development");
+  }
 }

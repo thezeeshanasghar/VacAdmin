@@ -13,22 +13,22 @@ export class MembersPage implements OnInit {
       icon: 'home'
     },
     {
-      title: 'Vaccine',
+      title: 'Vaccines',
       url: '/members/vaccine',
       icon: 'color-filter'
     },
     {
-      title: 'Doctor',
+      title: 'Doctors',
       url: '/members/doctor',
       icon: 'medkit'
     },
     {
-      title: 'Child',
+      title: 'Childs',
       url: '/members/child',
       icon: 'man'
     },
     {
-      title: 'Message',
+      title: 'Messages',
       url: '/members/message',
       icon: 'mail'
     }
