@@ -13,9 +13,10 @@
 
         <ion-label color="primary" position="floating">
           <ion-icon name="mail" item-start></ion-icon>
-          User Name
+          Mobile Number
         </ion-label>
         <ion-input type="email" formControlName="MobileNumber"></ion-input>
+
 
         <ion-label color="primary" position="floating">
           <ion-icon name="lock" item-start></ion-icon>
@@ -23,13 +24,12 @@
         </ion-label>
         <ion-input type="password" formControlName="Password"></ion-input>
 
-      </form>
 
-      <ion-button expand="full" color="primary" (click)="login()">
-        <ion-icon name="log-in"></ion-icon>
-        Submit
-      </ion-button>
-    
+        <ion-button expand="full" color="primary" (click)="login()">
+          <ion-icon name="log-in"></ion-icon>&nbsp;
+          Login
+        </ion-button>
+      </form>
 
       <ion-text text-right color="primary">
         <a color="dark" href="" (click)="ShowAlert()">

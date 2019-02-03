@@ -3,7 +3,7 @@ ion-content{
 }
 
 ion-card{
-    margin-top: 50%;
+    margin-top: 15%;
     align-content: center;
     width: 80%;
     margin-left: 10%;
@@ -15,4 +15,9 @@ ion-input{
 }
 
 
+.item.item-trns {
+	border-color: rgba(0, 0, 0, 0);
+	background-color: rgba(0, 0, 0, 0);
+	color: white; 
+}
 
