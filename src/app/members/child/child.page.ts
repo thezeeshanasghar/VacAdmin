@@ -14,7 +14,7 @@ export class ChildPage implements OnInit {
   childs: any;
 
   constructor(
-    private formBuilder : FormBuilder,
+    private formBuilder: FormBuilder,
     private loadingController: LoadingController,
     private api: ChildService
   ) { }
@@ -33,15 +33,16 @@ export class ChildPage implements OnInit {
 
     await loading.present();
 
-    await this.api.searchChild(this.loginForm.controls['name'].value, this.loginForm.controls['city'].value ).subscribe(
-      res => {
-        this.childs = res.ResponseData;
-        loading.dismiss();
-      },
-      err => {
-        console.log(err);
-        loading.dismiss();
-      }
-    );
+    await this.api.searchChild(this.loginForm.controls['name'].value, this.loginForm.controls['city'].value)
+      .subscribe(
+        res => {
+          this.childs = res.ResponseData;
+          loading.dismiss();
+        },
+        err => {
+          console.log(err);
+          loading.dismiss();
+        }
+      );
   }
 }
