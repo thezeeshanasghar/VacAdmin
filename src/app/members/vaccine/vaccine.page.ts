@@ -21,8 +21,10 @@ export class VaccinePage implements OnInit {
     public loadingController: LoadingController,
     private alertService: AlertService,
     private toastService: ToastService,
-  ) {
+  ) { }
 
+  ionViewWillEnter() {
+    this.getVaccines();
   }
 
   ngOnInit() {
@@ -30,7 +32,7 @@ export class VaccinePage implements OnInit {
     // this.checkNetworkStatus();
 
 
-    this.getVaccines();
+
     // this.storage.get('vaccinedata').then((val) => {
     //   this.vaccines = val;
     // });

@@ -9,7 +9,7 @@ import { AlertService } from 'src/app/shared/alert.service';
   selector: 'app-dose',
   templateUrl: './dose.page.html'
 })
-export class DosePage implements OnInit {
+export class DosePage {
 
   dosses: any;
   vaccineID: any;
@@ -24,9 +24,9 @@ export class DosePage implements OnInit {
     private alertService: AlertService,
   ) { }
 
-  ngOnInit() {
-    this.getDosses();
+  ionViewWillEnter() {
     this.vaccineID = this.route.snapshot.paramMap.get('id');
+    this.getDosses();
   }
 
   // Get all dosses base on vaccineID from server

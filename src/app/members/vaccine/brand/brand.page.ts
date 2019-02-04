@@ -12,7 +12,7 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
   templateUrl: './brand.page.html',
   styleUrls: ['./brand.page.scss'],
 })
-export class BrandPage implements OnInit {
+export class BrandPage {
 
   brands: any;
   singlebrands: any;
@@ -29,7 +29,7 @@ export class BrandPage implements OnInit {
     private toastservice: ToastService,
     private alertController: AlertController) { }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.vaccineID = this.route.snapshot.paramMap.get('id');
     this.getBrands();
   }
