@@ -1,26 +1,27 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Doctors</ion-title>
-  </ion-toolbar>
-</ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Doctors</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
 <ion-content padding>
 
-  <ion-tabs>
-    <ion-tab-bar slot="top">
-      <ion-tab-button tab="approved">
-        <ion-label>Approved</ion-label>
-        <ion-icon name="checkbox-outline"></ion-icon>
-        <ion-badge>6</ion-badge>
-      </ion-tab-button>
-
-      <ion-tab-button tab="unapproved">
-        <ion-label>Not Approved</ion-label>
-        <ion-icon name="close-circle-outline"></ion-icon>
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs>
-
+    <ion-tabs>
+        <ion-tab-bar slot="bottom">
+          <ion-tab-button tab="approved">
+            <ion-icon name="checkbox-outline"></ion-icon>
+            <ion-label>Approved</ion-label>
+            <ion-badge>6</ion-badge>
+          </ion-tab-button>
+    
+          <ion-tab-button tab="unapproved">
+           <ion-icon name="close-circle-outline"></ion-icon>
+           <ion-label>Not Approved</ion-label>
+          </ion-tab-button>
+        </ion-tab-bar>
+      </ion-tabs>
+    
 </ion-content>

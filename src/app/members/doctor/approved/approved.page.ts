@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
 import { DoctorService } from 'src/app/services/doctor.service';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-approved',
-  templateUrl: './approved.component.html',
-  styles:[
-    '.ion-page { display: inherit }'
-  ]
+  templateUrl: './approved.page.html',
+  styleUrls: ['./approved.page.scss'],
 })
-export class ApprovedComponent implements OnInit {
-  
+export class ApprovedPage implements OnInit {
+
   doctors: any
 
   constructor(

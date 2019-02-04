@@ -5,17 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { DoctorPage } from './doctor.page';
+import { ApprovedPage } from './approved.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: DoctorPage,
-    children:[
-      { path: '', redirectTo: 'approved', pathMatch: 'full' },
-      { path: 'approved', loadChildren: './approved/approved.module#ApprovedPageModule' },
-      { path: 'unapproved', loadChildren: './unapproved/unapproved.module#UnapprovedPageModule' }
-    ]
+    component: ApprovedPage
   }
 ];
 
@@ -26,6 +21,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [DoctorPage]
+  declarations: [ApprovedPage]
 })
-export class DoctorPageModule {}
+export class ApprovedPageModule {}

@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
 import { DoctorService } from 'src/app/services/doctor.service';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-unapproved',
-  templateUrl: './unapproved.component.html'
+  templateUrl: './unapproved.page.html',
+  styleUrls: ['./unapproved.page.scss'],
 })
-export class UnapprovedComponent implements OnInit {
-  
+export class UnapprovedPage implements OnInit {
+
   doctors:any
 
   constructor(
