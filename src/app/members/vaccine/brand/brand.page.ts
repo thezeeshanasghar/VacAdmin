@@ -4,6 +4,8 @@ import { BrandService } from 'src/app/services/brand.service';
 import { VaccineService } from 'src/app/services/vaccine.service';
 import { AlertService } from 'src/app/shared/alert.service';
 import { LoadingController, AlertController } from '@ionic/angular';
+import { ToastService } from 'src/app/shared/toast.service';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
   selector: 'app-brand',
@@ -16,7 +18,7 @@ export class BrandPage implements OnInit {
   singlebrands: any;
   Name: any;
   vaccineID: string;
-  
+
   constructor(
     public route: ActivatedRoute,
     public router: Router,
@@ -24,6 +26,7 @@ export class BrandPage implements OnInit {
     public vaccineAPI: VaccineService,
     private alertService: AlertService,
     public loadingController: LoadingController,
+    private toastservice: ToastService,
     private alertController: AlertController) { }
 
   ngOnInit() {
@@ -40,6 +43,7 @@ export class BrandPage implements OnInit {
     await this.vaccineAPI.getBrandsByVaccineId(this.vaccineID).subscribe(
       res => {
         this.brands = res.ResponseData;
+        console.log(this.brands);
         loading.dismiss();
       },
       err => {
@@ -176,13 +180,18 @@ export class BrandPage implements OnInit {
     await loading.present();
     await this.api.deleteBrand(id).subscribe(
       res => {
-        console.log(res)
-        loading.dismiss();
+        if (res.IsSuccess == true) {
+          this.getBrands();
+          loading.dismiss();
+        }
+        else {
+          loading.dismiss();
+          this.toastservice.create(res.Message);
+        }
       },
       err => {
-        console.log(err);
-        console.log("error")
         loading.dismiss();
+        this.toastservice.create(err)
       }
     );
   }
