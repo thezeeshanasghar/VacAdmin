@@ -41,7 +41,7 @@ export class AddPage implements OnInit {
     await this.api.addDose(this.fg.value)
       .subscribe(res => {
         if (res.IsSuccess)
-          this.router.navigateByUrl('/vaccine/' + this.route.snapshot.paramMap.get('id') + '/dose');
+          this.router.navigateByUrl('/members/vaccine/' + this.route.snapshot.paramMap.get('id') + '/dose');
         
           this.toast.create(res.message);
       }, (err) => {

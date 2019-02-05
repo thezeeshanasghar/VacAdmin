@@ -20,7 +20,7 @@
 
     <ion-item>
       <ion-icon name="color-filter" slot="start" style="margin-right:16px"></ion-icon>
-      <ion-label>{{vaccine.Name}}</ion-label>
+      <ion-label><b>{{vaccine.Name}}</b></ion-label>
       <ion-item slot="end">
         <ion-icon routerLink="/members/vaccine/edit/{{vaccine.ID}}" color="primary" name="create"></ion-icon>
         <ion-icon (click)="promptForDeleteVaccine(vaccine.ID)" color="primary" name="trash"></ion-icon>
@@ -28,10 +28,16 @@
     </ion-item>
 
     <ion-card-content>
-      <p>Minimum Age Limit: {{vaccine.MinAge | number2Week}}</p>
-      <p *ngIf="vaccine.MaxAge">Maximum Age Limit: {{vaccine.MaxAge | number2Week}}</p>
-      <ion-button routerLink="/members/vaccine/{{vaccine.ID}}/doses">Doses</ion-button>
-      <ion-button routerLink="/members/vaccine/{{vaccine.ID}}/brands">Brands</ion-button>
+      <p>Minimum Age Limit: <b>{{vaccine.MinAge | number2Week}}</b></p>
+      <p *ngIf="vaccine.MaxAge">Maximum Age Limit: <b>{{vaccine.MaxAge | number2Week}}</b></p>
+      <ion-button size="small" fill="outline" color="tertiary" routerLink="/members/vaccine/{{vaccine.ID}}/doses">
+        Doses &nbsp;
+        <ion-badge color="primary">{{vaccine.NumOfDoses}}</ion-badge>
+      </ion-button>
+      <ion-button size="small" fill="outline" color="tertiary" routerLink="/members/vaccine/{{vaccine.ID}}/brands">
+        Brands &nbsp;
+        <ion-badge color="primary">{{vaccine.NumOfBrands}}</ion-badge>
+      </ion-button>
     </ion-card-content>
   </ion-card>
 

@@ -23,7 +23,6 @@ export class AlertService {
           }
         }, {
           text: 'Yes',
-          cssClass: 'secondary',
           handler: () => {
             confirm.dismiss().then(() => resolve(true));
             return false;
