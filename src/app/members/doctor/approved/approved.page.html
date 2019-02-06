@@ -1,5 +1,5 @@
 <ion-content>
-  <ion-card *ngFor="let doc of doctors">
+  <!-- <ion-card *ngFor="let doc of doctors">
     <ion-card-header>
       <ion-card-title>{{doc.DisplayName}}</ion-card-title>
     </ion-card-header>
@@ -11,6 +11,26 @@
         <ion-button routerLink="/doctor/{{doc.ID}}/detail">Detail</ion-button>
       </p>
     </ion-card-content>
-  </ion-card>
+  </ion-card> -->
+  <ion-card *ngFor="let doc of doctors">
 
+    <ion-item>
+      <ion-label><b>{{doc.DisplayName}}</b></ion-label>
+      <!-- <ion-button slot="end" size="small" fill="outline" color="tertiary" (click)="onApprove(doc.ID)">
+        <ion-icon slot="start" name="calendar"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon slot="icon-only" name="calendar"></ion-icon>
+      </ion-button> -->
+      <ion-datetime slot="end" size="small" display-format="MMM YYYY" picker-format="DD MMM YYYY" value="{{doc.ValidUpto}}" class="success"
+      [ngClass]="{fail: doc.ValidUpto < today}"></ion-datetime>
+
+    </ion-item>
+    <ion-card-content>
+      <p>Email: {{ doc.Email}}</p>
+      <p>Number: {{doc.MobileNumber}}</p>
+      <p>PMDC No: {{doc.PMDC}}</p>
+    </ion-card-content>
+
+  </ion-card>
 </ion-content>
