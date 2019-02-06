@@ -1,30 +1,21 @@
 <ion-content>
-  <!-- <ion-card *ngFor="let doc of doctors">
-    <ion-card-header>
-      <ion-card-title>{{doc.DisplayName}}</ion-card-title>
-    </ion-card-header>
 
-    <ion-card-content>
-      <p>Number: {{doc.MobileNumber}}</p>
-      <p>Validity: {{doc.ValidUpto}}</p>
-      <p>
-        <ion-button routerLink="/doctor/{{doc.ID}}/detail">Detail</ion-button>
-      </p>
-    </ion-card-content>
-  </ion-card> -->
   <ion-card *ngFor="let doc of doctors">
 
     <ion-item>
       <ion-label><b>{{doc.DisplayName}}</b></ion-label>
-      <!-- <ion-button slot="end" size="small" fill="outline" color="tertiary" (click)="onApprove(doc.ID)">
-        <ion-icon slot="start" name="calendar"></ion-icon>
-      </ion-button>
-      <ion-button>
-        <ion-icon slot="icon-only" name="calendar"></ion-icon>
-      </ion-button> -->
-      <ion-datetime slot="end" size="small" display-format="MMM YYYY" picker-format="DD MMM YYYY" value="{{doc.ValidUpto}}" class="success"
-      [ngClass]="{fail: doc.ValidUpto < today}"></ion-datetime>
-
+      <ion-datetime 
+        slot="end" 
+        min="2015"
+        max="2030"
+        size="small" 
+        display-format="MMM YYYY" 
+        picker-format="DD MMM YYYY" 
+        value="{{doc.ValidUpto}}" 
+        class="success"
+        [ngClass]="{fail: doc.ValidUpto < today}"
+        (ionChange)="updateValidity($event, doc.ID)"
+      ></ion-datetime>
     </ion-item>
     <ion-card-content>
       <p>Email: {{ doc.Email}}</p>

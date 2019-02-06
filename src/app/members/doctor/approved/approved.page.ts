@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { LoadingController, Events } from '@ionic/angular';
 import * as moment from 'moment';
+import { ToastService } from 'src/app/shared/toast.service';
 
 @Component({
   selector: 'app-approved',
@@ -18,8 +19,9 @@ export class ApprovedPage implements OnInit {
     public route: ActivatedRoute,
     public api: DoctorService,
     public loadingController: LoadingController,
-    private events: Events
-  ) { 
+    private events: Events,
+    private toastService: ToastService
+  ) {
     this.today = moment().format('YYYY-MM-DD');
   }
 
@@ -38,12 +40,14 @@ export class ApprovedPage implements OnInit {
       res => {
         console.log(res);
         this.doctors = res.ResponseData;
+
+        // loop through all date and convert date from 23-12-2012 fomrat to 2012-12-23 format
         this.doctors.forEach(doc => {
           doc.ValidUpto = moment(doc.ValidUpto, "DD-MM-YYYY").format('YYYY-MM-DD')
         });
-        console.log(this.doctors[0].ValidUpto);
-        
+        // publish doctors count to update tab's badge in parent page/component
         this.events.publish('approvedCount', this.doctors.length);
+
         loading.dismiss();
       },
       err => {
@@ -51,6 +55,31 @@ export class ApprovedPage implements OnInit {
         loading.dismiss();
       }
     );
+  }
+
+
+  async updateValidity($event, docID) {
+    const loading = await this.loadingController.create({ message: 'Loading' });
+    await loading.present();
+
+    let newDate = $event.detail.value;
+    newDate = moment(newDate, 'YYYY-MM-DD').format('DD-MM-YYYY');
+
+    this.api.changeValidity(newDate, docID).subscribe(
+      res => {
+        if (res.IsSuccess)
+          this.toastService.create('Doctor\'s validity change successfully.');
+        else
+          this.toastService.create(res.Message, 'danger');
+
+        loading.dismiss();
+      },
+      err => {
+        this.toastService.create(err, 'danger');
+        loading.dismiss();
+      }
+    );
+
   }
 
 
