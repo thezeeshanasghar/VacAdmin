@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DoctorService } from 'src/app/services/doctor.service';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, Events } from '@ionic/angular';
 
 @Component({
   selector: 'app-unapproved',
@@ -15,10 +15,9 @@ export class UnapprovedPage implements OnInit {
   constructor(
     public route: ActivatedRoute,
     public api: DoctorService,
-    public loadingController: LoadingController
-  ) { 
- 
-  }
+    public loadingController: LoadingController,
+    public events: Events
+  ) { }
 
 
   ngOnInit() {
@@ -36,6 +35,7 @@ export class UnapprovedPage implements OnInit {
       res => {
         console.log(res);
         this.doctors = res.ResponseData;
+        this.events.publish('unapprovedCount', this.doctors.length);
         loading.dismiss();
       }, 
       err => {

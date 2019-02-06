@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Events } from '@ionic/angular';
 
 @Component({
   selector: 'app-doctor',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DoctorPage implements OnInit {
 
-  constructor() { }
+  approvedCount: number;
+  unapprovedCount: number;
+
+  constructor(private event: Events) { }
 
   ngOnInit() {
+    this.event.subscribe('approvedCount', (count) => {
+      this.approvedCount = count;
+    });
+    this.event.subscribe('unapprovedCount', (count) => {
+      this.unapprovedCount = count;
+    });
   }
 
 }

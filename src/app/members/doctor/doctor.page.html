@@ -14,12 +14,13 @@
           <ion-tab-button tab="approved">
             <ion-icon name="checkbox-outline"></ion-icon>
             <ion-label>Approved</ion-label>
-            <ion-badge>6</ion-badge>
+            <ion-badge *ngIf="approvedCount">{{approvedCount}}</ion-badge>
           </ion-tab-button>
     
           <ion-tab-button tab="unapproved">
            <ion-icon name="close-circle-outline"></ion-icon>
            <ion-label>Not Approved</ion-label>
+           <ion-badge *ngIf="unapprovedCount">{{unapprovedCount}}</ion-badge>
           </ion-tab-button>
         </ion-tab-bar>
       </ion-tabs>
