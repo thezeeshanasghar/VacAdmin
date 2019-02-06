@@ -4,7 +4,7 @@
 
     <ion-item>
       <ion-label><b>{{doc.DisplayName}}</b></ion-label>
-      <ion-datetime 
+      <ion-datetime slot="end"
         slot="end" 
         min="2015"
         max="2030"
@@ -21,6 +21,14 @@
       <p>Email: {{ doc.Email}}</p>
       <p>Number: {{doc.MobileNumber}}</p>
       <p>PMDC No: {{doc.PMDC}}</p>
+      <ion-button size="small" fill="outline" color="tertiary" routerLink="/members/doctor/{{doc.ID}}/permissions">
+        <ion-icon name="finger-print"></ion-icon>
+        Permissions
+      </ion-button>
+      <ion-button size="small" disabled="true" fill="outline" color="tertiary" routerLink="/members/doctor/{{doc.ID}}/permissions">
+        <ion-icon name="body"></ion-icon>
+        Patients
+      </ion-button>
     </ion-card-content>
 
   </ion-card>
