@@ -14,10 +14,10 @@ const routes: Routes = [
     children:[
       { path: '', redirectTo: 'approved', pathMatch: 'full' },
       { path: 'approved', loadChildren: './approved/approved.module#ApprovedPageModule' },
-      { path: 'unapproved', loadChildren: './unapproved/unapproved.module#UnapprovedPageModule' },
-      { path: ':id/permissions', loadChildren: './permission/permission.module#PermissionPageModule' }
+      { path: 'unapproved', loadChildren: './unapproved/unapproved.module#UnapprovedPageModule' }
     ]
-  }
+  },
+  { path: ':id/permissions', loadChildren: './permission/permission.module#PermissionPageModule' }
 ];
 
 @NgModule({

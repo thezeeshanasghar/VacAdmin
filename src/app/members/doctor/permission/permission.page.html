@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/members/dashboard"></ion-back-button>
     </ion-buttons>
@@ -31,13 +31,11 @@
       <ion-checkbox [(ngModel)]="doctor.AllowInventory"></ion-checkbox>
     </ion-item>
     <ion-item>
-      <ion-label>SMS Limit
-        <br>
-        <p>{{doctor.SMSLimit}}</p>
-      </ion-label>
+      <ion-label>SMS Limit</ion-label>
+      <ion-input slot="end" type="number" placeholder="SMS limit" [(ngModel)]="doctor.SMSLimit"></ion-input>
     </ion-item>
-    
-      <ion-button expand="block"  (click)="update()">Update Permission</ion-button>
-    
+
+    <ion-button expand="block" (click)="update()">Update Permission</ion-button>
+
   </ion-list>
 </ion-content>
