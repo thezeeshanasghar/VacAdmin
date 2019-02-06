@@ -14,17 +14,15 @@
 <!-- <ion-searchbar (ionInput)="onInput($event)">
 
 </ion-searchbar> -->
-<ion-content padding>
+<ion-content>
 
   <ion-card *ngFor="let vaccine of vaccines">
 
     <ion-item>
       <ion-icon name="color-filter" slot="start" style="margin-right:16px"></ion-icon>
       <ion-label><b>{{vaccine.Name}}</b></ion-label>
-      <ion-item slot="end">
-        <ion-icon routerLink="/members/vaccine/edit/{{vaccine.ID}}" color="primary" name="create"></ion-icon>
-        <ion-icon (click)="promptForDeleteVaccine(vaccine.ID)" color="primary" name="trash"></ion-icon>
-      </ion-item>
+        <ion-icon  slot="end" routerLink="/members/vaccine/edit/{{vaccine.ID}}" color="primary" name="create" size="large"></ion-icon>
+        <ion-icon  slot="end" (click)="promptForDeleteVaccine(vaccine.ID)" color="primary" name="trash" size="large"></ion-icon>
     </ion-item>
 
     <ion-card-content>

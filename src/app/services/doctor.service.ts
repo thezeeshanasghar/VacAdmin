@@ -8,7 +8,8 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class DoctorService extends BaseService { 
+export class DoctorService extends BaseService {
+  
 
   private readonly API_DOCTOR = `${environment.BASE_URL}doctor`
 
@@ -45,4 +46,12 @@ export class DoctorService extends BaseService {
         catchError(this.handleError)
       );
   }
+
+  approveDoctor(docId: number): Observable<any> {
+    const url = `${this.API_DOCTOR}/approve/${docId}`;
+    return this.http.get(url, this.httpOptions).pipe(
+      map(this.extractData), 
+      catchError(this.handleError)
+    );
+  } 
 }
