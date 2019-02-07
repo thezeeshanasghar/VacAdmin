@@ -15,7 +15,7 @@ export class LoginPage implements OnInit {
   fg: FormGroup;
   constructor(
     public router: Router,
-    public alertController:AlertController,
+    public alertController: AlertController,
     private formBuilder: FormBuilder,
     private api: LoginService,
     private toastService: ToastService,
@@ -74,8 +74,8 @@ export class LoginPage implements OnInit {
   }
 
   // Call api to forgot password
-  async forgotPassword(MobileNumber){
-    let data={'CountryCode':'92', 'UserType': 'SUPERADMIN', 'MobileNumber': MobileNumber}
+  async forgotPassword(MobileNumber) {
+    let data = { 'CountryCode': '92', 'UserType': 'SUPERADMIN', 'MobileNumber': MobileNumber }
     await this.api.forgotPassword(data)
       .subscribe(res => {
         if (res.IsSuccess) {
@@ -87,5 +87,5 @@ export class LoginPage implements OnInit {
         console.log(err);
         this.toastService.create(err, 'danger');
       });
-   }
+  }
 }
