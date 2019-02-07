@@ -25,14 +25,14 @@
         <ion-input type="password" formControlName="Password"></ion-input>
 
 
-        <ion-button expand="full" color="primary" (click)="login()">
+        <ion-button expand="full" color="tertiary" (click)="login()">
           <ion-icon name="log-in"></ion-icon>&nbsp;
           Login
         </ion-button>
       </form>
 
-      <ion-text text-right color="primary">
-        <a color="dark" href="" (click)="ShowAlert()">
+      <ion-text text-right>
+        <a (click)="forgotPasswordAlert()">
           <h2>Forget password</h2>
         </a>
       </ion-text>
