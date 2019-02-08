@@ -5,13 +5,17 @@ import { LoginService } from 'src/app/services/login.service';
 import { ToastService } from 'src/app/shared/toast.service';
 import { AlertController } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
+
+
 export class LoginPage implements OnInit {
 
+  
   fg: FormGroup;
   constructor(
     public router: Router,
@@ -22,6 +26,8 @@ export class LoginPage implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    this.api.changeState(false);
     this.fg = this.formBuilder.group({
       'MobileNumber': [null, Validators.required],
       'Password': [null, Validators.required],
@@ -34,6 +40,7 @@ export class LoginPage implements OnInit {
     await this.api.checkAuth(this.fg.value)
       .subscribe(res => {
         if (res.IsSuccess) {
+          this.api.changeState(true);
           this.router.navigate(['/members/']);
         }
         else {
