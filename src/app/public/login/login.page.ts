@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { ToastService } from 'src/app/shared/toast.service';
 import { AlertController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -15,19 +17,20 @@ import { AlertController } from '@ionic/angular';
 
 export class LoginPage implements OnInit {
 
-  
+
   fg: FormGroup;
   constructor(
     public router: Router,
     public alertController: AlertController,
     private formBuilder: FormBuilder,
-    private api: LoginService,
+    private loginService: LoginService,
     private toastService: ToastService,
+    private storage: Storage
   ) { }
 
   ngOnInit() {
+    this.skipLoginIfAlreadyLoggedIn();
 
-    this.api.changeState(false);
     this.fg = this.formBuilder.group({
       'MobileNumber': [null, Validators.required],
       'Password': [null, Validators.required],
@@ -36,11 +39,21 @@ export class LoginPage implements OnInit {
     });
   }
 
+  skipLoginIfAlreadyLoggedIn() {
+    this.storage.get(environment.IS_LOGGED_IN).then(value => {
+      if (value) {
+        this.loginService.changeState(value);
+        this.router.navigate(['members/dashboard']);
+      }
+    });
+  }
+
   async login() {
-    await this.api.checkAuth(this.fg.value)
+    await this.loginService.checkAuth(this.fg.value)
       .subscribe(res => {
         if (res.IsSuccess) {
-          this.api.changeState(true);
+          this.loginService.changeState(true);
+          this.storage.set(environment.IS_LOGGED_IN, true);
           this.router.navigate(['/members/']);
         }
         else {
@@ -83,7 +96,7 @@ export class LoginPage implements OnInit {
   // Call api to forgot password
   async forgotPassword(MobileNumber) {
     let data = { 'CountryCode': '92', 'UserType': 'SUPERADMIN', 'MobileNumber': MobileNumber }
-    await this.api.forgotPassword(data)
+    await this.loginService.forgotPassword(data)
       .subscribe(res => {
         if (res.IsSuccess) {
         }
