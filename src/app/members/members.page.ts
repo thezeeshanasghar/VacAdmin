@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-members',
@@ -33,9 +34,14 @@ export class MembersPage implements OnInit {
       icon: 'mail'
     }
   ];
-  constructor() { }
+
+  constructor(private storage: Storage) { }
 
   ngOnInit() {
   }
 
+
+  clearStorage() {
+    this.storage.clear();
+  }
 }
