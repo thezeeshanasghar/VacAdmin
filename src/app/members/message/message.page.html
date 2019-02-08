@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
 
 
@@ -16,7 +16,7 @@
     <ion-item (click)="accordion()">
       <ion-icon slot="start" name="ios-arrow-forward" color="primary" *ngIf="section==false"></ion-icon>
       <ion-icon slot="start" name="ios-arrow-down" color="primary" *ngIf="section==true"></ion-icon>
-      <ion-label> Messages</ion-label>
+      <ion-label>Send New Messages</ion-label>
     </ion-item>
 
     <ion-card-content *ngIf="section == true">
