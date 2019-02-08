@@ -13,14 +13,14 @@ import { ToastService } from 'src/app/shared/toast.service';
 export class AddPage implements OnInit {
 
   fg: FormGroup;
-  vaccineid:any;
+  vaccineid: any;
   constructor(
     public api: DoseService,
     public loadingController: LoadingController,
     private route: ActivatedRoute,
     public router: Router,
     private formBuilder: FormBuilder,
-    private toast: ToastService,
+    private toastService: ToastService,
   ) {
   }
 
@@ -38,15 +38,22 @@ export class AddPage implements OnInit {
   }
 
   async addDose() {
+    const loading = await this.loadingController.create({ message: 'Loading' });
+    await loading.present();
+
     await this.api.addDose(this.fg.value)
       .subscribe(res => {
-        if (res.IsSuccess)
-          this.router.navigateByUrl('/members/vaccine/' + this.route.snapshot.paramMap.get('id') + '/dose');
-        
-          this.toast.create(res.message);
+        if (res.IsSuccess) {
+          loading.dismiss();
+          this.toastService.create('Dose added successfully.')
+          this.router.navigateByUrl('/members/vaccine/' + this.route.snapshot.paramMap.get('id') + '/doses');
+        }
+        else
+          this.toastService.create(res.message, 'danger');
+
       }, (err) => {
-        console.log(err);
-        this.toast.create(err);
+        console.error(err);
+        this.toastService.create(err), 'danger';
       });
   }
 
