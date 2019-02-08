@@ -3,6 +3,7 @@ import { LoadingController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DoseService } from 'src/app/services/dose.service';
+import { ToastService } from 'src/app/shared/toast.service';
 
 @Component({
   selector: 'app-edit',
@@ -20,6 +21,7 @@ export class EditPage implements OnInit {
     public doseService: DoseService,
     public router: Router,
     private formBuilder: FormBuilder,
+    private toastService: ToastService
   ) {
   }
 
@@ -65,14 +67,22 @@ export class EditPage implements OnInit {
 
   // Send the request server for Edit Dose
   async editDose() {
-    console.log(this.fg.value)
+    const loading = await this.loadingController.create({ message: 'Loading' });
+    await loading.present();
 
     await this.doseService.editDose(this.route.snapshot.paramMap.get('id'), this.fg.value)
       .subscribe(res => {
-        console.log('done');
-        this.router.navigate(['/vaccine/']);
+        if (res.IsSuccess) {
+          loading.dismiss();
+          this.toastService.create('Dose added successfully.')
+          this.router.navigateByUrl('/members/vaccine/' + this.route.snapshot.paramMap.get('id') + '/doses');
+        }
+        else
+          this.toastService.create(res.message, 'danger');
+
       }, (err) => {
-        console.log(err);
+        console.error(err);
+        this.toastService.create(err), 'danger';
       });
   }
 
