@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
+  // BASE_URL: "http://vac-api.afz-sol.com/api/"
   BASE_URL: "http://vac-api.afz-sol.com/api/"
+  // BASE_URL: "http://localhost:4309/api/"
 };
 
 /*
