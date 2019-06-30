@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   // BASE_URL: "http://vac-api.afz-sol.com/api/"
-  BASE_URL: "http://vac-api.afz-sol.com/api/",
+  BASE_URL: "http://vac-api.ehs.edu.pk/api/",
   // BASE_URL: "http://localhost:4309/api/"
 
   IS_LOGGED_IN: "IsLoggedIn"
