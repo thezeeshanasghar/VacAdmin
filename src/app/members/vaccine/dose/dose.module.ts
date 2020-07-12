@@ -14,7 +14,7 @@ const routes: Routes = [
     component: DosePage
   }, 
   { path: 'add', loadChildren: 'src/app/members/vaccine/dose/add/add.module#AddPageModule' },
-  { path: 'edit/:id', loadChildren: 'src/app/members/vaccine/dose/edit/edit.module#EditPageModule'},
+  { path: 'edit/:id1', loadChildren: 'src/app/members/vaccine/dose/edit/edit.module#EditPageModule'},
 ];
 
 @NgModule({

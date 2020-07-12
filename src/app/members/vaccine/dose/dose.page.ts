@@ -12,7 +12,7 @@ import { AlertService } from 'src/app/shared/alert.service';
 export class DosePage {
 
   dosses: any;
-  vaccineID: any;
+  vaccineId: any;
 
   constructor(
     public route: ActivatedRoute,
@@ -25,7 +25,7 @@ export class DosePage {
   ) { }
 
   ionViewWillEnter() {
-    this.vaccineID = this.route.snapshot.paramMap.get('id');
+    this.vaccineId = this.route.snapshot.paramMap.get('id');
     this.getDosses();
   }
 
@@ -54,9 +54,10 @@ export class DosePage {
 
   alertDeleteDose(id) {
     this.alertService.confirmAlert('Are you sure you want to delete this ?', null)
-      .then((yes) => {
+      .then(async (yes) => {
         if (yes) {
-          this.deleteDose(id);
+          await this.deleteDose(id);
+          this.getDosses();
         }
       });
 

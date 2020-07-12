@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoadingController } from '@ionic/angular';
 import { ChildService } from 'src/app/services/child.service';
 import { ToastService } from 'src/app/shared/toast.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-child',
@@ -23,22 +24,26 @@ export class ChildPage implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      'city': ['Islamabad'],
+      'city': [''],
       'name': [''],
-      'dob':['']
+      'dob':[''],
+      'gender':['']
     })
   }
 
   async onSubmit() {
     const loading = await this.loadingController.create({message: 'Loading'});
     await loading.present();
-
-    
-    
+    if (this.loginForm.controls['dob'].value !== '')
+    {
+    this.loginForm.value.dob = moment(this.loginForm.value.dob, 'YYYY-MM-DD').format('YYYY-MM-DD');
+    }
     await this.api.searchChild(
         this.loginForm.controls['name'].value,
         this.loginForm.controls['city'].value,
-        this.loginForm.controls['dob'].value
+        //this.loginForm.controls['dob'].value,
+        this.loginForm.value.dob,
+        this.loginForm.controls['gender'].value
         )
       .subscribe(
         res => {

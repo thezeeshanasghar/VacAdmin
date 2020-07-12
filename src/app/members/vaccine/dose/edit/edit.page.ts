@@ -32,7 +32,8 @@ export class EditPage implements OnInit {
       'MaxAge': [null],
       'MinGap': [null],
       'DoseOrder': [null],
-      'VaccineID': [null]
+      'VaccineId': [null],
+      'IsSpecial':[false]
     });
 
     this.getDose();
@@ -46,17 +47,20 @@ export class EditPage implements OnInit {
 
     await loading.present();
 
-    await this.doseService.getDoseById(this.route.snapshot.paramMap.get('id')).subscribe(
+    await this.doseService.getDoseById(this.route.snapshot.paramMap.get('id1')).subscribe(
       res => {
         console.log(res);
         this.dose = res.ResponseData;
         loading.dismiss();
         this.fg.controls['Name'].setValue(this.dose.Name);
         this.fg.controls['MinAge'].setValue(this.dose.MinAge + '');
+        if(this.dose.MaxAge)
         this.fg.controls['MaxAge'].setValue(this.dose.MaxAge + '');
+        if(this.dose.MinGap)
         this.fg.controls['MinGap'].setValue(this.dose.MinGap + '');
         this.fg.controls['DoseOrder'].setValue(this.dose.DoseOrder);
-        this.fg.controls['VaccineID'].setValue(this.dose.VaccineID);
+        this.fg.controls['VaccineId'].setValue(this.dose.VaccineId);
+        this.fg.controls['IsSpecial'].setValue(this.dose.IsSpecial);
       },
       err => {
         console.log(err);
@@ -70,11 +74,11 @@ export class EditPage implements OnInit {
     const loading = await this.loadingController.create({ message: 'Loading' });
     await loading.present();
 
-    await this.doseService.editDose(this.route.snapshot.paramMap.get('id'), this.fg.value)
+    await this.doseService.editDose(this.route.snapshot.paramMap.get('id1'), this.fg.value)
       .subscribe(res => {
         if (res.IsSuccess) {
           loading.dismiss();
-          this.toastService.create('Dose added successfully.')
+          this.toastService.create('Dose updated successfully.')
           this.router.navigateByUrl('/members/vaccine/' + this.route.snapshot.paramMap.get('id') + '/doses');
         }
         else

@@ -1,7 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DoctorService } from 'src/app/services/doctor.service';
-import { LoadingController, Events } from '@ionic/angular';
+//import { LoadingController, Events } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
 import * as moment from 'moment';
 import { ToastService } from 'src/app/shared/toast.service';
 
@@ -19,7 +20,7 @@ export class ApprovedPage implements OnInit {
     public route: ActivatedRoute,
     public api: DoctorService,
     public loadingController: LoadingController,
-    private events: Events,
+  //  private events: Events,
     private toastService: ToastService
   ) {
     this.today = moment().format('YYYY-MM-DD');
@@ -46,7 +47,7 @@ export class ApprovedPage implements OnInit {
           doc.ValidUpto = moment(doc.ValidUpto, "DD-MM-YYYY").format('YYYY-MM-DD')
         });
         // publish doctors count to update tab's badge in parent page/component
-        this.events.publish('approvedCount', this.doctors.length);
+      //  this.events.publish('approvedCount', this.doctors.length);
 
         loading.dismiss();
       },
@@ -81,6 +82,4 @@ export class ApprovedPage implements OnInit {
     );
 
   }
-
-
 }

@@ -16,8 +16,8 @@ export class ChildService extends BaseService {
     protected http: HttpClient
   ) { super(http); }
 
-  searchChild(name: String, city: String, dob: String): Observable<any> {
-    const url = `${this.API_CHILD}/search?name=${name}&city=${city}&dob=${dob}`;
+  searchChild(name: String, city: String, dob: String , gender: String): Observable<any> {
+    const url = `${this.API_CHILD}/search?name=${name}&city=${city}&dob=${dob}&gender=${gender}`;
     return this.http.get(url, this.httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError)

@@ -23,7 +23,7 @@ export class EditPage implements OnInit {
 
   ngOnInit() {
     this.fg = this.formBuilder.group({
-      'ID':[null],
+      'Id':[null],
       'Name': ['', Validators.required],
       'MinAge': [null, Validators.required],
       'MaxAge': [null]
@@ -49,8 +49,9 @@ export class EditPage implements OnInit {
         loading.dismiss();
         this.fg.controls['Name'].setValue(this.vaccine.Name);
         this.fg.controls['MinAge'].setValue(this.vaccine.MinAge+'');
+        if (this.vaccine.MaxAge)
         this.fg.controls['MaxAge'].setValue(this.vaccine.MaxAge+'');
-        this.fg.controls['ID'].setValue(this.vaccine.ID+'');
+        this.fg.controls['Id'].setValue(this.vaccine.Id+'');
       },
       err=>{
         console.log(err);

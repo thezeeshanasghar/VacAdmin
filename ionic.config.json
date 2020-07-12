@@ -1,8 +1,7 @@
 {
   "name": "VacAdmin",
   "integrations": {
-    "cordova": {}
+    "capacitor": {}
   },
-  "type": "angular",
-  "id": "09c2f6c2"
+  "type": "angular"
 }

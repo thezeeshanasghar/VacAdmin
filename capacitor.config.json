@@ -1,0 +1,8 @@
+{
+  "appId": "com.VacAdmin.com",
+  "appName": "VacAdmin",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}

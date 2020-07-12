@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { IonicStorageModule } from '@ionic/storage';
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -26,6 +27,7 @@ import { IonicStorageModule } from '@ionic/storage';
   ],
   providers: [
     StatusBar,
+    //Event,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
   ],
