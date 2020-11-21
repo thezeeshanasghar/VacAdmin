@@ -8,7 +8,6 @@
     <ion-item slot="end" color="primary">
       <ion-icon routerLink="/members/vaccine/{{vaccineId}}/doses/add" name="add" slot="end" color="light"></ion-icon>
     </ion-item>
-
   </ion-toolbar>
 </ion-header>
 
@@ -19,8 +18,8 @@
       <ion-label>{{d.Name}}</ion-label>
 
       <ion-item slot="end">
-        <ion-icon color="primary" name="create" routerLink="/members/vaccine/{{vaccineId}}/doses/edit/{{d.ID}}"></ion-icon>
-        <ion-icon (click)="alertDeleteDose(d.ID)" color="primary" name="trash"></ion-icon>
+        <ion-icon color="primary" name="create" routerLink="/members/vaccine/{{vaccineId}}/doses/edit/{{d.Id}}"></ion-icon>
+        <ion-icon (click)="alertDeleteDose(d.Id)" color="primary" name="trash"></ion-icon>
       </ion-item>
     </ion-item>
 

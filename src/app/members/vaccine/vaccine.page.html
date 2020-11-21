@@ -17,22 +17,21 @@
 <ion-content>
 
   <ion-card *ngFor="let vaccine of vaccines">
-
     <ion-item>
-      <ion-icon name="color-filter" slot="start" style="margin-right:16px"></ion-icon>
+      <ion-icon name="bandage-outline" slot="start" style="margin-right:16px"></ion-icon>
       <ion-label><b>{{vaccine.Name}}</b></ion-label>
-        <ion-icon  slot="end" routerLink="/members/vaccine/edit/{{vaccine.ID}}" color="primary" name="create" size="large"></ion-icon>
-        <ion-icon  slot="end" (click)="promptForDeleteVaccine(vaccine.ID)" color="primary" name="trash" size="large"></ion-icon>
+        <ion-icon  slot="end" routerLink="/members/vaccine/edit/{{vaccine.Id}}" color="primary" name="create" size="large"></ion-icon>
+        <ion-icon  slot="end" (click)="promptForDeleteVaccine(vaccine.Id)" color="primary" name="trash" size="large"></ion-icon>
     </ion-item>
 
     <ion-card-content>
       <p>Minimum Age Limit: <b>{{vaccine.MinAge | number2Week}}</b></p>
       <p *ngIf="vaccine.MaxAge">Maximum Age Limit: <b>{{vaccine.MaxAge | number2Week}}</b></p>
-      <ion-button size="small" fill="outline" color="tertiary" routerLink="/members/vaccine/{{vaccine.ID}}/doses">
+      <ion-button size="small" fill="outline" color="tertiary" routerLink="/members/vaccine/{{vaccine.Id}}/doses">
         Doses &nbsp;
         <ion-badge color="primary">{{vaccine.NumOfDoses}}</ion-badge>
       </ion-button>
-      <ion-button size="small" fill="outline" color="tertiary" routerLink="/members/vaccine/{{vaccine.ID}}/brands">
+      <ion-button size="small" fill="outline" color="tertiary" routerLink="/members/vaccine/{{vaccine.Id}}/brands">
         Brands &nbsp;
         <ion-badge color="primary">{{vaccine.NumOfBrands}}</ion-badge>
       </ion-button>

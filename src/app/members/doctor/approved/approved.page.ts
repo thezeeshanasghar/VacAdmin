@@ -5,6 +5,7 @@ import { DoctorService } from 'src/app/services/doctor.service';
 import { LoadingController } from '@ionic/angular';
 import * as moment from 'moment';
 import { ToastService } from 'src/app/shared/toast.service';
+import { AlertService } from 'src/app/shared/alert.service';
 
 @Component({
   selector: 'app-approved',
@@ -20,6 +21,7 @@ export class ApprovedPage implements OnInit {
     public route: ActivatedRoute,
     public api: DoctorService,
     public loadingController: LoadingController,
+    private alertService: AlertService,
   //  private events: Events,
     private toastService: ToastService
   ) {
@@ -58,6 +60,38 @@ export class ApprovedPage implements OnInit {
     );
   }
 
+  async alertforDeleteDoctor(id) {
+    this.alertService.confirmAlert('This will erase doctor and his patients data. Are you sure you want to delete ?', null)
+      .then((yes) => {
+        if (yes) {
+          this.DeleteDoctor(id);
+        }
+      });
+  }
+
+  async DeleteDoctor(id) {
+    const loading = await this.loadingController.create({
+      message: "Loading"
+    });
+    await loading.present();
+    await this.api.deleteDoctor(id).subscribe(
+      res => {
+        if (res.IsSuccess) {
+          this.toastService.create(res.Message);
+          this.getApprovedDoctors();
+          loading.dismiss();
+        }
+        else {
+          loading.dismiss();
+          this.toastService.create(res.Message, 'danger');
+        }
+      },
+      err => {
+        loading.dismiss();
+        this.toastService.create(err, 'danger')
+      }
+    );
+  }
 
   async updateValidity($event, docID) {
     const loading = await this.loadingController.create({ message: 'Loading' });

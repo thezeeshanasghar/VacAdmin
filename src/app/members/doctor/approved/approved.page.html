@@ -14,22 +14,24 @@
         value="{{doc.ValidUpto}}" 
         class="success"
         [ngClass]="{fail: doc.ValidUpto < today}"
-        (ionChange)="updateValidity($event, doc.ID)"
+        (ionChange)="updateValidity($event, doc.Id)"
       ></ion-datetime>
     </ion-item>
     <ion-card-content>
       <p>Email: {{ doc.Email}}</p>
       <p>Number: {{doc.MobileNumber}}</p>
       <p>PMDC No: {{doc.PMDC}}</p>
-      <ion-button size="small" fill="outline" color="tertiary" routerLink="/members/doctor/{{doc.ID}}/permissions">
+      <ion-button size="small" fill="outline" color="tertiary" routerLink="/members/doctor/{{doc.Id}}/permissions">
         <ion-icon name="finger-print"></ion-icon>
         Permissions
       </ion-button>
-      <ion-button size="small" disabled="true" fill="outline" color="tertiary" routerLink="/members/doctor/{{doc.ID}}/permissions">
+      <ion-button size="small" disabled="true" fill="outline" color="tertiary" routerLink="/members/doctor/{{doc.Id}}/permissions">
         <ion-icon name="body"></ion-icon>
         Patients
       </ion-button>
     </ion-card-content>
-
+    <ion-item>
+    <ion-icon slot="end" size = "large" color="primary" name="trash" (click)="alertforDeleteDoctor(doc.Id)"></ion-icon>
+    </ion-item>
   </ion-card>
 </ion-content>

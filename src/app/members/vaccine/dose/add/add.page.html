@@ -18,7 +18,19 @@
       <ion-label color="primary" floating>Min Age</ion-label>
       <ion-select formControlName="MinAge" required>
         <ion-select-option value="0">At Birth</ion-select-option>
+        <ion-select-option value="1">1 Day</ion-select-option>
+        <ion-select-option value="2">2 Days</ion-select-option>
+        <ion-select-option value="3">3 Days</ion-select-option>
+        <ion-select-option value="4">4 Days</ion-select-option>
+        <ion-select-option value="5">5 Days</ion-select-option>
+        <ion-select-option value="6">6 Days</ion-select-option>
         <ion-select-option value="7">1 Week</ion-select-option>
+        <ion-select-option value="8">8 Days</ion-select-option>
+        <ion-select-option value="9">9 Days</ion-select-option>
+        <ion-select-option value="10">10 Days</ion-select-option>
+        <ion-select-option value="11">11 Days</ion-select-option>
+        <ion-select-option value="12">12 Days</ion-select-option>
+        <ion-select-option value="13">13 Days</ion-select-option>
         <ion-select-option value="14">2 Weeks</ion-select-option>
         <ion-select-option value="21">3 Weeks</ion-select-option>
         <ion-select-option value="28">4 Weeks</ion-select-option>
@@ -108,6 +120,102 @@
         <ion-select-option value="4745">13 Years</ion-select-option>
         <ion-select-option value="5110">14 Years</ion-select-option>
         <ion-select-option value="5475">15 Years</ion-select-option>
+        <ion-select-option value="5505">15 Years 1 months</ion-select-option>
+        <ion-select-option value="5655">15 Years 6 months</ion-select-option>
+
+
+        <!-- disabled minage check -->
+        <!-- <ion-select-option [disabled]="vaccine.MinAge > 0" value="0">At Birth</ion-select-option> -->
+        <!-- <ion-select-option [disabled]="vaccine.MinAge > 7" value="7">1 Week</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 14" value="14">2 Weeks</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 21" value="21">3 Weeks</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 28" value="28">4 Weeks</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 35" value="35">5 Weeks</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 42" value="42">6 Weeks</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 49" value="49">7 Weeks</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 56" value="56">8 Weeks</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 63" value="63">9 Weeks</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 70" value="70">10 Weeks</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 77" value="77">11 Weeks</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 84" value="84">3 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 91" value="91">13 Weeks</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 98" value="98">14 Weeks</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 105" value="105">15 Weeks</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 112" value="112">16 Weeks</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 119" value="119">17 Weeks</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 126" value="126">18 Weeks</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 133" value="133">19 Weeks</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 140" value="140">20 Weeks</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 147" value="147">21 Weeks</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 154" value="154">22 Weeks</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 161" value="161">23 Weeks</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 168" value="168">6 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 212" value="212">7 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 243" value="243">8 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 274" value="274">9 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 304" value="304">10 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 334" value="334">11 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 365" value="365">1 Year</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 395" value="395">13 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 426" value="426">14 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 456" value="456">15 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 486" value="486">16 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 517" value="517">17 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 547" value="547">18 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 578" value="578">19 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 608" value="608">20 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 639" value="639">21 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 669" value="669">22 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 699" value="699">23 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 730" value="730">2 Years</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 760" value="760">25 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 791" value="791">26 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 821" value="821">27 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 851" value="851">28 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 882" value="882">29 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 912" value="912">30 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 943" value="943">31 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 973" value="973">32 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1004" value="1004">33 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1034" value="1034">34 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1064" value="1064">35 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1095" value="1095">3 Years</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1125" value="1125">37 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1156" value="1156">38 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1186" value="1186">39 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1216" value="1216">40 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1247" value="1247">41 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1277" value="1277">42 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1308" value="1308">43 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1338" value="1338">44 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1369" value="1369">45 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1399" value="1399">46 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1429" value="1429">47 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1460" value="1460">4 Years</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1490" value="1490">49 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1521" value="1521">50 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1551" value="1551">51 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1582" value="1582">52 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1612" value="1612">53 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1642" value="1642">54 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1673" value="1673">55 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1703" value="1703">56 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1734" value="1734">57 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1764" value="1764">58 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1795" value="1795">59 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 1825" value="1825">5 Years</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 2190" value="2190">6 Years</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 2555" value="2555">7 Years</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 2920" value="2920">8 Years</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 3285" value="3285">9 Years</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge >3315" value="3315">9 Year 1 Month</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 3650" value="3650">10 Years</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 3833" value="3833">10 Year 6 Months</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 4015" value="4015">11 Years</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 4380" value="4380">12 Years</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 4745" value="4745">13 Years</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 5110" value="5110">14 Years</ion-select-option>
+        <ion-select-option [disabled]="vaccine.MinAge > 5475" value="5475">15 Years</ion-select-option> -->
       </ion-select>
 
     </ion-item>
@@ -200,13 +308,27 @@
         <ion-select-option value="4745">13 Years</ion-select-option>
         <ion-select-option value="5110">14 Years</ion-select-option>
         <ion-select-option value="5475">15 Years</ion-select-option>
+        <ion-select-option value="5505">15 Years 1 months</ion-select-option>
+        <ion-select-option value="5655">15 Years 6 months</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label color="primary" floating>Min Gap from Prev Dose</ion-label>
       <ion-select formControlName="MinGap">
-        <ion-select-option value="0">At Birth</ion-select-option>
+        <ion-select-option value="0">No Gap</ion-select-option>
+        <ion-select-option value="1">1 Day</ion-select-option>
+        <ion-select-option value="2">2 Days</ion-select-option>
+        <ion-select-option value="3">3 Days</ion-select-option>
+        <ion-select-option value="4">4 Days</ion-select-option>
+        <ion-select-option value="5">5 Days</ion-select-option>
+        <ion-select-option value="6">6 Days</ion-select-option>
         <ion-select-option value="7">1 Week</ion-select-option>
+        <ion-select-option value="8">8 Days</ion-select-option>
+        <ion-select-option value="9">9 Days</ion-select-option>
+        <ion-select-option value="10">10 Days</ion-select-option>
+        <ion-select-option value="11">11 Days</ion-select-option>
+        <ion-select-option value="12">12 Days</ion-select-option>
+        <ion-select-option value="13">13 Days</ion-select-option>
         <ion-select-option value="14">2 Weeks</ion-select-option>
         <ion-select-option value="21">3 Weeks</ion-select-option>
         <ion-select-option value="28">4 Weeks</ion-select-option>
@@ -296,12 +418,19 @@
         <ion-select-option value="4745">13 Years</ion-select-option>
         <ion-select-option value="5110">14 Years</ion-select-option>
         <ion-select-option value="5475">15 Years</ion-select-option>
+        <ion-select-option value="5505">15 Years 1 months</ion-select-option>
+        <ion-select-option value="5655">15 Years 6 months</ion-select-option>
 
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label color="primary" floating>Dose Order</ion-label>
       <ion-input type="text" formControlName="DoseOrder"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" floating>Special</ion-label>
+      <ion-checkbox  formControlName="IsSpecial"></ion-checkbox>
     </ion-item>
 
     <ion-button  [disabled]="!fg.valid" (click)='addDose()'>Add</ion-button>

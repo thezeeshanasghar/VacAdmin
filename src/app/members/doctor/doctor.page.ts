@@ -21,6 +21,7 @@ export class DoctorPage implements OnInit {
     // this.event.subscribe('unapprovedCount', (count) => {
     //   this.unapprovedCount = count;
     // });
+   
   }
-
+ 
 }
