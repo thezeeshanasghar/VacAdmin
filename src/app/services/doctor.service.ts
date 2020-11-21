@@ -63,4 +63,12 @@ export class DoctorService extends BaseService {
       );
   }
 
+  deleteDoctor(id: string): Observable<any> {
+    const url = `${this.API_DOCTOR}/${id}`;
+    return this.http.delete(url, this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
 }

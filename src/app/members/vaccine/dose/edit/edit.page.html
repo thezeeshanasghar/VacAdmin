@@ -19,7 +19,19 @@
       <ion-label color="primary" floating>Min Age</ion-label>
       <ion-select formControlName="MinAge" required>
         <ion-select-option value="0">At Birth</ion-select-option>
+        <ion-select-option value="1">1 Day</ion-select-option>
+        <ion-select-option value="2">2 Days</ion-select-option>
+        <ion-select-option value="3">3 Days</ion-select-option>
+        <ion-select-option value="4">4 Days</ion-select-option>
+        <ion-select-option value="5">5 Days</ion-select-option>
+        <ion-select-option value="6">6 Days</ion-select-option>
         <ion-select-option value="7">1 Week</ion-select-option>
+        <ion-select-option value="8">8 Days</ion-select-option>
+        <ion-select-option value="9">9 Days</ion-select-option>
+        <ion-select-option value="10">10 Days</ion-select-option>
+        <ion-select-option value="11">11 Days</ion-select-option>
+        <ion-select-option value="12">12 Days</ion-select-option>
+        <ion-select-option value="13">13 Days</ion-select-option>
         <ion-select-option value="14">2 Weeks</ion-select-option>
         <ion-select-option value="21">3 Weeks</ion-select-option>
         <ion-select-option value="28">4 Weeks</ion-select-option>
@@ -109,6 +121,8 @@
         <ion-select-option value="4745">13 Years</ion-select-option>
         <ion-select-option value="5110">14 Years</ion-select-option>
         <ion-select-option value="5475">15 Years</ion-select-option>
+        <ion-select-option value="5505">15 Years 1 months</ion-select-option>
+        <ion-select-option value="5655">15 Years 6 months</ion-select-option>
       </ion-select>
 
     </ion-item>
@@ -201,13 +215,27 @@
         <ion-select-option value="4745">13 Years</ion-select-option>
         <ion-select-option value="5110">14 Years</ion-select-option>
         <ion-select-option value="5475">15 Years</ion-select-option>
+        <ion-select-option value="5505">15 Years 1 months</ion-select-option>
+        <ion-select-option value="5655">15 Years 6 months</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label color="primary" floating>Min Gap from Prev Dose</ion-label>
       <ion-select formControlName="MinGap">
-        <ion-select-option value="0">At Birth</ion-select-option>
+        <ion-select-option value="0">No Gap</ion-select-option>
+        <ion-select-option value="1">1 Day</ion-select-option>
+        <ion-select-option value="2">2 Days</ion-select-option>
+        <ion-select-option value="3">3 Days</ion-select-option>
+        <ion-select-option value="4">4 Days</ion-select-option>
+        <ion-select-option value="5">5 Days</ion-select-option>
+        <ion-select-option value="6">6 Days</ion-select-option>
         <ion-select-option value="7">1 Week</ion-select-option>
+        <ion-select-option value="8">8 Days</ion-select-option>
+        <ion-select-option value="9">9 Days</ion-select-option>
+        <ion-select-option value="10">10 Days</ion-select-option>
+        <ion-select-option value="11">11 Days</ion-select-option>
+        <ion-select-option value="12">12 Days</ion-select-option>
+        <ion-select-option value="13">13 Days</ion-select-option>
         <ion-select-option value="14">2 Weeks</ion-select-option>
         <ion-select-option value="21">3 Weeks</ion-select-option>
         <ion-select-option value="28">4 Weeks</ion-select-option>
@@ -297,12 +325,19 @@
         <ion-select-option value="4745">13 Years</ion-select-option>
         <ion-select-option value="5110">14 Years</ion-select-option>
         <ion-select-option value="5475">15 Years</ion-select-option>
+        <ion-select-option value="5505">15 Years 1 months</ion-select-option>
+        <ion-select-option value="5655">15 Years 6 months</ion-select-option>
 
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label color="primary" floating>Dose Order</ion-label>
       <ion-input type="text" formControlName="DoseOrder"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" floating>Special</ion-label>
+      <ion-checkbox  formControlName="IsSpecial"></ion-checkbox>
     </ion-item>
 
     <ion-button  [disabled]="!fg.valid" (click)='editDose()'>Add</ion-button>

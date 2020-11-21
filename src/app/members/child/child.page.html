@@ -13,6 +13,7 @@
     <ion-item>
       <ion-label position="fixed" color="primary">City</ion-label>
       <ion-select formControlName="city" multiple="false" placeholder="Select City">
+          <ion-select-option value="" >Any</ion-select-option>
         <ion-select-option value="Abbottabad">Abbottabad</ion-select-option>
         <ion-select-option value="Adezai">Adezai</ion-select-option>
         <ion-select-option value="Ali Bandar">Ali Bandar</ion-select-option>
@@ -313,7 +314,6 @@
         <ion-select-option value="Yakmach">Yakmach</ion-select-option>
         <ion-select-option value="Zhob">Zhob</ion-select-option>
         <ion-select-option value="Other">Other</ion-select-option>
-
       </ion-select>
     </ion-item>
     <!-- child/patient name or father name searchbox -->
@@ -326,6 +326,14 @@
       <ion-label position="fixed" color="primary">DOB</ion-label>
       <ion-datetime display-format="DD-MM-YYYY" formControlName="dob"></ion-datetime>
     </ion-item>
+    <ion-item>
+        <ion-label position="fixed" color="primary">Gender</ion-label>
+        <ion-select formControlName="gender" multiple="false" placeholder="Select Gender">
+            <ion-select-option value =''>Any</ion-select-option>
+          <ion-select-option value="Boy">Male</ion-select-option>
+          <ion-select-option value="Girl">Female</ion-select-option>
+        </ion-select>
+      </ion-item>
     <ion-button block color="primary" type="submit" [disabled]="loginForm.invalid">
       Search
     </ion-button>

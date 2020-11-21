@@ -75,7 +75,7 @@ export class DosePage {
         if (!res.IsSuccess) {
           loading.dismiss();
         } else {
-          this.router.navigateByUrl('/vaccine/' + this.route.snapshot.paramMap.get('id') + '/dose');
+          this.router.navigateByUrl('members/vaccine/' + this.vaccineId + '/doses');
           loading.dismiss();
         }
       },
