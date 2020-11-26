@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  BASE_URL: "https://be.vaccineapi.fernflowers.com/api/",
-  RESOURCE_URL: "https://be.vaccineapi.fernflowers.com/",
+  BASE_URL: "https://fernflowers.com/api/",
+  RESOURCE_URL: "https://fernflowers.com/",
   //BASE_URL: "https://api.vaccs.io/api/",
   //   BASE_URL: "http://localhost:5000/api/",
   // BASE_URL: "http://13.233.255.96:5002/api/",
