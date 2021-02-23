@@ -32,11 +32,10 @@ export class UnapprovedPage implements OnInit {
     const loading = await this.loadingController.create({ message: 'Loading' });
     await loading.present();
 
-    await this.api.getUnApprovedDoctors().subscribe(
+    this.api.getUnApprovedDoctors().subscribe(
       res => {
-        console.log(res);
         this.doctors = res.ResponseData;
-     //   this.events.publish('unapprovedCount', this.doctors.length);
+        //   this.events.publish('unapprovedCount', this.doctors.length);
         loading.dismiss();
       },
       err => {
@@ -59,7 +58,6 @@ export class UnapprovedPage implements OnInit {
 
         loading.dismiss();
         this.getUnApprovedDoctors();
-        this.getApprovedDoctors();
       },
       err => {
         this.toastService.create(err, 'danger');
@@ -67,24 +65,4 @@ export class UnapprovedPage implements OnInit {
       }
     );
   }
-
-  async getApprovedDoctors() {
-    await this.api.getApprovedDoctors().subscribe(
-      res => {
-        console.log(res);
-        this.doctors = res.ResponseData;
-        // loop through all date and convert date from 23-12-2012 fomrat to 2012-12-23 format
-        this.doctors.forEach(doc => {
-          doc.ValidUpto = moment(doc.ValidUpto, "DD-MM-YYYY").format('YYYY-MM-DD')
-        });
-        // publish doctors count to update tab's badge in parent page/component
-       // this.events.publish('approvedCount', this.doctors.length);
-
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
-
 }

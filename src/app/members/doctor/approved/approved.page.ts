@@ -41,7 +41,6 @@ export class ApprovedPage implements OnInit {
 
     await this.api.getApprovedDoctors().subscribe(
       res => {
-        console.log(res);
         this.doctors = res.ResponseData;
 
         // loop through all date and convert date from 23-12-2012 fomrat to 2012-12-23 format

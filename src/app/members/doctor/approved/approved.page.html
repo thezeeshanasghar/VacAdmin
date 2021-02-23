@@ -1,37 +1,55 @@
 <ion-content>
-
   <ion-card *ngFor="let doc of doctors">
-
-    <ion-item>
-      <ion-label><b>{{doc.DisplayName}}</b></ion-label>
-      <ion-datetime slot="end"
-        slot="end" 
-        min="2015"
-        max="2030"
-        size="small" 
-        display-format="MMM YYYY" 
-        picker-format="DD MMM YYYY" 
-        value="{{doc.ValidUpto}}" 
-        class="success"
-        [ngClass]="{fail: doc.ValidUpto < today}"
-        (ionChange)="updateValidity($event, doc.Id)"
-      ></ion-datetime>
-    </ion-item>
+    <ion-card-header>
+      <ion-item class="pointer-events: none">
+        {{doc.DisplayName}}
+        <ion-item slot="end" lines="none">
+          Expiry
+          <ion-datetime
+            min="2015"
+            max="2030"
+            size="small"
+            display-format="MMM YYYY"
+            picker-format="DD MMM YYYY"
+            value="{{doc.ValidUpto}}"
+            class="success"
+            [ngClass]="{fail: doc.ValidUpto < today}"
+            (ionChange)="updateValidity($event, doc.Id)"
+          >
+          </ion-datetime>
+        </ion-item>
+        <ion-icon
+          slot="end"
+          size="small"
+          color="primary"
+          name="trash"
+          (click)="alertforDeleteDoctor(doc.Id)"
+        ></ion-icon>
+      </ion-item>
+    </ion-card-header>
     <ion-card-content>
-      <p>Email: {{ doc.Email}}</p>
-      <p>Number: {{doc.MobileNumber}}</p>
+      <p>Email: {{doc.Email}}</p>
+      <p>Number: {{doc.User.MobileNumber}}</p>
       <p>PMDC No: {{doc.PMDC}}</p>
-      <ion-button size="small" fill="outline" color="tertiary" routerLink="/members/doctor/{{doc.Id}}/permissions">
+      <ion-button
+        size="small"
+        fill="outline"
+        color="tertiary"
+        routerLink="/members/doctor/{{doc.Id}}/permissions"
+      >
         <ion-icon name="finger-print"></ion-icon>
         Permissions
       </ion-button>
-      <ion-button size="small" disabled="true" fill="outline" color="tertiary" routerLink="/members/doctor/{{doc.Id}}/permissions">
+      <ion-button
+        size="small"
+        disabled="true"
+        fill="outline"
+        color="tertiary"
+        routerLink="/members/doctor/{{doc.Id}}/permissions"
+      >
         <ion-icon name="body"></ion-icon>
         Patients
       </ion-button>
     </ion-card-content>
-    <ion-item>
-    <ion-icon slot="end" size = "large" color="primary" name="trash" (click)="alertforDeleteDoctor(doc.Id)"></ion-icon>
-    </ion-item>
   </ion-card>
 </ion-content>
