@@ -6,6 +6,7 @@ import { ToastService } from 'src/app/shared/toast.service';
 import { AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { environment } from 'src/environments/environment';
+import { LoadingController } from '@ionic/angular';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class LoginPage implements OnInit {
   fg: FormGroup;
   constructor(
     public router: Router,
+    public loadingController: LoadingController,
     public alertController: AlertController,
     private formBuilder: FormBuilder,
     private loginService: LoginService,
@@ -49,48 +51,57 @@ export class LoginPage implements OnInit {
   }
 
   async login() {
+    const loading = await this.loadingController.create({
+      message: 'Loading'
+    });
+    await loading.present();
     await this.loginService.checkAuth(this.fg.value)
       .subscribe(res => {
         if (res.IsSuccess) {
+          loading.dismiss();
           this.loginService.changeState(true);
           this.storage.set(environment.IS_LOGGED_IN, true);
           this.router.navigate(['/members/']);
+          loading.dismiss();
         }
         else {
           this.toastService.create(res.Message, 'danger');
+          loading.dismiss();
         }
       }, (err) => {
         console.log(err);
+        loading.dismiss();
         this.toastService.create(err);
       });
   }
 
   // show Alert msg for forgot password
   async forgotPasswordAlert() {
-    const alert = await this.alertController.create({
-      header: 'Forgot Password',
-      inputs: [
-        {
-          name: 'MobileNumber',
-          type: 'text',
-          placeholder: 'like 3211231231',
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-          }
-        }, {
-          text: 'Send Email/SMS',
-          handler: (data) => {
-            this.forgotPassword(data.MobileNumber);
-          }
-        }
-      ]
-    });
-    await alert.present();
+    // const alert = await this.alertController.create({
+    //   header: 'Forgot Password',
+    //   inputs: [
+    //     {
+    //       name: 'MobileNumber',
+    //       type: 'text',
+    //       placeholder: 'like 3211231231',
+    //     },
+    //   ],
+    //   buttons: [
+    //     {
+    //       text: 'Cancel',
+    //       role: 'cancel',
+    //       handler: () => {
+    //       }
+    //     }, {
+    //       text: 'Send Email/SMS',
+    //       handler: (data) => {
+    //         this.forgotPassword(data.MobileNumber);
+    //       }
+    //     }
+    //   ]
+    // });
+    // await alert.present();
+ 
   }
 
   // Call api to forgot password

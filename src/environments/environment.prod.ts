@@ -8,7 +8,8 @@ export const environment = {
   BASE_URL: "https://fernflowers.com/api/",
   RESOURCE_URL: "https://fernflowers.com/",
 
- //  BASE_URL: "http://localhost:4309/api/",
+  // BASE_URL: "https://localhost:5001/api/",
+  // RESOURCE_URL: "https://localhost:5001/",
 
   IS_LOGGED_IN: "IsLoggedIn"
 };

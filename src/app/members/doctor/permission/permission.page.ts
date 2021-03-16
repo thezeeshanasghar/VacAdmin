@@ -44,7 +44,9 @@ export class PermissionPage implements OnInit {
   }
 
   async update() {
-    await this.api.updateDoctorPermission(this.route.snapshot.paramMap.get('id'), this.doctor)
+    console.log(this.route.snapshot.paramMap.get('id'));
+    let id=this.route.snapshot.paramMap.get('id');
+    await this.api.updateDoctorPermission(id, this.doctor)
       .subscribe(res => {
         this.toastService.create("Doctor's permissions are updated");
       }, (err) => {

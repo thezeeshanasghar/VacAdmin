@@ -31,7 +31,7 @@ export class MessagePage implements OnInit {
   ngOnInit() {
     this.fg = this.formBuilder.group({
       'MobileNumber': [null, Validators.required],
-      'SMS': [null, Validators.required]
+      'SMS': [null, Validators.required],
     });
     this.getmsg();
   }
@@ -58,13 +58,19 @@ export class MessagePage implements OnInit {
   }
 
   async sendMsg() {
+    const loading = await this.loadingController.create({
+      message: 'Loading'
+    });
+    await loading.present();
     await this.api.sendMsg(this.fg.value)
       .subscribe(res => {
         if (res.IsSuccess)
-          this.router.navigateByUrl('/message/');
+          this.router.navigateByUrl('/members/message');
+          loading.dismiss();
       }, (err) => {
         console.log(err);
         this.toast.create(err);
+        loading.dismiss();
       });
   }
 

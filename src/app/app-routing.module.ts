@@ -9,10 +9,12 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   { path: 'login', loadChildren: './public/login/login.module#LoginPageModule' },
+  { path: 'forget', loadChildren: './public/forget/forget.module#ForgetPageModule' },
   { 
     path: 'members', 
     canActivate: [AuthGuard],
-    loadChildren: './members/members.module#MembersPageModule' }
+    loadChildren: './members/members.module#MembersPageModule' },
+ 
 ];
 
 @NgModule({

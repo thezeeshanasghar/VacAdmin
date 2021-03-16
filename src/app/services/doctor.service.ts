@@ -38,7 +38,7 @@ export class DoctorService extends BaseService {
     );
   }
 
-  updateDoctorPermission(id: string, data): Observable<any> {
+  updateDoctorPermission(id, data): Observable<any> {
     const url = `${this.API_DOCTOR}/${id}/update-permission`;
     return this.http.put(url, data, this.httpOptions)
       .pipe(
