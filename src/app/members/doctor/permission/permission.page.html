@@ -32,7 +32,7 @@
     </ion-item>
     <ion-item>
       <ion-label>SMS Limit</ion-label>
-      <ion-input slot="end" type="number" placeholder="SMS limit" [(ngModel)]="doctor.SMSLimit"></ion-input>
+      <ion-input slot="end" type="number" placeholder="SMS limit" [(ngModel)]="Limit" value={{doctor.SMSLimit}}></ion-input>
     </ion-item>
 
     <ion-button expand="block" (click)="update()">Update Permission</ion-button>

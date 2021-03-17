@@ -13,6 +13,7 @@ export class PermissionPage implements OnInit {
 
   doctor: any = {};
   response: any;
+  Limit:any;
 
   constructor(
     public api: DoctorService,
@@ -22,8 +23,8 @@ export class PermissionPage implements OnInit {
     public toastService: ToastService,
   ) { }
 
-  ngOnInit() {
-    this.getDoctor();
+  async ngOnInit() {
+  await  this.getDoctor();
   }
 
   async getDoctor() {
@@ -34,6 +35,7 @@ export class PermissionPage implements OnInit {
     await this.api.getDoctorById(this.route.snapshot.paramMap.get('id')).subscribe(
       res => {
         this.doctor = res.ResponseData;
+        console.log(this.doctor);
         loading.dismiss();
       },
       err => {
@@ -44,13 +46,18 @@ export class PermissionPage implements OnInit {
   }
 
   async update() {
-    console.log(this.route.snapshot.paramMap.get('id'));
+    const loading = await this.loadingController.create({
+      message: "Loading"
+    });
+    await loading.present();
     let id=this.route.snapshot.paramMap.get('id');
-    await this.api.updateDoctorPermission(id, this.doctor)
-      .subscribe(res => {
+    await this.api.updateDoctorPermission(id, this.doctor).subscribe(res => {
+      loading.dismiss();
         this.toastService.create("Doctor's permissions are updated");
-      }, (err) => {
+      }, 
+      (err) => {
         console.log(err);
+        loading.dismiss();
         this.toastService.create(err, 'danger');
       });
   }

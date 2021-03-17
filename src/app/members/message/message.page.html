@@ -13,10 +13,10 @@
 
   <ion-card>
 
-    <ion-item (click)="accordion()">
+    <ion-item (click)="accordion()" style="border: 1.5px solid rgb(22, 22, 22) ;">
       <ion-icon slot="start" name="ios-arrow-forward" color="primary" *ngIf="section==false"></ion-icon>
       <ion-icon slot="start" name="ios-arrow-down" color="primary" *ngIf="section==true"></ion-icon>
-      <ion-label>Send New Messages</ion-label>
+      <ion-label style="color: black; font-family: 'Times New Roman', Times, serif; font-size: 20px;">Send New Messages</ion-label>
     </ion-item>
 
     <ion-card-content *ngIf="section == true">

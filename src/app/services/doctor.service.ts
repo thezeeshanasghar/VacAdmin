@@ -40,6 +40,7 @@ export class DoctorService extends BaseService {
 
   updateDoctorPermission(id, data): Observable<any> {
     const url = `${this.API_DOCTOR}/${id}/update-permission`;
+    console.log(data);
     return this.http.put(url, data, this.httpOptions)
       .pipe(
         catchError(this.handleError)
