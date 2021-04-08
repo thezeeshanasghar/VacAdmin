@@ -47,6 +47,14 @@ export class DoseService extends BaseService {
       );
   }
 
+  getDoseByVaccineId(VaccineId: string): Observable<any> {
+    const url = `${this.API_DOSE}/vaccinedoses/${VaccineId}`;
+    return this.http.get(url, this.httpOptions)
+    .pipe(
+      map(this.extractData)
+    );
+  }
+ 
 
 
 }

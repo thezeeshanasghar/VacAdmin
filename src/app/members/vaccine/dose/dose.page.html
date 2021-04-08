@@ -6,19 +6,25 @@
     </ion-buttons>
     <ion-title>Vaccine Dosses</ion-title>
     <ion-item slot="end" color="primary">
-      <ion-icon routerLink="/members/vaccine/{{vaccineId}}/doses/add" name="add" slot="end" color="light"></ion-icon>
+      <ion-icon *ngIf="!hide" routerLink="/members/vaccine/{{vaccineId}}/doses/add" name="add" slot="end" color="light">
+      </ion-icon>
     </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
 
+  <p *ngIf="hide" style="padding-top: 5px; padding-left: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+    <strong> Note:</strong> You cannot add multiple doses in an infinite vaccine.
+  </p>
+
   <ion-card *ngFor="let d of dosses">
     <ion-item>
       <ion-label>{{d.Name}}</ion-label>
 
       <ion-item slot="end">
-        <ion-icon color="primary" name="create" routerLink="/members/vaccine/{{vaccineId}}/doses/edit/{{d.Id}}"></ion-icon>
+        <ion-icon color="primary" name="create" routerLink="/members/vaccine/{{vaccineId}}/doses/edit/{{d.Id}}">
+        </ion-icon>
         <ion-icon (click)="alertDeleteDose(d.Id)" color="primary" name="trash"></ion-icon>
       </ion-item>
     </ion-item>
@@ -30,6 +36,10 @@
       <p *ngIf="d.MaxGap">Max Gap: {{d.MaxGap | number2Week}}</p>
       <p>Dose Order: {{d.DoseOrder}}</p>
     </ion-card-content>
+
   </ion-card>
+
+
+
 
 </ion-content>

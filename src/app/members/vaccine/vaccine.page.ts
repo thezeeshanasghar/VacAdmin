@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VaccineService } from 'src/app/services/vaccine.service';
-import { Router , ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { AlertService } from 'src/app/shared/alert.service';
 import { ToastService } from 'src/app/shared/toast.service';
@@ -22,7 +22,7 @@ export class VaccinePage implements OnInit {
     public loadingController: LoadingController,
     private alertService: AlertService,
     private toastService: ToastService,
-  ) { 
+  ) {
     // route.params.subscribe(val => {
     //   this.getVaccines();
     // });
@@ -34,11 +34,6 @@ export class VaccinePage implements OnInit {
 
   ngOnInit() {
 
-    // this.getVaccines();
-    // this.checkNetworkStatus();
-    // this.storage.get('vaccinedata').then((val) => {
-    //   this.vaccines = val;
-    // });
   }
 
   async getVaccines() {
@@ -65,7 +60,7 @@ export class VaccinePage implements OnInit {
     this.alertService.confirmAlert('Are you sure you want to delete this ?', null)
       .then(async (yes) => {
         if (yes) {
-         await this.deleteVaccine(id);
+          await this.deleteVaccine(id);
           this.getVaccines();
         }
       });
@@ -113,5 +108,13 @@ export class VaccinePage implements OnInit {
       this.vaccines = this.backupdoctorData;
     }
   }
+
+  addDoses(id) {
+    var strRoute='/members/child/vaccine/' + id + '/doses/';
+    console.log(strRoute);
+    this.router.navigate([strRoute]);
+
+  }
+
 
 }

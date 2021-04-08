@@ -29,16 +29,25 @@ export class AddPage implements OnInit {
     this.fg = this.formBuilder.group({
       'Name': [null, Validators.required],
       'MinAge': ['0', Validators.required],
-      'MaxAge': [null]
+      'MaxAge': [null],
+      'isInfinite': [false]
     });
+
+  }
+
+  // function that gets called on value change of checkbox
+  changeInfiniteValue() {
+    // console.log(this.fg.value.isInfinite);
+
   }
 
   async addVaccine() {
+    console.log(this.fg.value.isInfinite);
     await this.api.addVaccine(this.fg.value)
       .subscribe(res => {
-        if (res.IsSuccess)
-        //  this.router.navigateByUrl('/members/vaccine');
+        if (res.IsSuccess) {
           this.router.navigate(['/members/vaccine']);
+        }
         else
           this.toast.create(res.message);
 
