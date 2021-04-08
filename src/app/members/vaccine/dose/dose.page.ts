@@ -13,6 +13,8 @@ export class DosePage {
 
   dosses: any;
   vaccineId: any;
+  Note: any;
+  hide: any;
 
   constructor(
     public route: ActivatedRoute,
@@ -22,7 +24,9 @@ export class DosePage {
     public router: Router,
     public toast: ToastService,
     private alertService: AlertService,
-  ) { }
+  ) {
+    this.hide = false;
+  }
 
   ionViewWillEnter() {
     this.vaccineId = this.route.snapshot.paramMap.get('id');
@@ -32,19 +36,31 @@ export class DosePage {
   // Get all dosses base on vaccineID from server
   async getDosses() {
     const loading = await this.loadingController.create({
-      message: 'Loading'
+      message: 'Loading Dosses'
     });
 
     await loading.present();
 
     await this.vaccineAPI.getDosesByVaccineId(this.route.snapshot.paramMap.get('id')).subscribe(
       res => {
-        console.log(res);
-        this.dosses = res.ResponseData;
-        loading.dismiss();
+        if (res.IsSuccess) {
+          this.dosses = res.ResponseData;
+          if (this.dosses.length > 0) {
+            if (this.dosses[0].Vaccine.isInfinite) {
+              this.hide = true;
+            }
+          }
+          loading.dismiss();
+
+        } else {
+          this.toast.create('Error: failed to get any doses');
+          loading.dismiss();
+        }
+
       },
       err => {
         console.log(err);
+        this.toast.create('Error: server failure');
         loading.dismiss();
       }
     );
@@ -71,7 +87,6 @@ export class DosePage {
     await loading.present();
     await this.api.deleteDose(id).subscribe(
       res => {
-        console.log(res)
         if (!res.IsSuccess) {
           loading.dismiss();
         } else {

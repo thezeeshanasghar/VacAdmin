@@ -17,6 +17,11 @@
     </ion-item>
 
     <ion-item>
+      <ion-label color="primary">isInfinite</ion-label>
+      <ion-checkbox formControlName="isInfinite" slot="end" checked="false" (ionChange)="changeInfiniteValue()"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
       <ion-label color="primary" position="floating">Min Age</ion-label>
       <ion-select formControlName="MinAge" required>
         <ion-select-option value="0">At Birth</ion-select-option>
