@@ -50,6 +50,7 @@ jobs:
           cd android
           ./gradlew assembleRelease
         working-directory: android
+        
 
       # - name: Build APK
       #   run: |
