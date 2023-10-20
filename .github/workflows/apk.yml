@@ -56,11 +56,9 @@ jobs:
       # - name: Build Android Release APK
       #   run: npx cap build android --release --prod
       
-      - name: Build Android Project (APK)
-        run: |
-          cd android
-          ./gradlew assembleRelease
-        working-directory: android
+      - name: Generate the Android App Bundle
+        working-directory: ./android/
+        run: ./gradlew bundle
 
       # - name: Build APK
       #   run: |
