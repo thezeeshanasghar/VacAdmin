@@ -10,8 +10,8 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@master 
         
-      - name: Install Angular
-        run: npm install -g @angular/cli@latest
+      # - name: Install Angular
+      #   run: npm install -g @angular/cli@latest
 
       - name: Install Ionic
         run: npm install -g @ionic/cli
@@ -22,8 +22,8 @@ jobs:
       - name: Install Cordova
         run: npm install -g cordova 
 
-      - name: Add Angular Cordova builders
-        run: ng add @ionic/cordova-builders '--skip-confirmation'
+      # - name: Add Angular Cordova builders
+      #   run: ng add @ionic/cordova-builders '--skip-confirmation'
 
       - name: Enable cordova
         run: ionic integrations enable cordova
