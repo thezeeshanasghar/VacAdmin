@@ -1,0 +1,44 @@
+name: Build Ionic App and Deploy on FTP
+
+on: [push]
+
+jobs:
+  build:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master 
+        
+      - name: Install Angular
+        run: npm install -g @angular/cli@latest
+
+      - name: Install Ionic
+        run: npm install -g @ionic/cli
+        
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Install Cordova
+        run: npm install -g cordova 
+
+      - name: Add Angular Cordova builders
+        run: ng add @ionic/cordova-builders '--skip-confirmation'
+
+      - name: Enable cordova
+        run: ionic integrations enable cordova
+        
+      - name: Generate Apk File
+        run: ionic cordova build android --prod --device
+
+      - name: Rename APK
+        run: mv platforms/android/app/build/outputs/apk/debug/app-debug.apk platforms/android/app/build/outputs/apk/debug/vacadmin.apk
+     
+      - name: 📂 Transfer Apk
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ftp.echowhite.com
+          username: echoytac@adminproduction.echowhite.com
+          password: 2UHZkMnRumed
+          local-dir: platforms/android/app/build/outputs/apk/debug/
+          remote-dir: /app/
