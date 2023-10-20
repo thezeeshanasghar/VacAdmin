@@ -19,33 +19,45 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Install Cordova
-        run: npm install -g cordova 
+      # - name: Install Cordova
+      #   run: npm install -g cordova 
 
       # - name: Add Angular Cordova builders
       #   run: ng add @ionic/cordova-builders '--skip-confirmation'
 
-      - name: Enable cordova
-        run: ionic integrations enable cordova
-        # - name: ionic build
-        #   run: ionic build
-        # -name : add android
-        #   run: npx cap add andriod
-        # -name: copy android
-        #   run: npx cap copy ## if andriod is already added
-        
-        
-      - name: Generate Apk File
-        run: ionic cordova build android --prod --device
+      # - name: Enable cordova
+      #   run: ionic integrations enable cordova
+      - name: Build Ionic App
+        run: ionic build
 
-      - name: Rename APK
-        run: mv platforms/android/app/build/outputs/apk/debug/app-debug.apk platforms/android/app/build/outputs/apk/debug/vacadmin.apk
-     
-      - name: 📂 Transfer Apk
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: Add Android Platform
+        run: npx cap add android
+
+      - name: Copy Assets to Android
+        run: npx cap copy android
+
+      - name: Build APK
+        run: |
+          mv android/app/build/outputs/apk/debug/app-debug.apk android/app/build/outputs/apk/debug/vacadmin.apk
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
         with:
-          server: ftp.echowhite.com
-          username: echoytac@adminproduction.echowhite.com
-          password: 2UHZkMnRumed
-          local-dir: platforms/android/app/build/outputs/apk/debug/
-          remote-dir: /app/
+          name: app-release
+          path: android/app/build/outputs/apk/debug/vacadmin.apk
+        
+        
+      # - name: Generate Apk File
+      #   run: ionic cordova build android --prod --device
+
+      # - name: Rename APK
+      #   run: mv platforms/android/app/build/outputs/apk/debug/app-debug.apk platforms/android/app/build/outputs/apk/debug/vacadmin.apk
+     
+      # - name: 📂 Transfer Apk
+      #   uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      #   with:
+      #     server: ftp.echowhite.com
+      #     username: echoytac@adminproduction.echowhite.com
+      #     password: 2UHZkMnRumed
+      #     local-dir: platforms/android/app/build/outputs/apk/debug/
+      #     remote-dir: /app/
