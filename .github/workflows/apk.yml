@@ -29,9 +29,6 @@ jobs:
     
       - name: Install Dependencies
         run: npm install
-      
-
-     
 
       - name: Build Ionic App
         run: ionic build
@@ -50,7 +47,6 @@ jobs:
           cd android
           ./gradlew assembleRelease
         working-directory: android
-        
 
       # - name: Build APK
       #   run: |
