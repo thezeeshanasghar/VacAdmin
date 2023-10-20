@@ -1,44 +1,44 @@
-name: Build Ionic App and Deploy on FTP
+# name: Build Ionic App and Deploy on FTP
 
-on:
-  push:
-    branches:
-      - ali # Trigger the workflow when changes are pushed to the 'ali' branch
+# on:
+#   push:
+#     branches:
+#       - ali # Trigger the workflow when changes are pushed to the 'ali' branch
 
-jobs:
-  build_and_deploy:
-    runs-on: ubuntu-latest
+# jobs:
+#   build_and_deploy:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v2 
+#     steps:
+#       - name: Checkout Repo
+#         uses: actions/checkout@v2 
 
-      - name: Use Node.js 16
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16
+#       - name: Use Node.js 16
+#         uses: actions/setup-node@v2
+#         with:
+#           node-version: 16
 
-      - name: Install Ionic
-        run: npm install -g @ionic/cli
+#       - name: Install Ionic
+#         run: npm install -g @ionic/cli
 
-      - name: Install Dependencies
-        run: npm install
+#       - name: Install Dependencies
+#         run: npm install
 
-      - name: Build Ionic App
-        run: ionic build
+#       - name: Build Ionic App
+#         run: ionic build
 
-      - name: Add Android Platform
-        run: npx cap add android
+#       - name: Add Android Platform
+#         run: npx cap add android
 
-      - name: Copy Assets to Android
-        run: npx cap copy android
+#       - name: Copy Assets to Android
+#         run: npx cap copy android
 
-      - name: Build APK
-        run: |
-          mv platforms/android/app/build/outputs/apk/debug/app-debug.apk platforms/android/app/build/outputs/apk/debug/vacadmin.apk
+#       - name: Build APK
+#         run: |
+#           mv platforms/android/app/build/outputs/apk/debug/app-debug.apk platforms/android/app/build/outputs/apk/debug/vacadmin.apk
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v2
-        with:
-          name: app-release
-          path: android/app/build/outputs/apk/debug/vacadmin.apk
+#       - name: Upload APK
+#         uses: actions/upload-artifact@v2
+#         with:
+#           name: app-release
+#           path: android/app/build/outputs/apk/debug/vacadmin.apk
