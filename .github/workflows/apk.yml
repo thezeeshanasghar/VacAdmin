@@ -19,20 +19,20 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      # - name: Install Cordova
-      #   run: npm install -g cordova 
+      - name: Install Cordova
+        run: npm install -g cordova 
 
-      # - name: Add Angular Cordova builders
-      #   run: ng add @ionic/cordova-builders '--skip-confirmation'
+      - name: Add Angular Cordova builders
+        run: ng add @ionic/cordova-builders '--skip-confirmation'
 
-      # - name: Enable cordova
-      #   run: ionic integrations enable cordova
-      - name: ionic build
-        run: ionic build
-      -name : add android
-        run: npx cap add andriod
-      -name: copy android
-        run: npx cap copy ## if andriod is already added
+      - name: Enable cordova
+        run: ionic integrations enable cordova
+        # - name: ionic build
+        #   run: ionic build
+        # -name : add android
+        #   run: npx cap add andriod
+        # -name: copy android
+        #   run: npx cap copy ## if andriod is already added
         
         
       - name: Generate Apk File
