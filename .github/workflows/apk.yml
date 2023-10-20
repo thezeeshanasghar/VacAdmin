@@ -41,12 +41,12 @@ jobs:
 
       - name: Copy Assets to Android
         run: npx cap copy android
-        
-      - name: Build Android Dev APK
-        run: ionic cap build android
+
+      # - name: Build Android Dev APK
+      #   run: ionic cap build android
 
       - name: Build Android Release APK
-        run: ionic cap build android --release --prod
+        run: npx cap build android --release --prod
       
       - name: Build Android Project (APK)
         run: |
