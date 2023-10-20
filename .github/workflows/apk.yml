@@ -33,26 +33,22 @@ jobs:
         run: npm install
       
 
-      - name: Add Android platform
-        run: ionic cordova platform add android@latest
+     
 
-      - name: Build Android Dev APK
-        run: ionic cordova build android
+      - name: Build Ionic App
+        run: ionic build
 
-      # - name: Build Ionic App
-      #   run: ionic build
+      - name: Add Android Platform
+        run: npx cap add android
 
-      # - name: Add Android Platform
-      #   run: npx cap add android
-
-      # - name: Copy Assets to Android
-      #   run: npx cap copy android
+      - name: Copy Assets to Android
+        run: npx cap copy android
       
-      # - name: Build Android Project (APK)
-      #   run: |
-      #     cd android
-      #     ./gradlew assembleRelease
-      #   working-directory: android
+      - name: Build Android Project (APK)
+        run: |
+          cd android
+          ./gradlew assembleRelease
+        working-directory: android
 
       # - name: Build APK
       #   run: |
