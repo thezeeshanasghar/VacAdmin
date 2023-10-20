@@ -29,18 +29,24 @@ jobs:
     
       - name: Install Dependencies
         run: npm install
+      
+
+     
 
       - name: Build Ionic App
         run: ionic build
 
-       name: Copy Android
-        run: ionic capacitor copy android
+      - name: Add Android Platform
+        run: npx cap add android
 
-      - name: Build Android Dev APK
-        run: ionic capacitor build android
+      - name: Copy Assets to Android
+        run: npx cap copy android
+
+      # - name: Build Android Dev APK
+      #   run: ionic cap build android
 
       - name: Build Android Release APK
-        run: ionic capacitor build android --release --prod
+        run: npx cap build android --release --prod
       
       - name: Build Android Project (APK)
         run: |
