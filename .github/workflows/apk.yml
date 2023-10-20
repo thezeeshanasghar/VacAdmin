@@ -28,7 +28,7 @@ jobs:
       # - name: Enable cordova
       #   run: ionic integrations enable cordova
       - name: Build Ionic App
-        run: ng build
+        run: ionic build
 
       - name: Add Android Platform
         run: npx cap add android
