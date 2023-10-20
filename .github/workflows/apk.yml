@@ -29,7 +29,9 @@ jobs:
       #   run: ionic integrations enable cordova
       - name: ionic build
         run: ionic build
+      -name : add android
         run: npx cap add andriod
+      -name: copy android
         run: npx cap copy ## if andriod is already added
         
         
