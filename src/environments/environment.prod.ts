@@ -1,20 +1,17 @@
 export const environment = {
   production: true,
 
-  // BASE_URL: "https://api.vaccs.io/api/"
-  // BASE_URL: "http://vac-api.ehs.edu.pk/api/",
- // BASE_URL: "https://api.vaccs.io/api/",
- //  BASE_URL: "http://localhost:5000/api/",
+  // staging API URL's
+  BASE_URL: "https://stage.skintechno.com/api/",
+  RESOURCE_URL: "https://stage.skintechno.com/",
 
-  // for using web server
-  BASE_URL: "https://fernflowers.com/api/",
-  RESOURCE_URL: "https://fernflowers.com/",
+  // production API URL's
+  // BASE_URL: "https://skintechno.com/api/",
+  // RESOURCE_URL: "https://skintechno.com/",
 
- //  BASE_URL: "http://localhost:4309/api/",
-
- // for using local server
-//  BASE_URL: "http://localhost:5000/api/",
-//  RESOURCE_URL: "http://localhost:5000/",
+  // local API URL's
+  // BASE_URL: "https://localhost:5001/api/",
+  // RESOURCE_URL: "https://localhost:5001/",
 
   IS_LOGGED_IN: "IsLoggedIn"
 };
