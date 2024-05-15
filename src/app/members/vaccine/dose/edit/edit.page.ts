@@ -31,7 +31,7 @@ export class EditPage implements OnInit {
       'MinAge': ['0', Validators.required],
       'MaxAge': [null],
       'MinGap': [null],
-      'DoseOrder': [null],
+       DoseOrder: ['', [Validators.required, Validators.pattern('^[0-9]*$')]], // Add DoseOrder control
       'VaccineId': [null],
     });
 

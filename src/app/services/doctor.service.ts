@@ -71,4 +71,12 @@ export class DoctorService extends BaseService {
       );
   }
 
+  getAllDoctors(): Observable<any> {
+    return this.http.get(this.API_DOCTOR + "/allDoc", this.httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError)
+    );
+  }
+
+
 }
