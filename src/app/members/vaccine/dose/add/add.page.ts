@@ -37,7 +37,6 @@ export class AddPage implements OnInit {
       'MinGap': [null],
       'DoseOrder': [null],
       'VaccineId': [this.vaccineid],
-      'IsSpecial':[false]
     });
     await this.getSingleVaccine();
     // console.log(this.vaccine);

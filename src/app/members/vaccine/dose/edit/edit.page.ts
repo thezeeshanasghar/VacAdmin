@@ -33,7 +33,6 @@ export class EditPage implements OnInit {
       'MinGap': [null],
       'DoseOrder': [null],
       'VaccineId': [null],
-      'IsSpecial':[false]
     });
 
     this.getDose();
@@ -60,7 +59,6 @@ export class EditPage implements OnInit {
         this.fg.controls['MinGap'].setValue(this.dose.MinGap + '');
         this.fg.controls['DoseOrder'].setValue(this.dose.DoseOrder);
         this.fg.controls['VaccineId'].setValue(this.dose.VaccineId);
-        this.fg.controls['IsSpecial'].setValue(this.dose.IsSpecial);
       },
       err => {
         console.log(err);
