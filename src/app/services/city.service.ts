@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -15,6 +15,8 @@ export interface City {
 })
 export class CityService extends BaseService {
   private readonly API_URL = `${environment.BASE_URL}city`;
+  private readonly API_URL2 = `${environment.BASE_URL}city/CityAlert`;
+  private readonly API_URL3 = `${environment.BASE_URL}city/update`;
 
   constructor(protected http: HttpClient) { 
     super(http);
@@ -24,6 +26,9 @@ export class CityService extends BaseService {
     return this.http.get<City[]>(this.API_URL).pipe(catchError(this.handleError));
   }
 
+  getAlertCities(): Observable<City[]> {
+    return this.http.get<City[]>(this.API_URL2).pipe(catchError(this.handleError));
+  }
   addCity(city): Observable<any> {
     return this.http.post(this.API_URL, city).pipe(catchError(this.handleError));
   }
@@ -32,6 +37,11 @@ export class CityService extends BaseService {
     return this.http.delete(`${this.API_URL}/${id}`).pipe(catchError(this.handleError));
   }
 
+  updateChildCity(currentCity: string, newCity: string): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.put(`${this.API_URL3}?currentCity=${currentCity}`, `"${newCity}"`, { headers });
+    // return this.http.put(`${this.API_URL3}?currentCity=${currentCity}`, `"${newCity}"`).pipe(catchError(this.handleError));
+  }
   protected handleError(error: any): Observable<never> {
     // handle error
     throw error;
