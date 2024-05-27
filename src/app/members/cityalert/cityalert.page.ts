@@ -11,9 +11,9 @@ import { ToastService } from 'src/app/shared/toast.service';
 export class CityAlertPage implements OnInit {
   cities: any[];
   newCity: string;
- 
 
-  constructor(private cityService: CityService, private alertController: AlertController,public toast: ToastService,) { }
+
+  constructor(private cityService: CityService, private alertController: AlertController, public toast: ToastService,) { }
 
   ngOnInit() {
     this.loadCities();
@@ -27,38 +27,32 @@ export class CityAlertPage implements OnInit {
   }
   updateTempCity(event, city) {
     this.newCity = event.detail.value;
-    
+
   }
-  async updateCity( newCity: string,city: string) {
-    console.log('tem',this.newCity)
+  async updateCity(newCity: string, city: string) {
+    console.log('tem', this.newCity)
     console.log(city)
     this.cityService.updateChildCity(city, newCity).subscribe(
       res => {
-        console.log('res',res);
+        console.log('res', res);
         if (res.IsSuccess) {
           console.log('City updated successfully.');
           this.toast.create('City updated successfully.');
-          // Reload the list of cities after the update
           this.loadCities();
-          
-        }
-       
 
+        }
       },
       error => {
-        
+
         if (error.status === 400) {
-          
-          this.toast.create( "Cannot update the city because it already exists.", 'danger');
+
+          this.toast.create("Cannot update the city because it already exists.", 'danger');
         }
-        else{
+        else {
           console.error('Error updating city:', error);
-          this.toast.create( error, 'danger');
+          this.toast.create(error, 'danger');
         }
       }
     );
-  
   }
-
- 
 }
