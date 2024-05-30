@@ -9,3 +9,5 @@ npx cap open android
 install latest node
 
 npm install @ionic/latest
+
+export NODE_OPTIONS=--openssl-legacy-provider
