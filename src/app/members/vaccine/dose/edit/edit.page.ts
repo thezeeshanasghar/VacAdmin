@@ -31,9 +31,8 @@ export class EditPage implements OnInit {
       'MinAge': ['0', Validators.required],
       'MaxAge': [null],
       'MinGap': [null],
-      'DoseOrder': [null],
+       DoseOrder: ['', [Validators.required, Validators.pattern('^[0-9]*$')]], // Add DoseOrder control
       'VaccineId': [null],
-      'IsSpecial':[false]
     });
 
     this.getDose();
@@ -60,7 +59,6 @@ export class EditPage implements OnInit {
         this.fg.controls['MinGap'].setValue(this.dose.MinGap + '');
         this.fg.controls['DoseOrder'].setValue(this.dose.DoseOrder);
         this.fg.controls['VaccineId'].setValue(this.dose.VaccineId);
-        this.fg.controls['IsSpecial'].setValue(this.dose.IsSpecial);
       },
       err => {
         console.log(err);

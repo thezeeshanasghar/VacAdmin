@@ -29,17 +29,17 @@ export class ApprovedPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getApprovedDoctors();
+    this.getAllDoctors();
   }
 
-  async getApprovedDoctors() {
+  async getAllDoctors() {
     const loading = await this.loadingController.create({
       message: 'Loading'
     });
 
     await loading.present();
 
-    await this.api.getApprovedDoctors().subscribe(
+    await this.api.getAllDoctors().subscribe(
       res => {
         this.doctors = res.ResponseData;
 
@@ -77,7 +77,7 @@ export class ApprovedPage implements OnInit {
       res => {
         if (res.IsSuccess) {
           this.toastService.create(res.Message);
-          this.getApprovedDoctors();
+          this.getAllDoctors();
           loading.dismiss();
         }
         else {
@@ -102,9 +102,15 @@ export class ApprovedPage implements OnInit {
     this.api.changeValidity(newDate, docID).subscribe(
       res => {
         if (res.IsSuccess)
+        {
           this.toastService.create('Doctor\'s validity change successfully.');
+          this.getAllDoctors();
+        }
+        
         else
-          this.toastService.create(res.Message, 'danger');
+        {
+          this.toastService.create(res.Message, 'danger');  
+        }
 
         loading.dismiss();
       },

@@ -35,9 +35,8 @@ export class AddPage implements OnInit {
       'MinAge': ['0', Validators.required],
       'MaxAge': [null],
       'MinGap': [null],
-      'DoseOrder': [null],
+      DoseOrder: ['', [Validators.required, Validators.pattern('^[0-9]*$')]], // Add DoseOrder control
       'VaccineId': [this.vaccineid],
-      'IsSpecial':[false]
     });
     await this.getSingleVaccine();
     // console.log(this.vaccine);

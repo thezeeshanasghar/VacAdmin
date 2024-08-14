@@ -330,15 +330,23 @@
 
       </ion-select>
     </ion-item>
-    <ion-item>
-      <ion-label color="primary" floating>Dose Order</ion-label>
-      <ion-input type="text" formControlName="DoseOrder"></ion-input>
-    </ion-item>
 
-    <ion-item>
-      <ion-label color="primary" floating>Special</ion-label>
-      <ion-checkbox  formControlName="IsSpecial"></ion-checkbox>
-    </ion-item>
+  <ion-item>
+  <ion-label color="primary" position="floating">Dose Order</ion-label>
+  <ion-input type="text" placeholder="Dose Order" formControlName="DoseOrder"></ion-input>
+  <ion-text color="danger" *ngIf="fg.get('DoseOrder').invalid && (fg.get('DoseOrder').dirty || fg.get('DoseOrder').touched)" style="font-size: 13px; position: absolute; right: 0; top: 50%; transform: translateY(-50%);">
+    <ng-container *ngIf="fg.get('DoseOrder').errors.required">
+      Dose Order is required
+    </ng-container>
+    <ng-container *ngIf="fg.get('DoseOrder').errors.pattern">
+      Only numbers are allowed for Dose Order
+    </ng-container>
+  </ion-text>
+  <ion-text color="success" *ngIf="fg.get('DoseOrder').valid && (fg.get('DoseOrder').dirty || fg.get('DoseOrder').touched)" style="font-size: 13px; position: absolute; right: 0; top: 50%; transform: translateY(-50%);">
+    <ion-icon name="checkmark-circle-outline" style="margin-right: 12px; font-size: 25px;"></ion-icon>
+  </ion-text>
+</ion-item>
+
 
     <ion-button  [disabled]="!fg.valid" (click)='editDose()'>Add</ion-button>
   </form>
