@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/members/dashboard"></ion-back-button>
+      <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>Add Dose</ion-title>
   </ion-toolbar>
@@ -12,7 +12,6 @@
     <ion-item>
       <ion-label color="primary" floating>Name</ion-label>
       <ion-input type="text" formControlName="Name" required></ion-input>
-
     </ion-item>
     <ion-item>
       <ion-label color="primary" floating>Min Age</ion-label>
@@ -120,10 +119,9 @@
         <ion-select-option value="4745">13 Years</ion-select-option>
         <ion-select-option value="5110">14 Years</ion-select-option>
         <ion-select-option value="5475">15 Years</ion-select-option>
-        <ion-select-option value="5505">15 Years 1 months</ion-select-option>
-        <ion-select-option value="5655">15 Years 6 months</ion-select-option>
-
-
+        <ion-select-option value="5840">16 Years</ion-select-option>
+        <ion-select-option value="6205">17 Years</ion-select-option>
+        <ion-select-option value="6570">18 Years</ion-select-option>
         <!-- disabled minage check -->
         <!-- <ion-select-option [disabled]="vaccine.MinAge > 0" value="0">At Birth</ion-select-option> -->
         <!-- <ion-select-option [disabled]="vaccine.MinAge > 7" value="7">1 Week</ion-select-option>
@@ -217,7 +215,6 @@
         <ion-select-option [disabled]="vaccine.MinAge > 5110" value="5110">14 Years</ion-select-option>
         <ion-select-option [disabled]="vaccine.MinAge > 5475" value="5475">15 Years</ion-select-option> -->
       </ion-select>
-
     </ion-item>
     <ion-item>
       <ion-label color="primary" floating>Max Age(optional)</ion-label>
@@ -308,8 +305,9 @@
         <ion-select-option value="4745">13 Years</ion-select-option>
         <ion-select-option value="5110">14 Years</ion-select-option>
         <ion-select-option value="5475">15 Years</ion-select-option>
-        <ion-select-option value="5505">15 Years 1 months</ion-select-option>
-        <ion-select-option value="5655">15 Years 6 months</ion-select-option>
+        <ion-select-option value="5840">16 Years</ion-select-option>
+        <ion-select-option value="6205">17 Years</ion-select-option>
+        <ion-select-option value="6570">18 Years</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
@@ -418,9 +416,9 @@
         <ion-select-option value="4745">13 Years</ion-select-option>
         <ion-select-option value="5110">14 Years</ion-select-option>
         <ion-select-option value="5475">15 Years</ion-select-option>
-        <ion-select-option value="5505">15 Years 1 months</ion-select-option>
-        <ion-select-option value="5655">15 Years 6 months</ion-select-option>
-
+        <ion-select-option value="5840">16 Years</ion-select-option>
+        <ion-select-option value="6205">17 Years</ion-select-option>
+        <ion-select-option value="6570">18 Years</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>

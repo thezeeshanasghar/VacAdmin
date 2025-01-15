@@ -11,3 +11,4 @@ install latest node
 npm install @ionic/latest
 
 export NODE_OPTIONS=--openssl-legacy-provider
+$env:NODE_OPTIONS="--openssl-legacy-provider"
