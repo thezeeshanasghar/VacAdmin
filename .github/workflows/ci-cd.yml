@@ -2,10 +2,10 @@ name: Angular CI/CD (FTP Deployment)
 
 on:
   push:
-    branches: [demo, master]
+    branches: [master]
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -15,34 +15,38 @@ jobs:
           node-version: 16
       - run: npm install -g @ionic/cli # Install Ionic CLI globally
       - run: npm install
-      - run: npm ci
       - run: ionic build --prod
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: www/
+          retention-days: 1
 
-      - name: Deploy to demo
-        if: github.ref == 'refs/heads/demo'
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output
+          path: www/
+      - name: Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: "${{ secrets.STAGING_FTP_SERVER }}"
-          username: "${{ secrets.STAGING_FTP_USERNAME }}"
-          password: "${{ secrets.STAGING_FTP_PASSWORD }}"
+          server: "198.54.114.164"
+          username: "vacadmin@client.vaccinationcentre.com"
+          password: "MyDog$Loves2Play!"
+          port: 21
+          protocol: ftps
           local-dir: www/
           server-dir: /
+          state-name: "ftp-deploy-sync-state.json"
+          dangerous-clean-slate: true
+          timeout: 120000
           exclude: |
             **/.git*
             **/.git*/**
             **/node_modules/**
-            web.config,
-      - name: Deploy for master
-        if: github.ref == 'refs/heads/master'
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: "${{ secrets.PROD_FTP_SERVER }}"
-          username: "${{ secrets.PROD_FTP_USERNAME }}"
-          password: "${{ secrets.PROD_FTP_PASSWORD }}"
-          local-dir: www/
-          server-dir: /
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            web.config,
+            web.config
