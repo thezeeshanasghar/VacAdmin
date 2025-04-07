@@ -42,19 +42,27 @@ export class AddPage implements OnInit {
   }
 
   async addVaccine() {
-    console.log(this.fg.value.isInfinite);
-    await this.api.addVaccine(this.fg.value)
-      .subscribe(res => {
-        if (res.IsSuccess) {
-          this.router.navigate(['/members/vaccine']);
-        }
-        else
-          this.toast.create(res.message);
-
-      }, (err) => {
-        console.log(err);
-        this.toast.create(err);
+    try {
+      const loading = await this.loadingController.create({
+        message: 'Adding vaccine...'
       });
+      await loading.present();
+  
+      const response = await this.api.addVaccine(this.fg.value).toPromise();
+      console.log('addVaccine response:', response);
+      await loading.dismiss();
+  console.log('addVaccine response:', response.IsSuccess);
+      if (response.IsSuccess) {
+        await this.toast.create('Vaccine added successfully');
+        await this.router.navigate(['/members/vaccine']);
+      } else {
+        await this.toast.create(response.message || 'Failed to add vaccine');
+      }
+    } catch (error) {
+      console.error('Error adding vaccine:', error);
+      await this.loadingController.dismiss();
+      await this.toast.create(error.message || 'An unexpected error occurred');
+    }
   }
 
 }
