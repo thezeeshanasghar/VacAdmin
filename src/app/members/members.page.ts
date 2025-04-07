@@ -42,6 +42,16 @@ export class MembersPage implements OnInit {
       title: 'Cities Alert',
       url: '/members/citiesAlert',
       icon: 'location'
+    },
+    {
+      title: 'Agents',
+      url: '/members/agent',
+      icon: 'person'
+    },
+    {
+      title: 'Agents Alert',
+      url: '/members/agentAlert',
+      icon: 'person'
     }
   ];
 
