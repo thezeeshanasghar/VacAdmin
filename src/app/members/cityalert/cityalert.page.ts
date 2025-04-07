@@ -32,20 +32,17 @@ export class CityAlertPage implements OnInit {
   async updateCity(newCity: string, city: string) {
     console.log('tem', this.newCity)
     console.log(city)
-    this.cityService.updateChildCity(city, newCity).subscribe(
+    this.cityService.updateChildCity(city).subscribe(
       res => {
         console.log('res', res);
         if (res.IsSuccess) {
           console.log('City updated successfully.');
           this.toast.create('City updated successfully.');
           this.loadCities();
-
         }
       },
       error => {
-
         if (error.status === 400) {
-
           this.toast.create("Cannot update the city because it already exists.", 'danger');
         }
         else {
