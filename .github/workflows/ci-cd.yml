@@ -5,7 +5,7 @@ on:
     branches: [demo, master]
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -17,9 +17,24 @@ jobs:
       - run: npm install
       - run: npm ci
       - run: ionic build --prod
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: www/
+          retention-days: 1
 
+  deploy-demo:
+    needs: build
+    if: github.ref == 'refs/heads/demo'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output
+          path: www/
       - name: Deploy to demo
-        if: github.ref == 'refs/heads/demo'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: "${{ secrets.STAGING_FTP_SERVER }}"
@@ -31,18 +46,28 @@ jobs:
             **/.git*
             **/.git*/**
             **/node_modules/**
-            web.config,
-      - name: Deploy for master
-        if: github.ref == 'refs/heads/master'
+            web.config
+
+  deploy-prod:
+    needs: build
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output
+          path: www/
+      - name: Deploy to production
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: "${{ secrets.PROD_FTP_SERVER }}"
-          username: "${{ secrets.PROD_FTP_USERNAME }}"
-          password: "${{ secrets.PROD_FTP_PASSWORD }}"
+          server: "198.54.114.164"
+          username: "vacadmin@admin.vaccinationcentre.com"
+          password: ${{ secrets.PROD_FTP_PASSWORD }}
           local-dir: www/
           server-dir: /
           exclude: |
             **/.git*
             **/.git*/**
             **/node_modules/**
-            web.config,
+            web.config
