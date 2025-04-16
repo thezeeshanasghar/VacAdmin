@@ -227,6 +227,23 @@
       </ion-select>
     </ion-item>
 
+    <ion-item>
+      <ion-label color="primary" position="floating">Validity</ion-label>
+      <ion-select formControlName="Validity">
+        <ion-select-option value="365">1 Year</ion-select-option>
+        <ion-select-option value="730">2 Years</ion-select-option>
+        <ion-select-option value="1095">3 Years</ion-select-option>
+        <ion-select-option value="1460">4 Years</ion-select-option>
+        <ion-select-option value="1825">5 Years</ion-select-option>
+        <ion-select-option value="2190">6 Years</ion-select-option>
+        <ion-select-option value="2555">7 Years</ion-select-option>
+        <ion-select-option value="2920">8 Years</ion-select-option>
+        <ion-select-option value="3285">9 Years</ion-select-option>
+        <ion-select-option value="3650">10 Years</ion-select-option>
+        <ion-select-option value="30000">Life Time</ion-select-option>
+      </ion-select>
+    </ion-item> 
+
     <ion-button (click)="addVaccine()" [disabled]="!fg.valid">Add</ion-button>
   </form>
 
