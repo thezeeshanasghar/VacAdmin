@@ -30,7 +30,8 @@ export class AddPage implements OnInit {
       'Name': [null, Validators.required],
       'MinAge': ['0', Validators.required],
       'MaxAge': [null],
-      'isInfinite': [false]
+      'isInfinite': [false],
+      'Validity': [null, Validators.required],
     });
 
   }
@@ -47,7 +48,7 @@ export class AddPage implements OnInit {
         message: 'Adding vaccine...'
       });
       await loading.present();
-  
+  console.log('addVaccine form value:', this.fg.value);
       const response = await this.api.addVaccine(this.fg.value).toPromise();
       console.log('addVaccine response:', response);
       await loading.dismiss();

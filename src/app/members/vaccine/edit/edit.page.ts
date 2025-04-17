@@ -33,7 +33,8 @@ export class EditPage implements OnInit {
       'Id': [null],
       'Name': ['', Validators.required],
       'MinAge': [null, Validators.required],
-      'MaxAge': [null]
+      'MaxAge': [null],
+      'Validity': [null, Validators.required],
     });
     this.getSingleVaccine();
 
@@ -58,6 +59,7 @@ export class EditPage implements OnInit {
         loading.dismiss();
         this.fg.controls['Name'].setValue(this.vaccine.Name);
         this.fg.controls['MinAge'].setValue(this.vaccine.MinAge + '');
+        this.fg.controls['Validity'].setValue(this.vaccine.Validity + '');
         if (this.vaccine.MaxAge)
           this.fg.controls['MaxAge'].setValue(this.vaccine.MaxAge + '');
         this.fg.controls['Id'].setValue(this.vaccine.Id + '');
