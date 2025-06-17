@@ -48,11 +48,10 @@ export class AddPage implements OnInit {
         message: 'Adding vaccine...'
       });
       await loading.present();
-  console.log('addVaccine form value:', this.fg.value);
       const response = await this.api.addVaccine(this.fg.value).toPromise();
-      console.log('addVaccine response:', response);
+      // console.log('addVaccine response:', response);
       await loading.dismiss();
-  console.log('addVaccine response:', response.IsSuccess);
+  // console.log('addVaccine response:', response.IsSuccess);
       if (response.IsSuccess) {
         await this.toast.create('Vaccine added successfully');
         await this.router.navigate(['/members/vaccine']);
