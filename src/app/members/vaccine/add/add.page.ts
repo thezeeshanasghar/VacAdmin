@@ -31,7 +31,7 @@ export class AddPage implements OnInit {
       'MinAge': ['0', Validators.required],
       'MaxAge': [null],
       'isInfinite': [false],
-      'Validity': [null, Validators.required],
+      'Validity': [null],
     });
 
   }
