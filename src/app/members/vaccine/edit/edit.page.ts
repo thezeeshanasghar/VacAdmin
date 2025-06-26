@@ -34,7 +34,7 @@ export class EditPage implements OnInit {
       'Name': ['', Validators.required],
       'MinAge': [null, Validators.required],
       'MaxAge': [null],
-      'Validity': [null, Validators.required],
+      'Validity': [null],
     });
     this.getSingleVaccine();
 
