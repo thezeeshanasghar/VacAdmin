@@ -10,12 +10,10 @@ import { AlertService } from 'src/app/shared/alert.service';
   templateUrl: './dose.page.html'
 })
 export class DosePage {
-
   dosses: any;
   vaccineId: any;
   Note: any;
   hide: any;
-
   constructor(
     public route: ActivatedRoute,
     public api: DoseService,
@@ -33,30 +31,26 @@ export class DosePage {
     this.getDosses();
   }
 
-  // Get all dosses base on vaccineID from server
   async getDosses() {
     const loading = await this.loadingController.create({
       message: 'Loading Dosses'
     });
-
     await loading.present();
-
     await this.vaccineAPI.getDosesByVaccineId(this.route.snapshot.paramMap.get('id')).subscribe(
       res => {
         if (res.IsSuccess) {
           this.dosses = res.ResponseData;
+          console.log(this.dosses);
           if (this.dosses.length > 0) {
             if (this.dosses[0].Vaccine.isInfinite) {
               this.hide = true;
             }
           }
           loading.dismiss();
-
         } else {
           this.toast.create('Error: failed to get any doses');
           loading.dismiss();
         }
-
       },
       err => {
         console.log(err);
@@ -65,8 +59,6 @@ export class DosePage {
       }
     );
   }
-
-  // Alert Msg Show for deletion of Dose
 
   alertDeleteDose(id) {
     this.alertService.confirmAlert('Are you sure you want to delete this ?', null)
@@ -79,7 +71,6 @@ export class DosePage {
 
   }
 
-  // Call api to delete a vaccine 
   async deleteDose(id) {
     const loading = await this.loadingController.create({
       message: "Deleting"
