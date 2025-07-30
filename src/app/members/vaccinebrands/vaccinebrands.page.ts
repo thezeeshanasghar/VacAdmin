@@ -1,104 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MessageService } from 'src/app/services/message.service';
-import { VaccineService } from 'src/app/services/vaccine.service';
-import { ToastService } from 'src/app/shared/toast.service';
-import { vaccineBrandsService } from 'src/app/services/vaccinebrands.service';
-
-
+import { Component, OnInit } from "@angular/core";
+import { LoadingController } from "@ionic/angular";
+import { vaccineBrandsService } from "src/app/services/vaccinebrands.service";
 
 @Component({
-  selector: 'app-vaccinebrands',
-  templateUrl: './vaccinebrands.page.html',
-  styleUrls: ['./vaccinebrands.page.scss']
+  selector: "app-vaccinebrands",
+  templateUrl: "./vaccinebrands.page.html",
+  styleUrls: ["./vaccinebrands.page.scss"],
 })
 export class VaccineBrandsPage implements OnInit {
-
-  // fg: FormGroup;
-  // message: any;
-  // section = false;
   data: any[] = [];
-
   constructor(
-  //   public route: ActivatedRoute,
-  //   public api: MessageService,
-  //   public vaccineAPI: VaccineService,
+
     public loadingController: LoadingController,
-  //   private formBuilder: FormBuilder,
-  //   private router: Router,
-  //   private toast:ToastService
-  private vaccinebrandsAPI: vaccineBrandsService
-  ) {
-  }
+    private vaccinebrandsAPI: vaccineBrandsService
+  ) {}
   ngOnInit() {
-  //   this.fg = this.formBuilder.group({
-  //     'MobileNumber': [null, Validators.required],
-  //     'SMS': [null, Validators.required]
-  //   });
     this.getvaccinbrands();
   }
-async getvaccinbrands() {
+  async getvaccinbrands() {
     const loading = await this.loadingController.create({
-      message: 'Loading vaccine brands... '
+      message: "Loading vaccine brands... ",
     });
-
     await loading.present();
-
     await this.vaccinebrandsAPI.getVaccineBrands().subscribe(
-      res => {
+      (res) => {
         console.log(res);
         this.data = res;
         console.log(this.data);
         loading.dismiss();
       },
-      err => {
+      (err) => {
         console.log(err);
         loading.dismiss();
       }
     );
   }
-
-  // async getmsg() {
-  //   const loading = await this.loadingController.create({
-  //     message: 'Loading'
-  //   });
-
-  //   await loading.present();
-
-  //   await this.api.getMessages().subscribe(
-  //     res => {
-  //       console.log(res);
-  //       this.message = res.ResponseData;
-  //       loading.dismiss();
-  //     },
-  //     err => {
-  //       console.log(err);
-  //       loading.dismiss();
-  //     }
-  //   );
-  // }
-
-  // async sendMsg() {
-  //   await this.api.sendMsg(this.fg.value)
-  //     .subscribe(res => {
-  //       if (res.IsSuccess)
-  //         this.router.navigateByUrl('/message/');
-  //     }, (err) => {
-  //       console.log(err);
-  //       this.toast.create(err);
-  //     });
-  // }
-
-  // accordion() {
-  //   if (this.section == true) {
-  //     this.section = false
-  //   }
-  //   else {
-  //     this.section = true
-  //   }
-  // }
-
-
 }

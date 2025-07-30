@@ -9,7 +9,6 @@ ion-button:hover{
   table {
     width: 100%;
     border-collapse: collapse;
-    // background: white;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     
     th, td {
@@ -64,7 +63,7 @@ ion-checkbox {
   margin: 0 25%;
 }
 ion-fab {
-  z-index: 10; /* Ensure it stays above other elements */
+  z-index: 10; 
 }
 ion-fab-button {
   --box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);

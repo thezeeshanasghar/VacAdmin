@@ -8,23 +8,25 @@
 </ion-header>
 
 <ion-content padding>
-
   <form [formGroup]="fg">
-<ion-item>
-  <ion-label color="primary" position="floating">Vaccine</ion-label>
-  <ion-select formControlName="VaccineId" required>
-    <ion-select-option *ngFor="let v of vaccinedata" [value]="v.Id">{{ v.Name }}</ion-select-option>
-  </ion-select>
-</ion-item>
+    <ion-item>
+      <ion-label color="primary" position="floating">Vaccine</ion-label>
+      <ion-select formControlName="VaccineId" required>
+        <ion-select-option *ngFor="let v of vaccinedata" [value]="v.Id"
+          >{{ v.Name }}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
 
-<ion-item>
-  <ion-label color="primary" position="floating">Brand</ion-label>
-  <ion-select formControlName="BrandId" required>
-    <ion-select-option *ngFor="let b of branddata" [value]="b.Id">{{ b.Name }}</ion-select-option>
-  </ion-select>
-</ion-item>
+    <ion-item>
+      <ion-label color="primary" position="floating">Brand</ion-label>
+      <ion-select formControlName="BrandId" required>
+        <ion-select-option *ngFor="let b of branddata" [value]="b.Id"
+          >{{ b.Name }}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
 
     <ion-button (click)="addVaccine()" [disabled]="!fg.valid">Add</ion-button>
   </form>
-
 </ion-content>
