@@ -14,8 +14,44 @@ export class Number2WeekPipe implements PipeTransform {
         case 0:
             day = 'At Birth';
             break;
+        case 1:
+            day = '1 Day';
+            break;
+        case 2:
+            day = '2 Days';
+            break;
+        case 3:
+            day = '3 Days';
+            break;
+        case 4:
+            day = '4 Days';
+            break;
+        case 5:
+            day = '5 Days';
+            break;
+        case 6:
+            day = '6 Days';
+            break;
         case 7:
             day = '1 Week';
+            break;
+        case 8:
+            day = '8 Days';
+            break;
+        case 9:
+            day = '9 Days';
+            break;
+        case 10:
+            day = '10 Days';
+            break;
+        case 11:
+            day = '11 Days';
+            break;
+        case 12:
+            day = '12 Days';
+            break;
+        case 13:
+            day = '13 Days';
             break;
         case 14:
             day = '2 Weeks';

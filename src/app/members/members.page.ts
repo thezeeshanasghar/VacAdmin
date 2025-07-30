@@ -52,7 +52,12 @@ export class MembersPage implements OnInit {
       title: 'Agents Alert',
       url: '/members/agentAlert',
       icon: 'person'
-    }
+    },
+    {
+      title: 'Vaccine Brands',
+      url: '/members/vaccineBrands',
+      icon: 'color-palette'
+    },
   ];
 
   constructor(private storage: Storage) { }

@@ -12,7 +12,7 @@ import { ToastService } from 'src/app/shared/toast.service';
 })
 export class VaccinePage implements OnInit {
 
-  vaccines: any;
+  vaccines: any[] = [];
   backupdoctorData: any;
 
   constructor(
