@@ -24,6 +24,13 @@ export class BrandService extends BaseService {
     );
   }
 
+  getBrands(): Observable<any> {
+    return this.http.get(this.API_BRAND, this.httpOptions).pipe(
+        map(this.extractData),
+        catchError(this.handleError)
+    );
+  }
+
   addBrand(vaccineId: string, data): Observable<any> {
     const url = `${this.API_BRAND}/${vaccineId}`;
     return this.http.post(url, data, this.httpOptions)
