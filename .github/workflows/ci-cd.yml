@@ -1,4 +1,4 @@
-name: Angular CI/CD (FTP Deployment)
+name: VacAdmin - Angular CI/CD (EC2 Deployment)
 
 on:
   push:
@@ -23,6 +23,7 @@ jobs:
           name: build-output
           path: www/
           retention-days: 1
+
   deploy-prod:
     needs: build
     if: github.ref == 'refs/heads/master'
@@ -33,20 +34,42 @@ jobs:
         with:
           name: build-output
           path: www/
-      - name: Deploy to production
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Deploy to EC2 via SSH
+        uses: appleboy/ssh-action@v1.0.3
         with:
-          server: "198.54.114.164"
-          username: "vacadmin@admin.vaccinationcentre.com"
-          password: ${{ secrets.PROD_FTP_PASSWORD }}
-          port: 21
-          protocol: ftps
-          local-dir: www/
-          server-dir: /
-          state-name: "ftp-deploy-sync-state.json"
-          timeout: 120000
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            web.config
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
+          script: |
+            # Remove old files
+            sudo rm -rf /var/www/admin.vaccinationcentre.com/html/*
+            # Create temporary directory for new files
+            mkdir -p /tmp/admin-deploy
+      - name: Copy files to EC2
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
+          source: "www/*"
+          target: "/tmp/admin-deploy/"
+          strip_components: 1
+      - name: Move files and set permissions
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
+          script: |
+            # Move files to web directory
+            sudo mv /tmp/admin-deploy/* /var/www/admin.vaccinationcentre.com/html/
+            # Set proper ownership and permissions
+            sudo chown -R ec2-user:ec2-user /var/www/admin.vaccinationcentre.com/html/
+            sudo chmod -R 755 /var/www/admin.vaccinationcentre.com/html/
+            # Clean up
+            rm -rf /tmp/admin-deploy
+            # Reload Nginx
+            sudo systemctl reload nginx
