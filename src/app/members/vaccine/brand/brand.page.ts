@@ -17,6 +17,7 @@ export class BrandPage {
   brands: any;
   singlebrands: any;
   Name: any;
+  Manufacturer: any;
   vaccineID: string;
 
   constructor(
@@ -65,7 +66,7 @@ export class BrandPage {
       res => {
         this.singlebrands = res.ResponseData;
         loading.dismiss();
-        this.alertMsgForEdit(this.singlebrands.Name, id)
+        this.alertMsgForEdit(this.singlebrands.Name, this.singlebrands.Manufacturer, id)
       },
       err => {
         console.log(err);
@@ -84,6 +85,11 @@ export class BrandPage {
           type: 'text',
           placeholder: 'Brand Name',
         },
+        {
+          name: 'Manufacturer',
+          type: 'text',
+          placeholder: 'Manufacturer',
+        },
       ],
       buttons: [
         {
@@ -96,6 +102,7 @@ export class BrandPage {
           text: 'Add',
           handler: (data) => {
             this.Name = data.BrandName;
+            this.Manufacturer = data.Manufacturer;
             this.AddBrand();
             console.log('Confirm Ok');
           }
@@ -107,7 +114,7 @@ export class BrandPage {
 
   // Request send to sever for Add a brand
   async AddBrand() {
-    let userData1 = { "Name": this.Name, "VaccineID": this.vaccineID }
+    let userData1 = { "Name": this.Name, "Manufacturer": this.Manufacturer, "VaccineID": this.vaccineID }
     console.log(userData1)
     await this.api.addBrand(this.vaccineID, userData1)
       .subscribe(res => {
@@ -118,7 +125,7 @@ export class BrandPage {
   }
 
   // AlertMsg Show for Edit Brand Name
-  async alertMsgForEdit(brandname, id) {
+  async alertMsgForEdit(brandname, manufacturer, id) {
     //this.getBrandsbyId(id)
     const alert = await this.alertController.create({
       header: 'Edit Name',
@@ -126,6 +133,10 @@ export class BrandPage {
         {
           name: 'BrandName',
           value: brandname,
+        },
+        {
+          name: 'Manufacturer',
+          value: manufacturer,
         },
       ],
       buttons: [
@@ -140,6 +151,7 @@ export class BrandPage {
           text: 'Update',
           handler: (data) => {
             this.Name = data.BrandName;
+            this.Manufacturer = data.Manufacturer;
             this.editBrand(id);
             console.log('Confirm Ok');
           }
@@ -151,7 +163,7 @@ export class BrandPage {
 
   // Request send to sever update a brand name
   async editBrand(id) {
-    let userData = { "ID": this.singlebrands.ID, "Name": this.Name, "VaccineID": this.singlebrands.VaccineID };
+    let userData = { "ID": this.singlebrands.ID, "Name": this.Name, "Manufacturer": this.Manufacturer, "VaccineID": this.singlebrands.VaccineID };
     console.log(userData)
     await this.api.editBrand(id, userData)
       .subscribe(res => {

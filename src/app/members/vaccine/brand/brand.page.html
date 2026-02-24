@@ -16,7 +16,10 @@
   <ion-card *ngFor="let b of brands">
     <ion-item>
       <ion-icon name="color-filter" slot="start" style="margin-right:16px"></ion-icon>
-      <ion-label>{{b.Name}}</ion-label>
+      <ion-label>
+        <h2>{{b.Name}}</h2>
+        <p>Manufacturer: {{b.Manufacturer}}</p>
+      </ion-label>
       <ion-item slot="end">
         <ion-icon (click)="getBrandsbyId(b.Id)" color="primary" name="create"></ion-icon>
         <ion-icon (click)="alertDeletevaccine(b.Id)" color="primary" name="trash"></ion-icon>
