@@ -128,14 +128,18 @@ export class BrandPage {
   async alertMsgForEdit(brandname, manufacturer, id) {
     //this.getBrandsbyId(id)
     const alert = await this.alertController.create({
-      header: 'Edit Name',
+      header: 'Edit Brand',
       inputs: [
         {
           name: 'BrandName',
+          type: 'text',
+          placeholder: 'Brand Name',
           value: brandname,
         },
         {
           name: 'Manufacturer',
+          type: 'text',
+          placeholder: 'Manufacturer',
           value: manufacturer,
         },
       ],
