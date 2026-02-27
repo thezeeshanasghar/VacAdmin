@@ -19,6 +19,11 @@ export class MembersPage implements OnInit {
       icon: 'color-filter'
     },
     {
+      title: 'Brands',
+      url: '/members/brand',
+      icon: 'pricetags'
+    },
+    {
       title: 'Doctors',
       url: '/members/doctor',
       icon: 'medkit'

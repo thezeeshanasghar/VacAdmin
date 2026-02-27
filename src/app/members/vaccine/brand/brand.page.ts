@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BrandService } from 'src/app/services/brand.service';
-import { VaccineService } from 'src/app/services/vaccine.service';
 import { AlertService } from 'src/app/shared/alert.service';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { ToastService } from 'src/app/shared/toast.service';
@@ -18,30 +17,27 @@ export class BrandPage {
   singlebrands: any;
   Name: any;
   Manufacturer: any;
-  vaccineID: string;
 
   constructor(
     public route: ActivatedRoute,
     public router: Router,
     public api: BrandService,
-    public vaccineAPI: VaccineService,
     private alertService: AlertService,
     public loadingController: LoadingController,
     private toastservice: ToastService,
     private alertController: AlertController) { }
 
   ionViewWillEnter() {
-    this.vaccineID = this.route.snapshot.paramMap.get('id');
     this.getBrands();
   }
 
-  // Get all brands base on vaccine id
+  // Get all brands
   async getBrands() {
     const loading = await this.loadingController.create({
       message: 'Loading'
     });
     await loading.present();
-    await this.vaccineAPI.getBrandsByVaccineId(this.vaccineID).subscribe(
+    await this.api.getBrands().subscribe(
       res => {
         this.brands = res.ResponseData;
         console.log(this.brands);
@@ -114,9 +110,9 @@ export class BrandPage {
 
   // Request send to sever for Add a brand
   async AddBrand() {
-    let userData1 = { "Name": this.Name, "Manufacturer": this.Manufacturer, "VaccineID": this.vaccineID }
+    let userData1 = { "Name": this.Name, "Manufacturer": this.Manufacturer }
     console.log(userData1)
-    await this.api.addBrand(this.vaccineID, userData1)
+    await this.api.addBrand(userData1)
       .subscribe(res => {
         this.getBrands();
       }, (err) => {
@@ -167,7 +163,7 @@ export class BrandPage {
 
   // Request send to sever update a brand name
   async editBrand(id) {
-    let userData = { "ID": this.singlebrands.ID, "Name": this.Name, "Manufacturer": this.Manufacturer, "VaccineID": this.singlebrands.VaccineID };
+    let userData = { "ID": this.singlebrands.ID, "Name": this.Name, "Manufacturer": this.Manufacturer };
     console.log(userData)
     await this.api.editBrand(id, userData)
       .subscribe(res => {

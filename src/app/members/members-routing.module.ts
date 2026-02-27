@@ -17,6 +17,7 @@ const routes: Routes = [
       { path: 'citiesAlert', loadChildren: './cityalert/cityalert.module#CityAlertPageModule' },
       { path: 'agent', loadChildren: './agent/agent.module#AgentPageModule' },
       { path: 'agentAlert', loadChildren: './agentalert/agentalert.module#AgentAlertPageModule' },
+      { path: 'brand', loadChildren: './vaccine/brand/brand.module#BrandPageModule' },
       { path: 'vaccineBrands', loadChildren: './vaccinebrands/vaccinebrands.module#VaccineBrandsPageModule' },
     ]
   }
