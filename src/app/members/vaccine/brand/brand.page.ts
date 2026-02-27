@@ -39,7 +39,9 @@ export class BrandPage {
     await loading.present();
     await this.api.getBrands().subscribe(
       res => {
-        this.brands = res.ResponseData;
+        this.brands = (res.ResponseData || []).sort((a, b) =>
+          (a.Name || '').toLowerCase().localeCompare((b.Name || '').toLowerCase())
+        );
         console.log(this.brands);
         loading.dismiss();
       },
