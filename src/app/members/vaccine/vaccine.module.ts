@@ -15,7 +15,8 @@ const routes: Routes = [
   }, 
   { path: 'add', loadChildren: 'src/app/members/vaccine/add/add.module#AddPageModule' },
   { path: 'edit/:id', loadChildren: 'src/app/members/vaccine/edit/edit.module#EditPageModule'},
-  { path: ':id/doses', loadChildren: './dose/dose.module#DosePageModule'}
+  { path: ':id/doses', loadChildren: './dose/dose.module#DosePageModule'},
+  { path: ':id/suggest-brands', loadChildren: './suggest-brands/suggest-brands.module#SuggestBrandsPageModule' }
 ];
 
 @NgModule({
