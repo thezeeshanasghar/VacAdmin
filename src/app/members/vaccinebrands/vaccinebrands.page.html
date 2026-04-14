@@ -28,12 +28,18 @@
         <tr>
           <th>vaccine</th>
           <th>brand</th>
+          <th>action</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of data">
           <td>{{ item.VaccineName }}</td>
           <td>{{ item.BrandName }}</td>
+          <td>
+            <ion-button color="danger" fill="clear" (click)="deleteAssociation(item)">
+              <ion-icon name="trash" slot="icon-only"></ion-icon>
+            </ion-button>
+          </td>
         </tr>
       </tbody>
     </table>

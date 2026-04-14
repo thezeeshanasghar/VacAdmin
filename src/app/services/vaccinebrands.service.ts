@@ -22,6 +22,13 @@ export class vaccineBrandsService extends BaseService {
       );
   }
 
+  deleteVaccineBrand(id: number): Observable<any> {
+    const url = `${this.API_VACCINE}/${id}`;
+    return this.http.delete(url, this.httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
 //   editVaccine(id: string, data): Observable<any> {
 //     const url = `${this.API_VACCINE}/${id}`;
 //     return this.http.put(url, data, this.httpOptions)
