@@ -36,6 +36,8 @@
 
       <ion-button size="small" fill="outline" color="secondary" routerLink="/members/vaccine/{{vaccine.Id}}/suggest-brands">
         Suggest Brands
+        &nbsp;
+        <ion-badge color="primary">{{ suggestedBrandCountByVaccineId[vaccine.Id] || 0 }}</ion-badge>
       </ion-button>
     </ion-card-content>
   </ion-card>

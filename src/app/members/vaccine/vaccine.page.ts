@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { AlertService } from 'src/app/shared/alert.service';
 import { ToastService } from 'src/app/shared/toast.service';
+import { vaccineBrandsService } from 'src/app/services/vaccinebrands.service';
 
 @Component({
   selector: 'app-vaccine',
@@ -14,6 +15,7 @@ export class VaccinePage implements OnInit {
 
   vaccines: any[] = [];
   backupdoctorData: any;
+  suggestedBrandCountByVaccineId: { [vaccineId: number]: number } = {};
 
   constructor(
     public api: VaccineService,
@@ -22,6 +24,7 @@ export class VaccinePage implements OnInit {
     public loadingController: LoadingController,
     private alertService: AlertService,
     private toastService: ToastService,
+    private vaccineBrandsApi: vaccineBrandsService,
   ) {
     // route.params.subscribe(val => {
     //   this.getVaccines();
@@ -46,11 +49,37 @@ export class VaccinePage implements OnInit {
     await this.api.getVaccines().subscribe(
       res => {
         this.vaccines = res.ResponseData;
+        this.loadSuggestedBrandCounts();
         loading.dismiss();
       },
       err => {
         console.log(err);
         loading.dismiss();
+      }
+    );
+  }
+
+  private loadSuggestedBrandCounts() {
+    this.vaccineBrandsApi.getVaccineBrands().subscribe(
+      (res) => {
+        const rows = Array.isArray(res)
+          ? res
+          : ((res && res.ResponseData && Array.isArray(res.ResponseData)) ? res.ResponseData : []);
+
+        const counts: { [vaccineId: number]: number } = {};
+        (rows || []).forEach((item: any) => {
+          const vaccineId = Number(item && item.VaccineId);
+          if (!vaccineId || isNaN(vaccineId)) {
+            return;
+          }
+          counts[vaccineId] = (counts[vaccineId] || 0) + 1;
+        });
+
+        this.suggestedBrandCountByVaccineId = counts;
+      },
+      (err) => {
+        console.log(err);
+        this.suggestedBrandCountByVaccineId = {};
       }
     );
   }
