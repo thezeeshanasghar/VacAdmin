@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AgentService } from 'src/app/services/agent.service';
+import { CityService } from 'src/app/services/city.service';
 import { AlertController } from '@ionic/angular';
 import { ToastService } from 'src/app/shared/toast.service';
 
@@ -13,7 +13,7 @@ export class AgentAlertPage implements OnInit {
   newCity: string;
 
 
-  constructor(private cityService: AgentService, private alertController: AlertController, public toast: ToastService,) { }
+  constructor(private cityService: CityService, private alertController: AlertController, public toast: ToastService,) { }
 
   ngOnInit() {
     this.loadCities();
