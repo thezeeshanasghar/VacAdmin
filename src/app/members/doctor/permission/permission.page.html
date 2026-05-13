@@ -50,11 +50,6 @@
       <ion-label>Allow Adult Schedule</ion-label>
       <ion-checkbox [(ngModel)]="doctor.AllowAdult"></ion-checkbox>
     </ion-item>
-    <ion-item>
-      <ion-label>SMS Limit</ion-label>
-      <ion-input slot="end" type="number" placeholder="SMS limit" [(ngModel)]="doctor.SMSLimit"></ion-input>
-    </ion-item>
-
     <ion-button expand="block" (click)="update()">Update Permission</ion-button>
 
   </ion-list>
