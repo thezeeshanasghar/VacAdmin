@@ -54,6 +54,14 @@
       <ion-label>Allow Growth Assessment</ion-label>
       <ion-checkbox [(ngModel)]="doctor.AllowDevelopmentalAssessment"></ion-checkbox>
     </ion-item>
+    <ion-item>
+      <ion-label>Allow Home Booking</ion-label>
+      <ion-checkbox [(ngModel)]="doctor.AllowHomeBooking"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Allow Clinic Booking</ion-label>
+      <ion-checkbox [(ngModel)]="doctor.AllowClinicBooking"></ion-checkbox>
+    </ion-item>
     <ion-button expand="block" (click)="update()">Update Permission</ion-button>
 
   </ion-list>
