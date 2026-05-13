@@ -50,6 +50,10 @@
       <ion-label>Allow Adult Schedule</ion-label>
       <ion-checkbox [(ngModel)]="doctor.AllowAdult"></ion-checkbox>
     </ion-item>
+    <ion-item>
+      <ion-label>Allow Growth Assessment</ion-label>
+      <ion-checkbox [(ngModel)]="doctor.AllowDevelopmentalAssessment"></ion-checkbox>
+    </ion-item>
     <ion-button expand="block" (click)="update()">Update Permission</ion-button>
 
   </ion-list>
