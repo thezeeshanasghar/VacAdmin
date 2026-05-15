@@ -48,7 +48,9 @@ export class VaccinePage implements OnInit {
 
     await this.api.getVaccines().subscribe(
       res => {
-        this.vaccines = res.ResponseData;
+        this.vaccines = (res.ResponseData || []).sort((a: any, b: any) =>
+          (a.Name || '').localeCompare(b.Name || '')
+        );
         this.loadSuggestedBrandCounts();
         loading.dismiss();
       },
