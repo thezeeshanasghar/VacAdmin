@@ -6,422 +6,131 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class Number2WeekPipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
-    let day = 'At Birth'
     switch (value) {
-        case null:
-            day = '';
-            break;
-        case 0:
-            day = 'At Birth';
-            break;
-        case 1:
-            day = '1 Day';
-            break;
-        case 2:
-            day = '2 Days';
-            break;
-        case 3:
-            day = '3 Days';
-            break;
-        case 4:
-            day = '4 Days';
-            break;
-        case 5:
-            day = '5 Days';
-            break;
-        case 6:
-            day = '6 Days';
-            break;
-        case 7:
-            day = '1 Week';
-            break;
-        case 8:
-            day = '8 Days';
-            break;
-        case 9:
-            day = '9 Days';
-            break;
-        case 10:
-            day = '10 Days';
-            break;
-        case 11:
-            day = '11 Days';
-            break;
-        case 12:
-            day = '12 Days';
-            break;
-        case 13:
-            day = '13 Days';
-            break;
-        case 14:
-            day = '2 Weeks';
-            break;
-        case 21:
-            day = '3 Weeks';
-            break;
-        case 28:
-            day = '4 Weeks';
-            break;
-        case 35:
-            day = '5 Weeks';
-            break;
-        case 42:
-            day = '6 Weeks';
-            break;
-        case 49:
-            day = '7 Weeks';
-            break;
-        case 56:
-            day = '8 Weeks';
-            break;
-        case 63:
-            day = '9 Weeks';
-            break;
-        case 70:
-            day = '10 Weeks';
-            break;
-        case 77:
-            day = '11 Weeks';
-            break;
-        case 84:
-            day = '3 Months';
-            break;
-        case 91:
-            day = '13 Weeks';
-            break;
-        case 98:
-            day = '14 Weeks';
-            break;
-        case 105:
-            day = '15 Weeks';
-            break;
-        case 112:
-            day = '16 Weeks';
-            break;
-        case 119:
-            day = '17 Weeks';
-            break;
-        case 126:
-            day = '18 Weeks';
-            break;
-        case 133:
-            day = '19 Weeks';
-            break;
-        case 140:
-            day = '20 Weeks';
-            break;
-        case 147:
-            day = '21 Weeks';
-            break;
-        case 154:
-            day = '22 Weeks';
-            break;
-        case 161:
-            day = '23 Weeks';
-            break;
-        case 168:
-            day = '6 Months';
-            break;
-        case 212:
-            day = '7 Months';
-            break;
-        case 243:
-            day = '8 Months';
-            break;
-        case 274:
-            day = '9 Months';
-            break;
-        case 304:
-            day = '10 Months';
-            break;
-        case 334:
-            day = '11 Months';
-            break;
-        case 365:
-            day = '1 Year';
-            break;
-        case 395:
-            day = '13 Months';
-            break;
-        case 426:
-            day = '14 Months';
-            break;
-        case 456:
-            day = '15 Months';
-            break;
-        case 486:
-            day = '16 Months';
-            break;
-        case 517:
-            day = '17 Months';
-            break;
-        case 547:
-            day = '18 Months';
-            break;
-        case 578:
-            day = '19 Months';
-            break;
-        case 608:
-            day = '20 Months';
-            break;
-        case 639:
-            day = '21 Months';
-            break;
-        case 669:
-            day = '22 Months';
-            break;
-        case 699:
-            day = '23 Months';
-            break;
-        case 730:
-            day = '2 Years';
-            break;
-        case 760:
-            day = '25 Months';
-            break;
-        case 791:
-            day = '26 Months';
-            break;
-        case 821:
-            day = '27 Months';
-            break;
-        case 851:
-            day = '28 Months';
-            break;
-        case 882:
-            day = '29 Months';
-            break;
-        case 912:
-            day = '30 Months';
-            break;
-        case 943:
-            day = '31 Months';
-            break;
-        case 973:
-            day = '32 Months';
-            break;
-        case 1004:
-            day = '33 Months';
-            break;
-        case 1034:
-            day = '34 Months';
-            break;
-        case 1064:
-            day = '35 Months';
-            break;
-        case 1095:
-            day = '3 Years';
-            break;
-        case 1125:
-            day = '37 Months';
-            break;
-        case 1156:
-            day = '38 Months';
-            break;
-        case 1186:
-            day = '39 Months';
-            break;
-        case 1216:
-            day = '40 Months';
-            break;
-        case 1247:
-            day = '41 Months';
-            break;
-        case 1277:
-            day = '42 Months';
-            break;
-        case 1308:
-            day = '43 Months';
-            break;
-        case 1338:
-            day = '44 Months';
-            break;
-        case 1369:
-            day = '45 Months';
-            break;
-        case 1399:
-            day = '46 Months';
-            break;
-        case 1429:
-            day = '47 Months';
-            break;
-        case 1460:
-            day = '4 Years';
-            break;
-        case 1490:
-            day = '49 Months';
-            break;
-        case 1521:
-            day = '50 Months';
-            break;
-        case 1551:
-            day = '51 Months';
-            break;
-        case 1582:
-            day = '52 Months';
-            break;
-        case 1612:
-            day = '53 Months';
-            break;
-        case 1642:
-            day = '54 Months';
-            break;
-        case 1673:
-            day = '55 Months';
-            break;
-        case 1703:
-            day = '56 Months';
-            break;
-        case 1734:
-            day = '57 Months';
-            break;
-        case 1764:
-            day = '58 Months';
-            break;
-        case 1795:
-            day = '59 Months';
-            break;
-        case 1825:
-            day = '5 Years';
-            break;
-        case 2190:
-            day = '6 Years';
-            break;
-        case 2555:
-            day = '7 Years';
-            break;
-        case 2920:
-            day = '8 Years';
-            break;
-        case 3285:
-            day = '9 Years';
-            break;
-        case 3315:
-            day = '9 Year 1 Month';
-            break;
-        case 3650:
-            day = '10 Years';
-            break;
-        case 3833:
-            day = '10 Year 6 Months';
-            break;
-
-        case 4015:
-            day = '11 Years';
-            break;
-        case 4380:
-            day = '12 Years';
-            break;
-        case 4745:
-            day = '13 Years';
-            break;
-        case 5110:
-            day = '14 Years';
-            break;
-        case 5475:
-            day = '15 Years';
-            break;
-        case 5840:
-            day = '16 Years';
-            break;
-        case 6205:
-            day = '17 Years';
-            break;
-        case 6570:
-            day = '18 Years';
-            break;
-        case 6600:
-            day = '18 Years 1 Month';
-            break;
-        case 6631:
-            day = '18 Years 2 Months';
-            break;
-        case 6661:
-            day = '18 Years 3 Months';
-            break;
-        case 6691:
-            day = '18 Years 4 Months';
-            break;
-        case 6722:
-            day = '18 Years 5 Months';
-            break;
-        case 6752:
-            day = '18 Years 6 Months';
-            break;
-        case 6783:
-            day = '18 Years 7 Months';
-            break;
-        case 6813:
-            day = '18 Years 8 Months';
-            break;
-        case 6843:
-            day = '18 Years 9 Months';
-            break;
-        case 6874:
-            day = '18 Years 10 Months';
-            break;
-        case 6904:
-            day = '18 Years 11 Months';
-            break;
-        case 6935:
-            day = '19 Years';
-            break;
-        case 6965:
-            day = '19 Years 1 Month';
-            break;
-        case 6996:
-            day = '19 Years 2 Months';
-            break;
-        case 7026:
-            day = '19 Years 3 Months';
-            break;
-        case 7056:
-            day = '19 Years 4 Months';
-            break;
-        case 7087:
-            day = '19 Years 5 Months';
-            break;
-        case 7117:
-            day = '19 Years 6 Months';
-            break;
-        case 7148:
-            day = '19 Years 7 Months';
-            break;
-        case 7178:
-            day = '19 Years 8 Months';
-            break;
-        case 7208:
-            day = '19 Years 9 Months';
-            break;
-        case 7239:
-            day = '19 Years 10 Months';
-            break;
-        case 7269:
-            day = '19 Years 11 Months';
-            break;
-        case 7300:
-            day = '20 Years';
-            break;
-        case 7665:
-            day = '21 Years';
-            break;
-        case 8030:
-            day = '22 Years';
-            break;
-        case 8395:
-            day = '23 Years';
-            break;
-        case 8760:
-            day = '24 Years';
-            break;
-        case 9125:
-            day = '25 Years';
-            break;
-        case 30000:
-            day = 'Life Time';
-            break;
+      case null:      return '';
+      case 0:         return 'At Birth';
+      case 1:         return '1 Day';
+      case 2:         return '2 Days';
+      case 3:         return '3 Days';
+      case 4:         return '4 Days';
+      case 5:         return '5 Days';
+      case 6:         return '6 Days';
+      case 8:         return '8 Days';
+      case 15:        return '15 Days';
+      case 29:        return '29 Days';
+      case 7:         return '1 Week';
+      case 14:        return '2 Weeks';
+      case 21:        return '3 Weeks';
+      case 28:        return '4 Weeks';
+      case 35:        return '5 Weeks';
+      case 42:        return '6 Weeks';
+      case 49:        return '7 Weeks';
+      case 56:        return '8 Weeks';
+      case 63:        return '9 Weeks';
+      case 70:        return '10 Weeks';
+      case 77:        return '11 Weeks';
+      case 84:        return '12 Weeks';
+      case 91:        return '13 Weeks';
+      case 98:        return '14 Weeks';
+      case 105:       return '15 Weeks';
+      case 111:       return '15 Weeks + 6 Days';
+      case 112:       return '16 Weeks';
+      case 119:       return '17 Weeks';
+      case 126:       return '18 Weeks';
+      case 133:       return '19 Weeks';
+      case 140:       return '20 Weeks';
+      case 147:       return '21 Weeks';
+      case 154:       return '22 Weeks';
+      case 161:       return '23 Weeks';
+      case 168:       return '24 Weeks';
+      case 401:       return '1 Month';
+      case 402:       return '2 Months';
+      case 403:       return '3 Months';
+      case 404:       return '4 Months';
+      case 405:       return '5 Months';
+      case 406:       return '6 Months';
+      case 407:       return '7 Months';
+      case 408:       return '8 Months';
+      case 409:       return '9 Months';
+      case 410:       return '10 Months';
+      case 411:       return '11 Months';
+      case 412:       return '12 Months';
+      case 413:       return '13 Months';
+      case 414:       return '14 Months';
+      case 415:       return '15 Months';
+      case 416:       return '16 Months';
+      case 417:       return '17 Months';
+      case 418:       return '18 Months';
+      case 419:       return '19 Months';
+      case 420:       return '20 Months';
+      case 421:       return '21 Months';
+      case 422:       return '22 Months';
+      case 423:       return '23 Months';
+      case 424:       return '24 Months';
+      case 425:       return '25 Months';
+      case 426:       return '26 Months';
+      case 427:       return '27 Months';
+      case 428:       return '28 Months';
+      case 429:       return '29 Months';
+      case 430:       return '30 Months';
+      case 431:       return '31 Months';
+      case 432:       return '32 Months';
+      case 433:       return '33 Months';
+      case 434:       return '34 Months';
+      case 435:       return '35 Months';
+      case 436:       return '36 Months';
+      case 437:       return '37 Months';
+      case 438:       return '38 Months';
+      case 439:       return '39 Months';
+      case 440:       return '40 Months';
+      case 441:       return '41 Months';
+      case 442:       return '42 Months';
+      case 443:       return '43 Months';
+      case 444:       return '44 Months';
+      case 445:       return '45 Months';
+      case 446:       return '46 Months';
+      case 447:       return '47 Months';
+      case 448:       return '48 Months';
+      case 449:       return '49 Months';
+      case 450:       return '50 Months';
+      case 451:       return '51 Months';
+      case 452:       return '52 Months';
+      case 453:       return '53 Months';
+      case 454:       return '54 Months';
+      case 455:       return '55 Months';
+      case 456:       return '56 Months';
+      case 457:       return '57 Months';
+      case 458:       return '58 Months';
+      case 459:       return '59 Months';
+      case 460:       return '60 Months';
+      case 462:       return '62 Months';
+      case 4109:      return '109 Months';
+      case 4110:      return '110 Months';
+      case 4113:      return '113 Months';
+      case 4114:      return '114 Months';
+      case 4164:      return '164 Months';
+      case 3001:      return '1 Year';
+      case 3002:      return '2 Years';
+      case 3003:      return '3 Years';
+      case 3004:      return '4 Years';
+      case 3005:      return '5 Years';
+      case 3006:      return '6 Years';
+      case 3007:      return '7 Years';
+      case 3008:      return '8 Years';
+      case 3009:      return '9 Years';
+      case 3010:      return '10 Years';
+      case 3011:      return '11 Years';
+      case 3012:      return '12 Years';
+      case 3013:      return '13 Years';
+      case 3014:      return '14 Years';
+      case 3015:      return '15 Years';
+      case 3016:      return '16 Years';
+      case 3017:      return '17 Years';
+      case 3018:      return '18 Years';
+      case 3019:      return '19 Years';
+      case 3020:      return '20 Years';
+      default:        return 'At Birth';
     }
-    return day;
   }
 
 }
