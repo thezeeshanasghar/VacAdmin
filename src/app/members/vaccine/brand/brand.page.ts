@@ -17,6 +17,7 @@ export class BrandPage {
   singlebrands: any;
   Name: any;
   Manufacturer: any;
+  MinAge: any;
 
   constructor(
     public route: ActivatedRoute,
@@ -88,6 +89,11 @@ export class BrandPage {
           type: 'text',
           placeholder: 'Manufacturer',
         },
+        {
+          name: 'MinAge',
+          type: 'number',
+          placeholder: 'Min Age (optional, use coding scheme)',
+        },
       ],
       buttons: [
         {
@@ -101,6 +107,7 @@ export class BrandPage {
           handler: (data) => {
             this.Name = data.BrandName;
             this.Manufacturer = data.Manufacturer;
+            this.MinAge = data.MinAge ? parseInt(data.MinAge) : null;
             this.AddBrand();
             console.log('Confirm Ok');
           }
@@ -112,7 +119,7 @@ export class BrandPage {
 
   // Request send to sever for Add a brand
   async AddBrand() {
-    let userData1 = { "Name": this.Name, "Manufacturer": this.Manufacturer }
+    let userData1 = { "Name": this.Name, "Manufacturer": this.Manufacturer, "MinAge": this.MinAge }
     console.log(userData1)
     await this.api.addBrand(userData1)
       .subscribe(res => {
@@ -140,6 +147,12 @@ export class BrandPage {
           placeholder: 'Manufacturer',
           value: manufacturer,
         },
+        {
+          name: 'MinAge',
+          type: 'number',
+          placeholder: 'Min Age (optional, use coding scheme)',
+          value: this.singlebrands.MinAge || '',
+        },
       ],
       buttons: [
         {
@@ -154,6 +167,7 @@ export class BrandPage {
           handler: (data) => {
             this.Name = data.BrandName;
             this.Manufacturer = data.Manufacturer;
+            this.MinAge = data.MinAge ? parseInt(data.MinAge) : null;
             this.editBrand(id);
             console.log('Confirm Ok');
           }
@@ -165,7 +179,7 @@ export class BrandPage {
 
   // Request send to sever update a brand name
   async editBrand(id) {
-    let userData = { "ID": this.singlebrands.ID, "Name": this.Name, "Manufacturer": this.Manufacturer };
+    let userData = { "ID": this.singlebrands.ID, "Name": this.Name, "Manufacturer": this.Manufacturer, "MinAge": this.MinAge };
     console.log(userData)
     await this.api.editBrand(id, userData)
       .subscribe(res => {
