@@ -7,22 +7,48 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-item *ngFor="let agent of agents">
-      <ion-label>
-        <h2>{{ agent.Name }}</h2>
-        <p *ngIf="agent.PhoneNumber">{{ agent.PhoneNumber }}</p>
-        <p>Fee: Rs. {{ agent.ReferralFeePerClient }} / client</p>
-      </ion-label>
-      <ion-button slot="end" fill="clear" color="primary" (click)="editAgent(agent)">
-        <ion-icon name="create-outline"></ion-icon>
-      </ion-button>
-      <ion-button slot="end" fill="clear" color="danger" (click)="deleteAgent(agent)">
-        <ion-icon name="trash-outline"></ion-icon>
-      </ion-button>
-    </ion-item>
-  </ion-list>
+<ion-content class="page-content">
+
+  <div class="section-header">
+    <h2>All Agents</h2>
+    <div class="section-line"></div>
+    <ion-badge color="primary" class="count-badge">{{agents?.length || 0}}</ion-badge>
+  </div>
+
+  <div class="cards-container">
+    <ion-card class="agent-card" *ngFor="let agent of agents">
+      <div class="agent-header">
+        <div class="agent-avatar">
+          {{ agent.Name?.charAt(0)?.toUpperCase() || 'A' }}
+        </div>
+        <div class="agent-info">
+          <h3>{{ agent.Name }}</h3>
+          <span class="agent-phone" *ngIf="agent.PhoneNumber">
+            <ion-icon name="call-outline"></ion-icon>
+            {{ agent.PhoneNumber }}
+          </span>
+        </div>
+        <div class="agent-actions">
+          <ion-button fill="clear" color="primary" size="small" (click)="editAgent(agent)">
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-button>
+          <ion-button fill="clear" color="danger" size="small" (click)="deleteAgent(agent)">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+      <div class="agent-fee">
+        <ion-icon name="cash-outline"></ion-icon>
+        <span>Rs. {{ agent.ReferralFeePerClient }} <em>per client</em></span>
+      </div>
+    </ion-card>
+  </div>
+
+  <div class="empty-state" *ngIf="agents && agents.length === 0">
+    <ion-icon name="briefcase-outline"></ion-icon>
+    <h3>No agents found</h3>
+    <p>Add your first referral agent</p>
+  </div>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="addAgent()">

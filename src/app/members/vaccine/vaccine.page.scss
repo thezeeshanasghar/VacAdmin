@@ -1,0 +1,118 @@
+.page-content {
+  --background: var(--app-bg);
+}
+
+.add-btn {
+  --border-radius: 10px;
+  --color: var(--ion-color-primary);
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-right: 6px;
+}
+
+.count-badge {
+  --border-radius: 999px;
+  font-size: 0.78rem;
+  padding: 4px 10px;
+}
+
+.cards-container {
+  padding: 0 2px 80px;
+}
+
+.vaccine-card {
+  background: var(--app-surface) !important;
+  padding: 0 !important;
+
+  .vaccine-card-header {
+    display: flex;
+    align-items: center;
+    padding: 16px 16px 12px;
+    gap: 12px;
+
+    .vaccine-icon-wrap {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #0a6e8a, #00b4d8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+
+      ion-icon {
+        font-size: 1.25rem;
+        color: #fff;
+      }
+    }
+
+    .vaccine-title {
+      flex: 1;
+      min-width: 0;
+
+      h3 {
+        font-size: 0.97rem;
+        font-weight: 700;
+        color: var(--ion-color-dark);
+        margin: 0 0 3px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .vaccine-age {
+        font-size: 0.78rem;
+        color: var(--ion-color-medium);
+
+        b { color: var(--ion-color-primary); }
+      }
+    }
+
+    .vaccine-actions {
+      display: flex;
+      gap: 0;
+      flex-shrink: 0;
+
+      .icon-btn {
+        --padding-start: 6px;
+        --padding-end: 6px;
+        height: 36px;
+      }
+    }
+  }
+
+  .vaccine-card-body {
+    padding: 0 16px 12px;
+
+    .info-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(10,110,138,0.08);
+      color: var(--ion-color-primary);
+      border-radius: 999px;
+      padding: 4px 12px;
+      font-size: 0.78rem;
+      font-weight: 600;
+
+      ion-icon { font-size: 0.9rem; }
+    }
+  }
+
+  .vaccine-card-footer {
+    display: flex;
+    gap: 10px;
+    padding: 0 16px 16px;
+
+    .footer-btn {
+      --border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+
+      .btn-badge {
+        margin-left: 6px;
+        --border-radius: 999px;
+      }
+    }
+  }
+}

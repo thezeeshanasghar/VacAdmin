@@ -1,42 +1,53 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="login-content">
 
-<ion-content>
+  <div class="login-wrapper">
 
-  <ion-card style="background-color: #d3cccc94;">
-    <ion-card-content>
+    <!-- Logo/Brand -->
+    <div class="login-brand">
+      <div class="login-logo">
+        <ion-icon name="medkit"></ion-icon>
+      </div>
+      <h1>VacAdmin</h1>
+      <p>Vaccine Management System</p>
+    </div>
+
+    <!-- Card -->
+    <div class="login-card">
+      <h2>Welcome back</h2>
+      <p class="login-subtitle">Sign in to your admin account</p>
 
       <form [formGroup]="fg">
 
-        <ion-label color="primary" position="floating">
-          <ion-icon name="mail" item-start></ion-icon>
-          Mobile Number
-        </ion-label>
-        <ion-input type="email" formControlName="MobileNumber"></ion-input>
+        <div class="input-group">
+          <label>Mobile Number</label>
+          <div class="input-wrap">
+            <ion-icon name="phone-portrait-outline" class="input-icon"></ion-icon>
+            <ion-input type="email" formControlName="MobileNumber" placeholder="Enter mobile number"></ion-input>
+          </div>
+        </div>
 
+        <div class="input-group">
+          <label>Password</label>
+          <div class="input-wrap">
+            <ion-icon name="lock-closed-outline" class="input-icon"></ion-icon>
+            <ion-input type="password" formControlName="Password" placeholder="Enter password"></ion-input>
+          </div>
+        </div>
 
-        <ion-label color="primary" position="floating">
-          <ion-icon name="lock-closed" item-start></ion-icon>
-          Password
-        </ion-label>
-        <ion-input type="password" formControlName="Password"></ion-input>
+        <div class="forgot-link">
+          <a (click)="forgotPasswordAlert()">Forgot password?</a>
+        </div>
 
-
-        <ion-button expand="full" color="tertiary" (click)="login()">
-          <ion-icon name="log-in"></ion-icon>&nbsp;
-          Login
+        <ion-button expand="block" class="login-btn" (click)="login()">
+          <ion-icon name="log-in-outline" slot="start"></ion-icon>
+          Sign In
         </ion-button>
-      </form>
-      <ion-text text-right>
-        <a (click)="forgotPasswordAlert()">
-          <h2>Forget password</h2>
-        </a>
-      </ion-text>
 
-    </ion-card-content>
-  </ion-card>
+      </form>
+    </div>
+
+    <p class="login-footer-note">Admin access only &bull; VacAdmin &copy; 2024</p>
+
+  </div>
 
 </ion-content>

@@ -1,28 +1,40 @@
 <ion-header>
-    <ion-toolbar color="primary">
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>Doctors</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Doctors</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="page-content">
 
-    <ion-tabs>
-        <ion-tab-bar slot="bottom">
-          <ion-tab-button tab="approved">
-            <!-- <ion-icon name="checkbox-outline"></ion-icon>
-            <ion-label>Approved</ion-label> -->
-            <ion-badge *ngIf="approvedCount">{{approvedCount}}</ion-badge>
-          </ion-tab-button>
-    
-          <ion-tab-button tab="unapproved">
-           <!-- <ion-icon name="close-circle-outline"></ion-icon>
-           <ion-label>Not Approved</ion-label> -->
-           <ion-badge *ngIf="unapprovedCount">{{unapprovedCount}}</ion-badge>
-          </ion-tab-button>
-        </ion-tab-bar>
-      </ion-tabs>
-    
+  <!-- Stats row -->
+  <div class="doctor-stats" *ngIf="approvedCount || unapprovedCount">
+    <div class="doctor-stat-chip approved">
+      <ion-icon name="checkmark-circle-outline"></ion-icon>
+      <span>{{approvedCount || 0}} Approved</span>
+    </div>
+    <div class="doctor-stat-chip pending">
+      <ion-icon name="time-outline"></ion-icon>
+      <span>{{unapprovedCount || 0}} Pending</span>
+    </div>
+  </div>
+
+  <ion-tabs>
+    <ion-tab-bar slot="bottom" class="doctor-tab-bar">
+      <ion-tab-button tab="approved" class="doc-tab">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        <ion-label>Approved</ion-label>
+        <ion-badge *ngIf="approvedCount" color="success">{{approvedCount}}</ion-badge>
+      </ion-tab-button>
+
+      <ion-tab-button tab="unapproved" class="doc-tab">
+        <ion-icon name="time-outline"></ion-icon>
+        <ion-label>Pending</ion-label>
+        <ion-badge *ngIf="unapprovedCount" color="warning">{{unapprovedCount}}</ion-badge>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+
 </ion-content>

@@ -1,20 +1,40 @@
 <ion-header>
   <ion-toolbar color="primary">
-
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title> Cities</ion-title>
+    <ion-title>Cities</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-item *ngFor="let city of cities">
-      {{ city.Name }}
-      <ion-button slot="end" color="danger" (click)="deleteCity(city.Id)">Delete</ion-button>
-    </ion-item>
-  </ion-list>
+<ion-content class="page-content">
+
+  <div class="section-header">
+    <h2>Service Cities</h2>
+    <div class="section-line"></div>
+    <ion-badge color="primary" class="count-badge">{{cities?.length || 0}}</ion-badge>
+  </div>
+
+  <div class="cities-list">
+    <ion-card class="city-card" *ngFor="let city of cities">
+      <div class="city-row">
+        <div class="city-icon-wrap">
+          <ion-icon name="location-outline"></ion-icon>
+        </div>
+        <span class="city-name">{{ city.Name }}</span>
+        <ion-button fill="clear" color="danger" size="small" (click)="deleteCity(city.Id)" class="delete-btn">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-card>
+  </div>
+
+  <div class="empty-state" *ngIf="cities && cities.length === 0">
+    <ion-icon name="location-outline"></ion-icon>
+    <h3>No cities added</h3>
+    <p>Add your first service city</p>
+  </div>
+
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="addCity()">
       <ion-icon name="add"></ion-icon>

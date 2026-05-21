@@ -7,59 +7,75 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="page-content">
 
+  <!-- Compose Panel -->
+  <ion-card class="compose-card">
+    <div class="compose-toggle" (click)="accordion()">
+      <div class="compose-toggle-icon">
+        <ion-icon [name]="section ? 'chevron-up-outline' : 'create-outline'"></ion-icon>
+      </div>
+      <span>{{ section ? 'Cancel' : 'Compose New Message' }}</span>
+      <ion-icon name="chevron-down-outline" class="toggle-arrow" [class.open]="section"></ion-icon>
+    </div>
 
-
-  <ion-card>
-
-    <ion-item (click)="accordion()">
-      <ion-icon slot="start" name="ios-arrow-forward" color="primary" *ngIf="section==false"></ion-icon>
-      <ion-icon slot="start" name="ios-arrow-down" color="primary" *ngIf="section==true"></ion-icon>
-      <ion-label>Send New Messages</ion-label>
-    </ion-item>
-
-    <ion-card-content *ngIf="section == true">
-
+    <div class="compose-body" *ngIf="section">
       <form [formGroup]="fg">
-        <ion-item>
-          <ion-label position="floating" color="primary">Enter Number</ion-label>
-          <ion-input formControlName="MobileNumber"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating" color="primary">Enter Msg</ion-label>
-          <ion-textarea formControlName="SMS"></ion-textarea>
-        </ion-item>
-        <ion-button [disabled]="!fg.valid" (click)="sendMsg()">Send Msg</ion-button>
+        <div class="compose-field">
+          <label>Recipient Number</label>
+          <div class="input-wrap">
+            <ion-icon name="call-outline" class="field-icon"></ion-icon>
+            <ion-input formControlName="MobileNumber" placeholder="e.g. 03001234567"></ion-input>
+          </div>
+        </div>
+        <div class="compose-field">
+          <label>Message</label>
+          <div class="input-wrap textarea-wrap">
+            <ion-icon name="chatbubble-outline" class="field-icon"></ion-icon>
+            <ion-textarea formControlName="SMS" placeholder="Type your message..." rows="4"></ion-textarea>
+          </div>
+        </div>
+        <ion-button expand="block" [disabled]="!fg.valid" (click)="sendMsg()" class="send-btn">
+          <ion-icon slot="start" name="send-outline"></ion-icon>
+          Send Message
+        </ion-button>
       </form>
-
-    </ion-card-content>
+    </div>
   </ion-card>
 
+  <!-- Empty state -->
+  <div class="empty-state" *ngIf="message && message.length == 0">
+    <ion-icon name="chatbubble-outline"></ion-icon>
+    <h3>No messages found</h3>
+    <p>Sent messages will appear here</p>
+  </div>
 
-   <ion-card *ngIf="message && message.length == 0">
-    <ion-card-header>
-      <ion-card-title>No message found !</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      Server returned an empty response
-    </ion-card-content>
-  </ion-card> 
+  <!-- Message History -->
+  <div class="section-header" *ngIf="message && message.length > 0">
+    <h2>Message History</h2>
+    <div class="section-line"></div>
+    <ion-badge color="primary" class="count-badge">{{message.length}}</ion-badge>
+  </div>
 
-   <ion-card *ngFor="let msg of message">
-    <ion-card-header>
-      <ion-card-title>{{msg.User.MobileNumber}}</ion-card-title>
-    </ion-card-header>
+  <div class="messages-list">
+    <ion-card class="message-card" *ngFor="let msg of message">
+      <div class="message-header">
+        <div class="message-avatar">
+          <ion-icon name="person-outline"></ion-icon>
+        </div>
+        <div class="message-meta">
+          <h3>{{msg.User.MobileNumber}}</h3>
+          <span class="message-date">{{msg.Created | date:'dd MMM yyyy, hh:mm a'}}</span>
+        </div>
+        <div class="message-to-chip">
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+          {{msg.MobileNumber}}
+        </div>
+      </div>
+      <div class="message-body">
+        <p>{{msg.SMS}}</p>
+      </div>
+    </ion-card>
+  </div>
 
-    <ion-card-content>
-
-      <h1>Receiver Number:</h1>
-      <p>{{msg.MobileNumber}}</p>
-      <h1>Message:</h1>
-      <p>{{msg.SMS}}</p>
-      <h1>Date:</h1>
-      <p>{{msg.Created}}</p>
-      <!-- <ion-button routerLink="/message/{{msg.UserID}}/detail">Detail</ion-button> -->
-    </ion-card-content>
-  </ion-card> 
 </ion-content>

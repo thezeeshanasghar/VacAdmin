@@ -25,9 +25,198 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-/* Custom Global Styles */
+/* ─── Global App Styles ─────────────────────────────────────────────────────── */
 
-// Make scrollbars always visible in ion-select popups/alerts
+// Google Font (Inter) — loaded from index.html or add here as fallback
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+ion-content {
+  --background: var(--app-bg);
+}
+
+ion-card {
+  border-radius: var(--app-radius-md) !important;
+  box-shadow: var(--app-shadow-md) !important;
+  border: 1px solid var(--app-border);
+  margin: 12px !important;
+  overflow: hidden;
+}
+
+ion-item {
+  --border-radius: 10px;
+}
+
+ion-list {
+  background: transparent !important;
+}
+
+ion-badge {
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+ion-button {
+  --border-radius: 10px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+ion-fab-button {
+  --box-shadow: var(--app-shadow-lg);
+  --background: var(--app-gradient-primary);
+}
+
+// ── Modern toolbar ─────────────────────────────────────────────────────────────
+ion-toolbar[color="primary"] {
+  --background: var(--app-gradient-primary);
+  --color: #fff;
+  box-shadow: 0 2px 12px rgba(10, 110, 138, 0.25);
+}
+
+ion-header ion-toolbar {
+  --min-height: 58px;
+}
+
+ion-title {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-size: 1.15rem;
+}
+
+// ── Utility chips / stat cards ─────────────────────────────────────────────────
+.stat-card {
+  border-radius: var(--app-radius-lg) !important;
+  color: #fff;
+  padding: 20px 16px;
+  box-shadow: var(--app-shadow-lg) !important;
+  border: none !important;
+
+  .stat-number {
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  ion-icon.stat-icon {
+    font-size: 2.5rem;
+    opacity: 0.25;
+    position: absolute;
+    right: 16px;
+    top: 16px;
+  }
+}
+
+.stat-teal    { background: var(--app-gradient-primary) !important; }
+.stat-blue    { background: var(--app-gradient-accent) !important; }
+.stat-green   { background: var(--app-gradient-success) !important; }
+.stat-orange  { background: var(--app-gradient-warm) !important; }
+
+// ── Section header ─────────────────────────────────────────────────────────────
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 16px 8px;
+
+  h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ion-color-dark);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--app-border);
+  }
+}
+
+// ── Modern table ───────────────────────────────────────────────────────────────
+.table-container {
+  overflow-x: auto;
+  margin: 0 12px 12px;
+  border-radius: var(--app-radius-md);
+  box-shadow: var(--app-shadow-md);
+  border: 1px solid var(--app-border);
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--app-surface);
+
+    th, td {
+      padding: 13px 16px;
+      text-align: left;
+    }
+
+    th {
+      background: var(--app-gradient-primary);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    td {
+      font-size: 0.93rem;
+      color: var(--ion-color-dark);
+      border-bottom: 1px solid var(--app-border);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: rgba(10, 110, 138, 0.04);
+    }
+  }
+}
+
+// ── Empty state ────────────────────────────────────────────────────────────────
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--ion-color-medium);
+
+  ion-icon {
+    font-size: 3.5rem;
+    margin-bottom: 12px;
+    opacity: 0.4;
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 4px;
+    color: var(--ion-color-dark);
+  }
+
+  p {
+    font-size: 0.87rem;
+    margin: 0;
+  }
+}
+
+// ── Scrollbar ─────────────────────────────────────────────────────────────────
 .alert-wrapper {
   .alert-radio-group {
     overflow-y: auto !important;

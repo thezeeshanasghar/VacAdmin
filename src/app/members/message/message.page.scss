@@ -1,4 +1,187 @@
-ion-button:hover{
-    color: red;
+.page-content {
+  --background: var(--app-bg);
 }
 
+.count-badge {
+  --border-radius: 999px;
+  font-size: 0.78rem;
+  padding: 4px 10px;
+}
+
+// ── Compose Card ───────────────────────────────────────────────────────────────
+.compose-card {
+  background: var(--app-surface) !important;
+  margin-bottom: 4px !important;
+
+  .compose-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    cursor: pointer;
+
+    .compose-toggle-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--app-gradient-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      ion-icon {
+        font-size: 1rem;
+        color: #fff;
+      }
+    }
+
+    span {
+      flex: 1;
+      font-size: 0.93rem;
+      font-weight: 600;
+      color: var(--ion-color-dark);
+    }
+
+    .toggle-arrow {
+      font-size: 1rem;
+      color: var(--ion-color-medium);
+      transition: transform 0.2s ease;
+
+      &.open { transform: rotate(180deg); }
+    }
+  }
+
+  .compose-body {
+    padding: 0 16px 16px;
+  }
+}
+
+// ── Compose Fields ─────────────────────────────────────────────────────────────
+.compose-field {
+  margin-bottom: 14px;
+
+  label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--ion-color-dark);
+    margin-bottom: 7px;
+  }
+
+  .input-wrap {
+    display: flex;
+    align-items: flex-start;
+    background: #f0f9ff;
+    border: 1.5px solid rgba(10,110,138,0.15);
+    border-radius: 12px;
+    padding: 0 14px;
+    transition: border-color 0.2s ease;
+
+    &:focus-within {
+      border-color: var(--ion-color-primary);
+      box-shadow: 0 0 0 3px rgba(10,110,138,0.1);
+    }
+
+    &.textarea-wrap { align-items: flex-start; }
+
+    .field-icon {
+      font-size: 1rem;
+      color: var(--ion-color-primary);
+      margin-right: 10px;
+      margin-top: 14px;
+      flex-shrink: 0;
+    }
+
+    ion-input, ion-textarea {
+      --padding-start: 0;
+      --padding-end: 0;
+      --padding-top: 12px;
+      --padding-bottom: 12px;
+      font-size: 0.88rem;
+    }
+  }
+}
+
+.send-btn {
+  --background: var(--app-gradient-primary);
+  --border-radius: 12px;
+  --padding-top: 14px;
+  --padding-bottom: 14px;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+// ── Message List ───────────────────────────────────────────────────────────────
+.messages-list {
+  padding: 0 2px 80px;
+}
+
+.message-card {
+  background: var(--app-surface) !important;
+
+  .message-header {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 14px 16px 10px;
+
+    .message-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--app-gradient-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+
+      ion-icon {
+        font-size: 1rem;
+        color: #fff;
+      }
+    }
+
+    .message-meta {
+      flex: 1;
+      min-width: 0;
+
+      h3 {
+        font-size: 0.87rem;
+        font-weight: 700;
+        color: var(--ion-color-dark);
+        margin: 0 0 2px;
+      }
+
+      .message-date {
+        font-size: 0.73rem;
+        color: var(--ion-color-medium);
+      }
+    }
+
+    .message-to-chip {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.73rem;
+      font-weight: 600;
+      color: var(--ion-color-secondary);
+      background: rgba(0,180,216,0.1);
+      border-radius: 999px;
+      padding: 4px 10px;
+      white-space: nowrap;
+
+      ion-icon { font-size: 0.75rem; }
+    }
+  }
+
+  .message-body {
+    padding: 0 16px 14px;
+
+    p {
+      font-size: 0.87rem;
+      color: var(--ion-color-medium);
+      margin: 0;
+      line-height: 1.5;
+    }
+  }
+}

@@ -1,34 +1,43 @@
 <ion-split-pane contentId="main">
-  <ion-menu contentId="main" type="overlay">
-    <ion-header>
-      <ion-toolbar color="primary">
-        <ion-title>Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content color="light">
-      <ion-list>
+  <ion-menu contentId="main" type="overlay" class="app-sidemenu">
+
+    <!-- Branded header -->
+    <div class="menu-brand">
+      <div class="brand-icon">
+        <ion-icon name="medkit"></ion-icon>
+      </div>
+      <div class="brand-text">
+        <span class="brand-name">VacAdmin</span>
+        <span class="brand-sub">Vaccine Management</span>
+      </div>
+    </div>
+
+    <ion-content class="menu-content">
+      <div class="menu-section-label">Main Menu</div>
+      <ion-list class="menu-list">
         <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-          <ion-item color="light" [routerDirection]="'root'" [routerLink]="[p.url]">
-            <ion-icon color="primary" slot="start" [name]="p.icon"></ion-icon>
-            <ion-label>
-              {{p.title}}
-            </ion-label>
+          <ion-item class="menu-item" [routerDirection]="'root'" [routerLink]="[p.url]" routerLinkActive="menu-item-active" detail="false">
+            <div class="menu-icon-wrap" slot="start">
+              <ion-icon [name]="p.icon"></ion-icon>
+            </div>
+            <ion-label>{{p.title}}</ion-label>
           </ion-item>
         </ion-menu-toggle>
       </ion-list>
     </ion-content>
-    <ion-footer>
 
+    <ion-footer class="menu-footer">
       <ion-menu-toggle autoHide="false" (click)="clearStorage()">
-        <ion-item color="light" routerLink="/login">
-          <ion-icon color="primary" slot="start" name="power"></ion-icon>
+        <ion-item class="logout-item" routerLink="/login" detail="false">
+          <div class="menu-icon-wrap logout-icon" slot="start">
+            <ion-icon name="power"></ion-icon>
+          </div>
           <ion-label>Logout</ion-label>
         </ion-item>
       </ion-menu-toggle>
-
     </ion-footer>
+
   </ion-menu>
 
   <ion-router-outlet id="main"></ion-router-outlet>
-  
 </ion-split-pane>

@@ -1,6 +1,102 @@
-.success {
-    color: green
+.page-content {
+  --background: var(--app-bg);
 }
-.fail {
-    color:red
+
+.cards-container {
+  padding: 8px 2px 80px;
+}
+
+.doctor-card {
+  background: var(--app-surface) !important;
+
+  .doctor-card-header {
+    display: flex;
+    align-items: center;
+    padding: 16px 16px 0;
+    gap: 12px;
+
+    .doctor-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--app-gradient-primary);
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .doctor-info {
+      flex: 1;
+      min-width: 0;
+
+      h3 {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--ion-color-dark);
+        margin: 0 0 3px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .doctor-pmdc {
+        font-size: 0.75rem;
+        color: var(--ion-color-medium);
+        font-weight: 500;
+      }
+    }
+
+    .icon-btn {
+      --padding-start: 6px;
+      --padding-end: 6px;
+      flex-shrink: 0;
+    }
+  }
+
+  .doctor-details {
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    .detail-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.83rem;
+      color: var(--ion-color-medium);
+
+      ion-icon {
+        font-size: 0.95rem;
+        color: var(--ion-color-primary);
+        flex-shrink: 0;
+      }
+    }
+
+    .expiry-row {
+      ion-datetime {
+        --padding-start: 0;
+        font-size: 0.83rem;
+        color: #00c896;
+      }
+
+      &.expired ion-datetime { color: #ef4444; }
+    }
+  }
+
+  .doctor-card-footer {
+    display: flex;
+    gap: 10px;
+    padding: 0 16px 16px;
+
+    .footer-btn {
+      --border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+  }
 }

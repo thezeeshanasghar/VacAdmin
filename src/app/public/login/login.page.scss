@@ -1,27 +1,158 @@
-ion-content{
-    --background: #fff url('../../../assets/login.jpg') no-repeat center center / cover;
+.login-content {
+  --background: linear-gradient(160deg, #0a1628 0%, #0a6e8a 60%, #00b4d8 100%);
 }
 
-ion-card{
-    margin-top: 15%;
-    align-content: center;
-    width: 80%;
-    margin-left: 10%;
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 20px;
 }
 
-ion-input{
-    border-bottom: 1px solid rgb(41, 39, 39);
-    --padding-start: 7px;
+// ── Brand ──────────────────────────────────────────────────────────────────────
+.login-brand {
+  text-align: center;
+  margin-bottom: 28px;
+
+  .login-logo {
+    width: 72px;
+    height: 72px;
+    border-radius: 22px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 14px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+
+    ion-icon {
+      font-size: 2.2rem;
+      color: #fff;
+    }
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 0 0 4px;
+    letter-spacing: -0.03em;
+  }
+
+  p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    margin: 0;
+  }
 }
 
+// ── Card ──────────────────────────────────────────────────────────────────────
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 32px 28px;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.5);
 
-.item.item-trns {
-	border-color: rgba(0, 0, 0, 0);
-	background-color: rgba(0, 0, 0, 0);
-	color: white; 
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--ion-color-dark);
+    margin: 0 0 4px;
+    letter-spacing: -0.02em;
+  }
+
+  .login-subtitle {
+    font-size: 0.87rem;
+    color: var(--ion-color-medium);
+    margin: 0 0 28px;
+  }
 }
 
-h2{
-    color:#0039a2;
+// ── Inputs ────────────────────────────────────────────────────────────────────
+.input-group {
+  margin-bottom: 18px;
+
+  label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--ion-color-dark);
+    margin-bottom: 8px;
+    letter-spacing: 0.01em;
+  }
+
+  .input-wrap {
+    display: flex;
+    align-items: center;
+    background: #f0f9ff;
+    border: 1.5px solid rgba(10,110,138,0.15);
+    border-radius: 12px;
+    padding: 0 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+    &:focus-within {
+      border-color: var(--ion-color-primary);
+      box-shadow: 0 0 0 3px rgba(10,110,138,0.1);
+    }
+
+    .input-icon {
+      font-size: 1.1rem;
+      color: var(--ion-color-primary);
+      margin-right: 10px;
+      flex-shrink: 0;
+    }
+
+    ion-input {
+      --padding-start: 0;
+      --padding-end: 0;
+      --padding-top: 13px;
+      --padding-bottom: 13px;
+      font-size: 0.93rem;
+      color: var(--ion-color-dark);
+    }
+  }
 }
 
+// ── Forgot ────────────────────────────────────────────────────────────────────
+.forgot-link {
+  text-align: right;
+  margin-bottom: 24px;
+
+  a {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--ion-color-primary);
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover { text-decoration: underline; }
+  }
+}
+
+// ── Button ────────────────────────────────────────────────────────────────────
+.login-btn {
+  --background: var(--app-gradient-primary);
+  --border-radius: 12px;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+  font-size: 1rem;
+  font-weight: 700;
+  box-shadow: 0 6px 20px rgba(10,110,138,0.35);
+  margin: 0;
+}
+
+// ── Footer note ───────────────────────────────────────────────────────────────
+.login-footer-note {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+  margin-top: 20px;
+  text-align: center;
+}

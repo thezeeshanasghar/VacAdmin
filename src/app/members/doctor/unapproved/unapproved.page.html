@@ -1,17 +1,40 @@
-<ion-content>
-  <ion-card *ngFor="let doc of doctors">
+<ion-content class="page-content">
+  <div class="cards-container">
+    <ion-card class="doctor-card pending-card" *ngFor="let doc of doctors">
+      <div class="doctor-card-header">
+        <div class="doctor-avatar pending">
+          {{ doc.DisplayName?.charAt(0)?.toUpperCase() || 'D' }}
+        </div>
+        <div class="doctor-info">
+          <h3>{{doc.DisplayName}}</h3>
+          <span class="doctor-pmdc">PMDC: {{doc.PMDC}}</span>
+        </div>
+        <ion-badge color="warning" class="status-badge">Pending</ion-badge>
+      </div>
 
-    <ion-item>
-      <ion-label><b>{{doc.DisplayName}}</b></ion-label>
-      <ion-button slot="end" size="small" fill="outline" color="tertiary" (click)="onApprove(doc.Id)">
-        Approve &nbsp;
-      </ion-button>
-    </ion-item>
-    <ion-card-content>
-      <p>Email: {{ doc.Email}}</p>
-      <p>Number: {{doc.User.MobileNumber}}</p>
-      <p>PMDC No: {{doc.PMDC}}</p>
-    </ion-card-content>
+      <div class="doctor-details">
+        <div class="detail-row">
+          <ion-icon name="mail-outline"></ion-icon>
+          <span>{{doc.Email}}</span>
+        </div>
+        <div class="detail-row">
+          <ion-icon name="call-outline"></ion-icon>
+          <span>{{doc.User.MobileNumber}}</span>
+        </div>
+      </div>
 
-  </ion-card>
+      <div class="doctor-card-footer">
+        <ion-button size="small" fill="solid" color="success" (click)="onApprove(doc.Id)" class="approve-btn">
+          <ion-icon slot="start" name="checkmark-circle-outline"></ion-icon>
+          Approve
+        </ion-button>
+      </div>
+    </ion-card>
+  </div>
+
+  <div class="empty-state" *ngIf="doctors && doctors.length === 0">
+    <ion-icon name="time-outline"></ion-icon>
+    <h3>No pending approvals</h3>
+    <p>New doctors awaiting approval will appear here</p>
+  </div>
 </ion-content>

@@ -1,0 +1,83 @@
+.page-content {
+  --background: var(--app-bg);
+}
+
+.count-badge {
+  --border-radius: 999px;
+  font-size: 0.78rem;
+  padding: 4px 10px;
+}
+
+.cards-container {
+  padding: 0 2px 100px;
+}
+
+.agent-card {
+  background: var(--app-surface) !important;
+
+  .agent-header {
+    display: flex;
+    align-items: center;
+    padding: 16px 16px 10px;
+    gap: 12px;
+
+    .agent-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--app-gradient-warm);
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .agent-info {
+      flex: 1;
+      min-width: 0;
+
+      h3 {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--ion-color-dark);
+        margin: 0 0 3px;
+      }
+
+      .agent-phone {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.78rem;
+        color: var(--ion-color-medium);
+
+        ion-icon { font-size: 0.85rem; }
+      }
+    }
+
+    .agent-actions {
+      display: flex;
+      flex-shrink: 0;
+    }
+  }
+
+  .agent-fee {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 16px 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ion-color-primary);
+
+    ion-icon { font-size: 1rem; }
+
+    em {
+      font-style: normal;
+      font-weight: 400;
+      color: var(--ion-color-medium);
+    }
+  }
+}

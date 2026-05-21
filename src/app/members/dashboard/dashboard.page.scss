@@ -1,15 +1,151 @@
-.welcome-card ion-img {
-    max-height: 35vh;
-    overflow: hidden;
+.dash-content {
+  --background: var(--app-bg);
+}
+
+// ── Hero Banner ────────────────────────────────────────────────────────────────
+.hero-banner {
+  margin: 12px 12px 0;
+  border-radius: var(--app-radius-lg);
+  background: var(--app-gradient-primary);
+  box-shadow: var(--app-shadow-lg);
+  overflow: hidden;
+
+  .hero-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 24px 20px;
   }
-  
-  /* Set the color on all ion-button elements */
-  .card-pink {
-    background-color: #187da0;
-    --color: white;
+
+  .hero-text {
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 4px;
+      letter-spacing: -0.02em;
+    }
+    p {
+      font-size: 0.87rem;
+      color: rgba(255,255,255,0.75);
+      margin: 0;
+    }
   }
-  
-  .card-pink-2 {
-    background-color: #2eadd3;
-    --color: white;
+
+  .hero-icon {
+    ion-icon {
+      font-size: 3.5rem;
+      color: rgba(255,255,255,0.2);
+    }
   }
+}
+
+// ── Stats Grid ─────────────────────────────────────────────────────────────────
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  padding: 12px 2px 0;
+}
+
+// ── Quick Actions ──────────────────────────────────────────────────────────────
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  padding: 0 2px;
+
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.action-card {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 8px !important;
+  text-align: center;
+  cursor: pointer;
+  border-radius: var(--app-radius-md) !important;
+  background: var(--app-surface) !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  &:active {
+    transform: scale(0.96);
+  }
+
+  ion-icon {
+    font-size: 1.6rem;
+    color: var(--ion-color-primary);
+    margin-bottom: 8px;
+  }
+
+  span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--ion-color-dark);
+    line-height: 1.2;
+  }
+}
+
+// ── Nav Cards ─────────────────────────────────────────────────────────────────
+.nav-cards {
+  padding: 0 2px 80px;
+}
+
+.nav-card {
+  display: flex !important;
+  align-items: center;
+  padding: 14px 16px !important;
+  background: var(--app-surface) !important;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+
+  &:active { transform: scale(0.99); }
+
+  .nav-card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 14px;
+    flex-shrink: 0;
+
+    ion-icon {
+      font-size: 1.3rem;
+      color: #fff;
+    }
+
+    &.teal   { background: var(--app-gradient-primary); }
+    &.blue   { background: linear-gradient(135deg, #00b4d8, #0284c7); }
+    &.indigo { background: linear-gradient(135deg, #5c6bc0, #7c3aed); }
+    &.green  { background: var(--app-gradient-success); }
+    &.orange { background: var(--app-gradient-warm); }
+    &.purple { background: linear-gradient(135deg, #a855f7, #6366f1); }
+  }
+
+  .nav-card-text {
+    flex: 1;
+    h3 {
+      font-size: 0.93rem;
+      font-weight: 700;
+      color: var(--ion-color-dark);
+      margin: 0 0 2px;
+    }
+    p {
+      font-size: 0.78rem;
+      color: var(--ion-color-medium);
+      margin: 0;
+    }
+  }
+
+  .nav-chevron {
+    font-size: 1rem;
+    color: var(--ion-color-medium);
+    opacity: 0.5;
+  }
+}
