@@ -72,7 +72,10 @@ export class EditPage implements OnInit {
     const loading = await this.loadingController.create({ message: 'Loading' });
     await loading.present();
 
-    await this.doseService.editDose(this.route.snapshot.paramMap.get('id1'), this.fg.value)
+    const payload = { ...this.fg.value };
+    if (payload.MaxAge === '' || payload.MaxAge === undefined) payload.MaxAge = null;
+
+    await this.doseService.editDose(this.route.snapshot.paramMap.get('id1'), payload)
       .subscribe(res => {
         if (res.IsSuccess) {
           loading.dismiss();

@@ -60,7 +60,10 @@ export class AddPage implements OnInit {
     const loading = await this.loadingController.create({ message: 'Loading' });
     await loading.present();
 
-    await this.api.addDose(this.fg.value)
+    const payload = { ...this.fg.value };
+    if (payload.MaxAge === '' || payload.MaxAge === undefined) payload.MaxAge = null;
+
+    await this.api.addDose(payload)
       .subscribe(res => {
         if (res.IsSuccess) {
           loading.dismiss();
