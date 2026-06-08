@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from 'src/app/services/message.service';
 import { VaccineService } from 'src/app/services/vaccine.service';
 import { ToastService } from 'src/app/shared/toast.service';
+import * as moment from 'moment';
 
 
 @Component({
@@ -47,7 +48,12 @@ export class MessagePage implements OnInit {
     await this.api.getMessages().subscribe(
       res => {
         console.log(res);
-        this.message = res.ResponseData;
+        // MessageDTO.Created arrives as "DD-MM-YYYY" (OnlyDateConverter) — normalize
+        // to "YYYY-MM-DD" so the template's `| date` pipe parses it unambiguously.
+        this.message = (res.ResponseData || []).map(msg => {
+          if (msg.Created) { msg.Created = moment(msg.Created, 'DD-MM-YYYY').format('YYYY-MM-DD'); }
+          return msg;
+        });
         loading.dismiss();
       },
       err => {
