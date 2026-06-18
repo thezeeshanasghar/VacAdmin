@@ -42,6 +42,7 @@ export class AddPage implements OnInit {
       'ScheduleHtml': [''],
       'WhyVaccinateHtml': [''],
       'ImportantNoteHtml': [''],
+      'BrandsAvailableHtml': [''],
     });
   }
 

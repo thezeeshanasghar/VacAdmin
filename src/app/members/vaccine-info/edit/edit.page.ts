@@ -44,6 +44,7 @@ export class EditPage implements OnInit {
       'ScheduleHtml': [''],
       'WhyVaccinateHtml': [''],
       'ImportantNoteHtml': [''],
+      'BrandsAvailableHtml': [''],
     });
     this.getSingleVaccineInfo();
   }
@@ -73,6 +74,7 @@ export class EditPage implements OnInit {
         this.fg.controls['ScheduleHtml'].setValue(this.vaccineInfo.ScheduleHtml);
         this.fg.controls['WhyVaccinateHtml'].setValue(this.vaccineInfo.WhyVaccinateHtml);
         this.fg.controls['ImportantNoteHtml'].setValue(this.vaccineInfo.ImportantNoteHtml);
+        this.fg.controls['BrandsAvailableHtml'].setValue(this.vaccineInfo.BrandsAvailableHtml);
         this.fg.controls['Id'].setValue(this.vaccineInfo.Id + '');
       },
       err => {
