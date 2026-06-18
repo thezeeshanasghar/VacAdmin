@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Vaccine Education</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <form [formGroup]="fg">
+
+    <ion-item>
+      <ion-label color="primary" position="floating">Name</ion-label>
+      <ion-input type="text" formControlName="Name" required></ion-input>
+    </ion-item>
+
+    <div class="icon-picker-section">
+      <ion-label color="primary" class="icon-picker-label">Icon</ion-label>
+      <div class="icon-grid">
+        <div
+          class="icon-option"
+          *ngFor="let icon of icons"
+          [class.icon-selected]="selectedIcon === icon"
+          (click)="selectIcon(icon)">
+          <ion-icon [name]="icon"></ion-icon>
+          <ion-icon *ngIf="selectedIcon === icon" name="checkmark-circle" class="icon-check"></ion-icon>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <ion-label color="primary" class="section-block-label">Protects Against</ion-label>
+      <quill-editor formControlName="ProtectsAgainstHtml" [modules]="quillModules" placeholder="Describe the disease this vaccine protects against..."></quill-editor>
+    </div>
+
+    <div class="section-block">
+      <ion-label color="primary" class="section-block-label">Who Should Get It</ion-label>
+      <quill-editor formControlName="WhoShouldGetItHtml" [modules]="quillModules" placeholder="Describe who should get this vaccine..."></quill-editor>
+    </div>
+
+    <div class="section-block">
+      <ion-label color="primary" class="section-block-label">Schedule</ion-label>
+      <quill-editor formControlName="ScheduleHtml" [modules]="quillModules" placeholder="Describe the dosing schedule..."></quill-editor>
+    </div>
+
+    <div class="section-block">
+      <ion-label color="primary" class="section-block-label">Why Vaccinate</ion-label>
+      <quill-editor formControlName="WhyVaccinateHtml" [modules]="quillModules" placeholder="Explain why vaccination is important..."></quill-editor>
+    </div>
+
+    <div class="section-block">
+      <ion-label color="primary" class="section-block-label">Important Note</ion-label>
+      <quill-editor formControlName="ImportantNoteHtml" [modules]="quillModules" placeholder="Add an important note..."></quill-editor>
+    </div>
+
+    <ion-button expand="block" (click)="addVaccineInfo()" [disabled]="!fg.valid">Add</ion-button>
+  </form>
+
+</ion-content>

@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Vaccine Education</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/members/vaccine-info/add" fill="solid" color="light" class="add-btn">
+        <ion-icon slot="start" name="add-outline"></ion-icon>
+        Add
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="page-content">
+
+  <div class="section-header">
+    <h2>All Vaccine Education Entries</h2>
+    <div class="section-line"></div>
+    <ion-badge color="primary" class="count-badge">{{vaccineInfos?.length || 0}}</ion-badge>
+  </div>
+
+  <ion-searchbar (ionInput)="onInput($event)" placeholder="Search by name"></ion-searchbar>
+
+  <div class="cards-container">
+    <ion-card class="vaccine-card" *ngFor="let info of vaccineInfos">
+      <div class="vaccine-card-header">
+        <div class="vaccine-icon-wrap">
+          <ion-icon [name]="info.Icon || 'medkit'"></ion-icon>
+        </div>
+        <div class="vaccine-title">
+          <h3>{{info.Name}}</h3>
+        </div>
+        <div class="vaccine-actions">
+          <ion-button fill="clear" color="primary" [routerLink]="'/members/vaccine-info/edit/' + info.Id" class="icon-btn">
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-button>
+          <ion-button fill="clear" color="danger" (click)="promptForDeleteVaccineInfo(info.Id)" class="icon-btn">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+    </ion-card>
+  </div>
+
+  <div class="empty-state" *ngIf="vaccineInfos && vaccineInfos.length === 0">
+    <ion-icon name="medkit-outline"></ion-icon>
+    <h3>No vaccine education entries found</h3>
+    <p>Add your first entry to get started</p>
+  </div>
+
+</ion-content>

@@ -10,6 +10,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardPageModule' },
       { path: 'vaccine', loadChildren: './vaccine/vaccine.module#VaccinePageModule' },
+      { path: 'vaccine-info', loadChildren: './vaccine-info/vaccine-info.module#VaccineInfoPageModule' },
       { path: 'doctor', loadChildren: './doctor/doctor.module#DoctorPageModule' },
       { path: 'child', loadChildren: './child/child.module#ChildPageModule' },
       { path: 'message', loadChildren: './message/message.module#MessagePageModule' },
