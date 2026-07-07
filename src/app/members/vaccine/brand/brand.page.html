@@ -18,7 +18,7 @@
       <ion-icon name="color-filter" slot="start" style="margin-right:16px"></ion-icon>
       <ion-label>
         <h2>{{b.Name}}</h2>
-        <p>Manufacturer: {{b.Manufacturer}}</p>
+        <p>Manufacturer: {{b.Manufacturer}}<span *ngIf="b.Route"> &middot; Route: {{b.Route}}</span></p>
       </ion-label>
       <ion-item slot="end">
         <ion-icon (click)="getBrandsbyId(b.Id)" color="primary" name="create"></ion-icon>

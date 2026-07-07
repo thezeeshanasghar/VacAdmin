@@ -17,7 +17,17 @@ export class BrandPage {
   singlebrands: any;
   Name: any;
   Manufacturer: any;
+  Route: any;
   MinAge: any;
+
+  // Route of administration — fixed pharmacological property, entered via a constrained pick-list.
+  routeOptions = [
+    { label: 'IM (Intramuscular)', value: 'IM' },
+    { label: 'SC (Subcutaneous)', value: 'SC' },
+    { label: 'ID (Intradermal)', value: 'ID' },
+    { label: 'Oral', value: 'Oral' },
+    { label: 'Intranasal', value: 'Intranasal' },
+  ];
 
   minAgeOptions = [
     { label: 'No Restriction', value: null },
@@ -134,7 +144,7 @@ export class BrandPage {
       res => {
         this.singlebrands = res.ResponseData;
         loading.dismiss();
-        this.alertMsgForEdit(this.singlebrands.Name, this.singlebrands.Manufacturer, this.singlebrands.MinAge, id);
+        this.alertMsgForEdit(this.singlebrands.Name, this.singlebrands.Manufacturer, this.singlebrands.Route, this.singlebrands.MinAge, id);
       },
       err => {
         console.log(err);
@@ -157,7 +167,7 @@ export class BrandPage {
           handler: (data) => {
             this.Name = data.BrandName;
             this.Manufacturer = data.Manufacturer;
-            this.showMinAgeAlert(null, () => this.AddBrand());
+            this.showRouteAlert(null, () => this.showMinAgeAlert(null, () => this.AddBrand()));
           }
         }
       ]
@@ -190,15 +200,40 @@ export class BrandPage {
     await alert.present();
   }
 
+  async showRouteAlert(currentValue: any, onConfirm: () => void) {
+    const inputs = this.routeOptions.map(opt => ({
+      type: 'radio' as const,
+      label: opt.label,
+      value: opt.value,
+      checked: opt.value === currentValue
+    }));
+
+    const alert = await this.alertController.create({
+      header: 'Route of Administration',
+      inputs,
+      buttons: [
+        { text: 'Cancel', role: 'cancel' },
+        {
+          text: 'Next',
+          handler: (data) => {
+            this.Route = data;
+            onConfirm();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
   async AddBrand() {
-    let userData1 = { Name: this.Name, Manufacturer: this.Manufacturer, MinAge: this.MinAge };
+    let userData1 = { Name: this.Name, Manufacturer: this.Manufacturer, Route: this.Route, MinAge: this.MinAge };
     await this.api.addBrand(userData1).subscribe(
       res => { this.getBrands(); },
       err => { console.log(err); }
     );
   }
 
-  async alertMsgForEdit(brandname, manufacturer, minAge, id) {
+  async alertMsgForEdit(brandname, manufacturer, route, minAge, id) {
     const alert = await this.alertController.create({
       header: 'Edit Brand',
       inputs: [
@@ -212,7 +247,7 @@ export class BrandPage {
           handler: (data) => {
             this.Name = data.BrandName;
             this.Manufacturer = data.Manufacturer;
-            this.showMinAgeAlert(minAge, () => this.editBrand(id));
+            this.showRouteAlert(route, () => this.showMinAgeAlert(minAge, () => this.editBrand(id)));
           }
         }
       ]
@@ -221,7 +256,7 @@ export class BrandPage {
   }
 
   async editBrand(id) {
-    let userData = { ID: this.singlebrands.ID, Name: this.Name, Manufacturer: this.Manufacturer, MinAge: this.MinAge };
+    let userData = { ID: this.singlebrands.ID, Name: this.Name, Manufacturer: this.Manufacturer, Route: this.Route, MinAge: this.MinAge };
     await this.api.editBrand(id, userData).subscribe(
       res => { this.getBrands(); },
       err => { console.log(err); }
