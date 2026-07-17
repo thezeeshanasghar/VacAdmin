@@ -17,6 +17,15 @@ export class VaccinePage implements OnInit {
   backupdoctorData: any;
   suggestedBrandCountByVaccineId: { [vaccineId: number]: number } = {};
 
+  vaccineTypeLabels: { [code: number]: string } = {
+    1: 'Live',
+    2: 'Inactivated',
+    3: 'Subunit/Conjugate/Polysaccharide',
+    4: 'Toxoid',
+    5: 'mRNA',
+    6: 'Viral Vector',
+  };
+
   constructor(
     public api: VaccineService,
     public route: ActivatedRoute,

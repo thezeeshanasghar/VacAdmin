@@ -311,7 +311,26 @@
         <ion-select-option value="9125">25 Years</ion-select-option>
         <ion-select-option value="30000">Life Time</ion-select-option>
       </ion-select>
-    </ion-item> 
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" position="floating">Type Category(optional)</ion-label>
+      <ion-select [(ngModel)]="typeCategory" [ngModelOptions]="{standalone: true}" (ionChange)="onTypeCategoryChange()">
+        <ion-select-option value="live">Live</ion-select-option>
+        <ion-select-option value="non-live">Non-Live</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="typeCategory === 'non-live'">
+      <ion-label color="primary" position="floating">Non-Live Sub-Type</ion-label>
+      <ion-select formControlName="Type">
+        <ion-select-option value="2">Inactivated</ion-select-option>
+        <ion-select-option value="3">Subunit/Conjugate/Polysaccharide</ion-select-option>
+        <ion-select-option value="4">Toxoid</ion-select-option>
+        <ion-select-option value="5">mRNA</ion-select-option>
+        <ion-select-option value="6">Viral Vector</ion-select-option>
+      </ion-select>
+    </ion-item>
 
     <ion-button (click)="editVaccine()" [disabled]="!fg.valid">Submit</ion-button>
   </form>

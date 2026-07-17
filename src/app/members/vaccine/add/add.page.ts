@@ -15,6 +15,7 @@ export class AddPage implements OnInit {
   // userData = { VaccineName: "", MinAge: "", MaxAge: "" };
 
   fg: FormGroup;
+  typeCategory: string = null;
 
   constructor(
     public api: VaccineService,
@@ -32,6 +33,7 @@ export class AddPage implements OnInit {
       'MaxAge': [null],
       'isInfinite': [false],
       'Validity': [null],
+      'Type': [null],
     });
 
   }
@@ -40,6 +42,14 @@ export class AddPage implements OnInit {
   changeInfiniteValue() {
     // console.log(this.fg.value.isInfinite);
 
+  }
+
+  onTypeCategoryChange() {
+    if (this.typeCategory === 'live') {
+      this.fg.controls['Type'].setValue('1');
+    } else {
+      this.fg.controls['Type'].setValue(null);
+    }
   }
 
   async addVaccine() {

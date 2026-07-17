@@ -17,6 +17,7 @@ export class EditPage implements OnInit {
   vaccine: any = {};
   fg: FormGroup;
   vaccineDetails: any;
+  typeCategory: string = null;
 
   constructor(
     public api: VaccineService,
@@ -35,6 +36,7 @@ export class EditPage implements OnInit {
       'MinAge': [null, Validators.required],
       'MaxAge': [null],
       'Validity': [null],
+      'Type': [null],
     });
     this.getSingleVaccine();
 
@@ -43,6 +45,14 @@ export class EditPage implements OnInit {
 
   logForm() {
     console.log(this.fg)
+  }
+
+  onTypeCategoryChange() {
+    if (this.typeCategory === 'live') {
+      this.fg.controls['Type'].setValue('1');
+    } else {
+      this.fg.controls['Type'].setValue(null);
+    }
   }
 
   async getSingleVaccine() {
@@ -60,6 +70,10 @@ export class EditPage implements OnInit {
         this.fg.controls['Name'].setValue(this.vaccine.Name);
         this.fg.controls['MinAge'].setValue(this.vaccine.MinAge + '');
         this.fg.controls['Validity'].setValue(this.vaccine.Validity + '');
+        if (this.vaccine.Type) {
+          this.fg.controls['Type'].setValue(this.vaccine.Type + '');
+          this.typeCategory = this.vaccine.Type === 1 ? 'live' : 'non-live';
+        }
         if (this.vaccine.MaxAge)
           this.fg.controls['MaxAge'].setValue(this.vaccine.MaxAge + '');
         this.fg.controls['Id'].setValue(this.vaccine.Id + '');

@@ -41,10 +41,14 @@
         </div>
       </div>
 
-      <div class="vaccine-card-body" *ngIf="vaccine.MaxAge">
-        <div class="info-chip">
+      <div class="vaccine-card-body" *ngIf="vaccine.MaxAge || vaccine.Type">
+        <div class="info-chip" *ngIf="vaccine.MaxAge">
           <ion-icon name="time-outline"></ion-icon>
           Max age: {{vaccine.MaxAge | number2Week}}
+        </div>
+        <div class="info-chip" *ngIf="vaccine.Type">
+          <ion-icon name="flask-outline"></ion-icon>
+          {{vaccineTypeLabels[vaccine.Type]}}
         </div>
       </div>
 
