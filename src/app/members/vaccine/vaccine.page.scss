@@ -63,8 +63,22 @@
       .vaccine-age {
         font-size: 0.78rem;
         color: var(--ion-color-medium);
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 6px;
 
         b { color: var(--ion-color-primary); }
+
+        .type-tag {
+          background: rgba(10,110,138,0.08);
+          color: var(--ion-color-primary);
+          border-radius: 999px;
+          padding: 1px 8px;
+          font-size: 0.68rem;
+          font-weight: 600;
+          line-height: 1.5;
+        }
       }
     }
 

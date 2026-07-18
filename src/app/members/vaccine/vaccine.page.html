@@ -29,7 +29,10 @@
         </div>
         <div class="vaccine-title">
           <h3>{{vaccine.Name}}</h3>
-          <span class="vaccine-age">Min age: <b>{{vaccine.MinAge | number2Week}}</b></span>
+          <span class="vaccine-age">
+            Min age: <b>{{vaccine.MinAge | number2Week}}</b>
+            <span class="type-tag" *ngIf="vaccine.Type">{{vaccineTypeLabels[vaccine.Type]}}</span>
+          </span>
         </div>
         <div class="vaccine-actions">
           <ion-button fill="clear" color="primary" [routerLink]="'/members/vaccine/edit/' + vaccine.Id" class="icon-btn">
@@ -41,14 +44,10 @@
         </div>
       </div>
 
-      <div class="vaccine-card-body" *ngIf="vaccine.MaxAge || vaccine.Type">
-        <div class="info-chip" *ngIf="vaccine.MaxAge">
+      <div class="vaccine-card-body" *ngIf="vaccine.MaxAge">
+        <div class="info-chip">
           <ion-icon name="time-outline"></ion-icon>
           Max age: {{vaccine.MaxAge | number2Week}}
-        </div>
-        <div class="info-chip" *ngIf="vaccine.Type">
-          <ion-icon name="flask-outline"></ion-icon>
-          {{vaccineTypeLabels[vaccine.Type]}}
         </div>
       </div>
 
