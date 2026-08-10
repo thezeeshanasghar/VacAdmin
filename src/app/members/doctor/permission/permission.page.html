@@ -71,6 +71,10 @@
       <ion-label>Allow Assistant</ion-label>
       <ion-checkbox [(ngModel)]="doctor.AllowAssistant"></ion-checkbox>
     </ion-item>
+    <ion-item>
+      <ion-label>Allow Cold Chain Management</ion-label>
+      <ion-checkbox [(ngModel)]="doctor.AllowColdChain"></ion-checkbox>
+    </ion-item>
     <ion-button expand="block" (click)="update()">Update Permission</ion-button>
 
   </ion-list>
