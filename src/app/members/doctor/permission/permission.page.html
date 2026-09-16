@@ -75,6 +75,14 @@
       <ion-label>Allow Cold Chain Management</ion-label>
       <ion-checkbox [(ngModel)]="doctor.AllowColdChain"></ion-checkbox>
     </ion-item>
+    <ion-item>
+      <ion-label>Allow Own Website</ion-label>
+      <ion-checkbox [(ngModel)]="doctor.AllowOwnWebsite"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Allow Own Email</ion-label>
+      <ion-checkbox [(ngModel)]="doctor.AllowOwnEmail"></ion-checkbox>
+    </ion-item>
     <ion-button expand="block" (click)="update()">Update Permission</ion-button>
 
   </ion-list>
