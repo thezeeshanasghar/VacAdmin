@@ -20,6 +20,7 @@ const routes: Routes = [
       { path: 'agentAlert', loadChildren: './agentalert/agentalert.module#AgentAlertPageModule' },
       { path: 'brand', loadChildren: './vaccine/brand/brand.module#BrandPageModule' },
       { path: 'vaccineBrands', loadChildren: './vaccinebrands/vaccinebrands.module#VaccineBrandsPageModule' },
+      { path: 'email-settings', loadChildren: './email-settings/email-settings.module#EmailSettingsPageModule' },
     ]
   }
 ];

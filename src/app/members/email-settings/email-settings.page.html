@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/members/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Default Email Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="fg">
+    <ion-list no-lines>
+
+      <ion-item>
+        <ion-label color="dark" text-center>
+          Used for any doctor without their own email settings
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">SMTP Host</ion-label>
+        <ion-input type="text" formControlName="Host" placeholder="smtp.hostinger.com"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Port</ion-label>
+        <ion-input type="number" formControlName="Port" placeholder="587"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Use SSL / TLS</ion-label>
+        <ion-checkbox [formControl]="fg.get('UseSsl')" slot="end"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Username</ion-label>
+        <ion-input type="text" formControlName="Username" placeholder="info@vaccinationcentre.com"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" formControlName="Password"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">From Email</ion-label>
+        <ion-input type="text" formControlName="FromEmail" placeholder="info@vaccinationcentre.com"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">From Name</ion-label>
+        <ion-input type="text" formControlName="FromName" placeholder="Vaccination Centre"></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" (click)="save()">Save Default Settings</ion-button>
+
+    </ion-list>
+  </form>
+</ion-content>
