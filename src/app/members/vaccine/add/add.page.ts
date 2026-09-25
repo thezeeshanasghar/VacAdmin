@@ -34,6 +34,7 @@ export class AddPage implements OnInit {
       'isInfinite': [false],
       'Validity': [null],
       'Type': [null],
+      'ContainsDTaP': [false],
     });
 
   }

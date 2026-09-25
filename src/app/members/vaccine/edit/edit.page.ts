@@ -37,6 +37,7 @@ export class EditPage implements OnInit {
       'MaxAge': [null],
       'Validity': [null],
       'Type': [null],
+      'ContainsDTaP': [false],
     });
     this.getSingleVaccine();
 
@@ -76,6 +77,7 @@ export class EditPage implements OnInit {
         }
         if (this.vaccine.MaxAge)
           this.fg.controls['MaxAge'].setValue(this.vaccine.MaxAge + '');
+        this.fg.controls['ContainsDTaP'].setValue(!!this.vaccine.ContainsDTaP);
         this.fg.controls['Id'].setValue(this.vaccine.Id + '');
       },
       err => {
