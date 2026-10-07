@@ -6,6 +6,7 @@ import { ToastService } from 'src/app/shared/toast.service';
 import { AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { environment } from 'src/environments/environment';
+import { AuthSession } from 'src/app/services/auth-session';
 
 
 @Component({
@@ -54,6 +55,7 @@ export class LoginPage implements OnInit {
         if (res.IsSuccess) {
           this.loginService.changeState(true);
           this.storage.set(environment.IS_LOGGED_IN, true);
+          AuthSession.set(this.storage, res.ResponseData.Token);
           this.router.navigate(['/members/']);
         }
         else {
