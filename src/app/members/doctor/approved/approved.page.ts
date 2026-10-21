@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { ToastService } from 'src/app/shared/toast.service';
 import { AlertService } from 'src/app/shared/alert.service';
 
+import { today as todayDay } from 'src/app/shared/time';
 @Component({
   selector: 'app-approved',
   templateUrl: './approved.page.html',
@@ -25,7 +26,7 @@ export class ApprovedPage implements OnInit {
   //  private events: Events,
     private toastService: ToastService
   ) {
-    this.today = moment().format('YYYY-MM-DD');
+    this.today = todayDay();
   }
 
   ngOnInit() {

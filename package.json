@@ -6,6 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "prebuild": "bash scripts/check-time.sh",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

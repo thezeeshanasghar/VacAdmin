@@ -49,7 +49,7 @@ export class MessagePage implements OnInit {
       res => {
         console.log(res);
         // MessageDTO.Created arrives as "DD-MM-YYYY" (OnlyDateConverter) — normalize
-        // to "YYYY-MM-DD" so the template's `| date` pipe parses it unambiguously.
+        // to "YYYY-MM-DD" so the template's `| day` pipe reads the literal day.
         this.message = (res.ResponseData || []).map(msg => {
           if (msg.Created) { msg.Created = moment(msg.Created, 'DD-MM-YYYY').format('YYYY-MM-DD'); }
           return msg;

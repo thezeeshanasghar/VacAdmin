@@ -1,3 +1,4 @@
+import { SharedModule } from 'src/app/shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -20,6 +21,7 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ],
   declarations: [MessagePage]
