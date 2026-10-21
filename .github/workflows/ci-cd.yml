@@ -23,6 +23,7 @@ jobs:
           name: build-output
           path: www/
           retention-days: 1
+          include-hidden-files: true
 
   deploy-prod:
     needs: build
